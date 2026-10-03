@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_dashboard" name="shell-type"/>
+<title>Incident Management &amp; Road Disruptions Registry - Path Setu</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-dim": "#cbdbf5",
+            "surface-container-low": "#eff4ff",
+            "secondary-container": "#5bb8fe",
+            "inverse-on-surface": "#eaf1ff",
+            "inverse-surface": "#213145",
+            "secondary-fixed-dim": "#93ccff",
+            "secondary": "#006398",
+            "tertiary-container": "#656d84",
+            "on-secondary-fixed-variant": "#004b73",
+            "on-primary-fixed": "#00174b",
+            "surface-container-lowest": "#ffffff",
+            "tertiary-fixed": "#dae2fd",
+            "background": "#f8f9ff",
+            "surface-tint": "#0053db",
+            "error": "#ba1a1a",
+            "on-primary-fixed-variant": "#003ea8",
+            "on-tertiary-container": "#eef0ff",
+            "tertiary-fixed-dim": "#bec6e0",
+            "primary-fixed-dim": "#b4c5ff",
+            "on-secondary-container": "#00476e",
+            "secondary-fixed": "#cce5ff",
+            "on-tertiary": "#ffffff",
+            "inverse-primary": "#b4c5ff",
+            "surface-container": "#e5eeff",
+            "on-tertiary-fixed": "#131b2e",
+            "outline": "#737686",
+            "tertiary": "#0284c7",
+            "on-primary-container": "#eeefff",
+            "on-background": "#0b1c30",
+            "on-surface-variant": "#434655",
+            "surface-container-high": "#dce9ff",
+            "outline-variant": "#c3c6d7",
+            "surface-container-highest": "#d3e4fe",
+            "on-secondary-fixed": "#001d31",
+            "surface": "#f8f9ff",
+            "on-secondary": "#ffffff",
+            "error-container": "#ffdad6",
+            "on-tertiary-fixed-variant": "#3f465c",
+            "on-primary": "#ffffff",
+            "primary-container": "#2563eb",
+            "surface-variant": "#d3e4fe",
+            "on-error": "#ffffff",
+            "surface-bright": "#f8f9ff",
+            "primary": "#004ac6",
+            "primary-fixed": "#dbe1ff",
+            "on-surface": "#0b1c30",
+            "on-error-container": "#93000a"
+          },
+          borderRadius: {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          spacing: {
+            "space-sm": "0.375rem",
+            "space-xl": "1.5rem",
+            "space-md": "0.75rem",
+            "space-lg": "1rem",
+            "gutter": "0.75rem",
+            "margin": "1rem",
+            "space-xs": "0.25rem"
+          },
+          fontFamily: {
+            "label-sm": ["JetBrains Mono"],
+            "body-md": ["Geist"],
+            "code-sm": ["JetBrains Mono"],
+            "label-md": ["JetBrains Mono"],
+            "headline-md": ["Geist"],
+            "display-lg": ["Geist"],
+            "headline-sm": ["Geist"],
+            "body-lg": ["Geist"],
+            "headline-lg": ["Geist"],
+            "code-md": ["JetBrains Mono"],
+            "body-sm": ["Geist"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-[#F8FAFC] font-body-md text-slate-800 antialiased selection:bg-blue-100 selection:text-blue-900 min-h-screen">
+<!-- Left Tactical Sidebar -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-white border-r border-slate-200 z-50 flex flex-col justify-between select-none shadow-sm">
+<div class="flex flex-col flex-1 min-h-0">
+<!-- Logo Header -->
+<div class="h-14 px-4 border-b border-slate-200 flex items-center justify-between gap-2 bg-white">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="h-8 w-8 rounded bg-blue-600 flex items-center justify-center flex-shrink-0 text-white font-bold font-label-md shadow-sm">
+<span class="material-symbols-outlined text-[19px]">share_location</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-sm text-[15px] font-bold text-slate-900 tracking-tight truncate leading-tight">Path Setu</span>
+<span class="font-label-sm text-[10px] text-blue-600 truncate tracking-widest uppercase font-semibold">Mission Control</span>
+</div>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200 font-label-sm text-[10px] text-slate-600 font-medium">OPS v2.4</span>
+</div>
+<!-- Tactical Status Subheader -->
+<div class="px-4 py-2 border-b border-slate-100 bg-slate-50/70 flex items-center justify-between">
+<span class="font-label-sm text-[10px] uppercase text-slate-500 tracking-wider font-semibold">Operational Units</span>
+<span class="font-label-sm text-[10px] text-emerald-600 font-semibold flex items-center gap-1.5">
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>SYNCED
+        </span>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 overflow-y-auto px-2 py-3 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900 rounded border-l-2 border-transparent transition-colors text-sm font-medium" data-path="operations-dashboard" href="#">
+<span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-500">monitoring</span>
+<span class="truncate">Operations Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900 rounded border-l-2 border-transparent transition-colors text-sm font-medium" data-path="live-gis-map" href="#">
+<span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-500">public</span>
+<span class="truncate">Live GIS Map</span>
+<span class="ml-auto font-label-sm text-[10px] text-emerald-600 font-semibold px-1.5 py-0.5 bg-emerald-50 rounded border border-emerald-200">LIVE</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900 rounded border-l-2 border-transparent transition-colors text-sm font-medium" data-path="route-intelligence" href="#">
+<span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-500">alt_route</span>
+<span class="truncate">Route Intelligence</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900 rounded border-l-2 border-transparent transition-colors text-sm font-medium" data-path="logistics-fleet" href="#">
+<span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-500">local_shipping</span>
+<span class="truncate">Logistics &amp; Fleet</span>
+</a>
+<a aria-current="page" class="flex items-center gap-3 px-3 py-2 bg-blue-50 text-blue-700 rounded border-l-2 border-blue-600 transition-colors text-sm font-semibold shadow-xs" data-path="incidents" href="#">
+<span class="material-symbols-outlined text-[18px] flex-shrink-0 text-blue-600">emergency_heat</span>
+<span class="truncate">Incidents</span>
+<span class="ml-auto font-label-sm text-[10px] text-red-600 font-bold px-1.5 py-0.5 bg-red-100 rounded border border-red-200">4 ACT</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900 rounded border-l-2 border-transparent transition-colors text-sm font-medium" data-path="weather-risk" href="#">
+<span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-500">thunderstorm</span>
+<span class="truncate">Weather Risk</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900 rounded border-l-2 border-transparent transition-colors text-sm font-medium" data-path="alert-center" href="#">
+<span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-500">notifications_active</span>
+<span class="truncate">Alert Center</span>
+<span class="ml-auto font-label-sm text-[10px] text-blue-600 px-1.5 py-0.5 bg-blue-50 rounded border border-blue-200 font-medium">12</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 hover:bg-slate-100 hover:text-slate-900 rounded border-l-2 border-transparent transition-colors text-sm font-medium" data-path="analytics" href="#">
+<span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-500">bar_chart_4_bars</span>
+<span class="truncate">Analytics</span>
+</a>
+</nav>
+</div>
+<!-- Sidebar Bottom Telemetry -->
+<div class="border-t border-slate-200 bg-slate-50/60 p-3.5 flex flex-col gap-2">
+<div class="flex items-center justify-between text-slate-600 font-label-sm text-[11px] px-0.5">
+<div class="flex items-center gap-1.5">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+</span>
+<span class="text-slate-700 font-semibold tracking-wide">TELEMETRY</span>
+</div>
+<span class="text-emerald-700 font-bold">NOMINAL 99.8%</span>
+</div>
+<div class="flex items-center justify-between px-0.5">
+<span class="font-label-sm text-[10px] px-1.5 py-0.5 rounded bg-white border border-slate-200 text-slate-500 uppercase font-medium">Telemetry Feed Active</span>
+<button class="text-slate-400 hover:text-slate-700 transition-colors flex items-center p-0.5" title="Telemetry Settings">
+<span class="material-symbols-outlined text-[16px]">settings</span>
+</button>
+</div>
+<div class="pt-2 border-t border-slate-200 flex items-center gap-2.5 px-0.5">
+<div class="w-8 h-8 rounded bg-blue-100 border border-blue-200 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-blue-700 text-[18px]">badge</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-body-sm text-[12px] text-slate-900 font-semibold truncate leading-tight">S. Rao</span>
+<span class="font-label-sm text-[10px] text-slate-500 truncate leading-tight mt-0.5">Dispatch Lead • Sec-04</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main View Container -->
+<div class="pl-64 min-h-screen flex flex-col">
+<!-- Top Tactical Navbar -->
+<header class="fixed top-0 left-64 right-0 h-14 bg-white border-b border-slate-200 z-40 px-6 flex items-center justify-between gap-4 select-none shadow-xs">
+<div class="flex items-center gap-4 min-w-0">
+<div class="flex items-center gap-2 font-label-md text-[11px] text-slate-500 truncate">
+<span class="text-slate-700 font-semibold">PATH SETU</span>
+<span class="text-slate-300">/</span>
+<span class="text-blue-700 font-semibold">TACTICAL DISPATCH</span>
+<span class="text-slate-300">/</span>
+<span class="text-slate-900 font-bold truncate">GRID-NORTH (HIMALAYAN CORRIDOR)</span>
+</div>
+<div class="hidden xl:flex items-center gap-2 px-2.5 py-1 rounded bg-slate-50 border border-slate-200 font-label-sm text-[11px]">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="text-slate-600 font-medium">Telemetry Synchronized</span>
+<span class="text-slate-300">•</span>
+<span class="text-blue-700 font-bold">UTC+05:30 14:32:08</span>
+</div>
+</div>
+<div class="flex items-center gap-3 flex-shrink-0">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-2.5 text-slate-400 text-[16px] pointer-events-none">search</span>
+<input class="w-64 lg:w-72 h-8 pl-8 pr-3 bg-slate-50 hover:bg-white border border-slate-200 focus:border-blue-600 focus:bg-white rounded text-slate-900 placeholder:text-slate-400 font-body-sm text-[12px] focus:outline-none transition-colors" placeholder="Filter route, road, vehicle, or incident ID..." type="text"/>
+</div>
+<div class="hidden md:flex items-center gap-1.5 border-x border-slate-200 px-3">
+<button class="h-8 px-2.5 bg-slate-50 border border-slate-200 hover:border-blue-500 hover:bg-blue-50/50 rounded text-slate-700 flex items-center gap-1.5 font-label-sm text-[11px] font-medium transition-colors" title="GIS Tactical Layers" type="button">
+<span class="material-symbols-outlined text-[16px] text-blue-600">layers</span>
+<span class="hidden lg:inline">GIS Layers</span>
+</button>
+<button class="h-8 px-2.5 bg-red-50 border border-red-200 hover:bg-red-100 text-red-700 rounded font-label-sm text-[11px] font-bold flex items-center gap-1.5 transition-colors" type="button">
+<span class="w-2 h-2 rounded-full bg-red-600"></span>
+<span>CRIT: 1</span>
+</button>
+<button class="h-8 px-2.5 bg-amber-50 border border-amber-200 hover:bg-amber-100 text-amber-800 rounded font-label-sm text-[11px] font-semibold flex items-center gap-1.5 transition-colors" type="button">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<span>WARN: 3</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<div class="hidden sm:flex items-center gap-1 px-2 py-1 rounded bg-emerald-50 border border-emerald-200 font-label-sm text-[11px] text-emerald-700 font-semibold">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+<span>RADAR NOMINAL</span>
+</div>
+<button class="relative p-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded transition-colors" title="Operational Notifications" type="button">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-red-600 ring-2 ring-white"></span>
+</button>
+<div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 text-white shadow-xs font-semibold text-xs">
+            SR
+          </div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="relative pt-14 bg-[#F8FAFC] flex-1">
+<div class="p-5 flex flex-col gap-5 max-w-[1720px] mx-auto">
+<!-- 1. Header & Summary KPIs Banner -->
+<header class="bg-white border border-slate-200 rounded-lg p-5 shadow-xs flex flex-col xl:flex-row xl:items-center justify-between gap-5">
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center gap-2 flex-wrap">
+<span class="inline-flex items-center px-2 py-0.5 rounded bg-blue-50 border border-blue-200 font-label-sm text-[11px] text-blue-700 uppercase tracking-widest font-bold">
+                T-SEC 09 // SECTOR CRITICAL
+              </span>
+<span class="text-slate-300 font-label-sm text-[11px]">•</span>
+<span class="font-label-sm text-[11px] text-emerald-700 font-semibold flex items-center gap-1 px-2 py-0.5 bg-emerald-50 border border-emerald-200 rounded">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                ACTIVE SIMULATED TELEMETRY PILL // RADAR FEED ONLINE
+              </span>
+</div>
+<h1 class="font-headline-lg text-[22px] font-bold text-slate-900 tracking-tight leading-snug">
+              Corridor Disruptions &amp; Incident Registry
+            </h1>
+<p class="font-body-sm text-[13px] text-slate-500 max-w-2xl leading-relaxed">
+              Real-time tactical interception, geological hazard indexing, and autonomous remediation routing across trans-Himalayan freight arteries.
+            </p>
+</div>
+<!-- KPI Cards Ribbon + Primary CTA -->
+<div class="flex flex-wrap items-center gap-3">
+<div class="bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-md flex flex-col min-w-[130px]">
+<span class="font-label-sm text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Active Disruptions</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-label-lg text-[18px] font-bold text-slate-900">12</span>
+<span class="font-label-sm text-[11px] text-blue-600 font-semibold">Incidents</span>
+</div>
+</div>
+<div class="bg-red-50/60 border border-red-200 px-4 py-2.5 rounded-md flex flex-col min-w-[130px]">
+<span class="font-label-sm text-[10px] text-red-600 uppercase tracking-wider font-semibold">Blocked Roads</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-label-lg text-[18px] font-bold text-red-600">03</span>
+<span class="font-label-sm text-[11px] text-slate-600 font-medium">Corridors</span>
+</div>
+</div>
+<div class="bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-md flex flex-col min-w-[140px]">
+<span class="font-label-sm text-[10px] text-slate-500 uppercase tracking-wider font-semibold">Avg Clearance TAT</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-label-lg text-[18px] font-bold text-blue-700">6.8</span>
+<span class="font-label-sm text-[11px] text-slate-600 font-medium">Hours</span>
+</div>
+</div>
+<div class="bg-amber-50/70 border border-amber-200 px-4 py-2.5 rounded-md flex flex-col min-w-[135px]">
+<span class="font-label-sm text-[10px] text-amber-700 uppercase tracking-wider font-semibold">Fleet Delayed</span>
+<div class="flex items-baseline gap-1 mt-0.5">
+<span class="font-label-lg text-[18px] font-bold text-amber-800">14</span>
+<span class="font-label-sm text-[11px] text-amber-700 font-medium">Convoys</span>
+</div>
+</div>
+<button class="h-11 px-4 bg-blue-600 hover:bg-blue-700 text-white font-headline-sm text-[13px] font-semibold rounded shadow-xs flex items-center gap-2 transition-all active:scale-[0.98]" onclick="document.getElementById('modal-new-obstacle').classList.remove('hidden')" type="button">
+<span class="material-symbols-outlined text-[18px]">add_location_alt</span>
+<span>Log Field Obstacle</span>
+</button>
+</div>
+</header>
+<!-- Main Workspace: Split Grid (Span 7 Table + Span 5 Detail Drawer) -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-5 items-start">
+<!-- Left Column (Span 7): Tactical Registry & Bottom Telemetry -->
+<section class="xl:col-span-7 flex flex-col gap-5">
+<!-- 2. Filter Bar & Incident Registry Data Table -->
+<div class="bg-white border border-slate-200 rounded-lg p-3 shadow-xs flex flex-wrap items-center justify-between gap-3">
+<!-- Filter Segmented Tabs -->
+<div class="flex items-center gap-1 overflow-x-auto py-0.5">
+<button class="px-3 py-1.5 bg-blue-600 text-white font-label-sm text-[11px] rounded font-semibold shadow-xs">
+                  All Events (12)
+                </button>
+<button class="px-3 py-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200 font-label-sm text-[11px] rounded font-medium transition-colors">
+                  Blocked (3)
+                </button>
+<button class="px-3 py-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200 font-label-sm text-[11px] rounded font-medium transition-colors">
+                  At Risk (4)
+                </button>
+<button class="px-3 py-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200 font-label-sm text-[11px] rounded font-medium transition-colors">
+                  Caution (3)
+                </button>
+<button class="px-3 py-1.5 bg-slate-100 text-slate-700 hover:bg-slate-200 font-label-sm text-[11px] rounded font-medium transition-colors">
+                  Cleared (2)
+                </button>
+</div>
+<!-- Search Bar & Auto-Refresh Toggle -->
+<div class="flex items-center gap-2">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-2 text-slate-400 text-[14px]">search</span>
+<input class="w-36 lg:w-44 h-7 pl-6 pr-2 bg-slate-50 border border-slate-200 rounded text-slate-800 placeholder:text-slate-400 font-body-sm text-[11px] focus:outline-none focus:border-blue-500" placeholder="Filter list..." type="text"/>
+</div>
+<div class="flex items-center gap-1.5 pl-2 border-l border-slate-200">
+<span class="font-label-sm text-[10px] text-slate-500 font-medium">AUTO-REFRESH: 15s</span>
+<button class="p-1 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors" onclick="triggerAlert('Telemetry re-synced with Himalayan field stations.')" title="Force Telemetry Sync">
+<span class="material-symbols-outlined text-[15px]">sync</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Complete Styled Tactical Table -->
+<div class="bg-white border border-slate-200 rounded-lg shadow-xs overflow-hidden flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 border-b border-slate-200 text-slate-500 font-label-sm text-[10px] uppercase tracking-wider font-semibold">
+<th class="py-3 px-4">Incident ID</th>
+<th class="py-3 px-4">Hazard Category</th>
+<th class="py-3 px-4">Corridor Marker</th>
+<th class="py-3 px-4">Freight Route</th>
+<th class="py-3 px-4">Severity / Status</th>
+<th class="py-3 px-4">Clearance Progress</th>
+<th class="py-3 px-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-slate-700 font-body-sm text-[12px]">
+<!-- Row 1: INC-8821 Selected -->
+<tr class="cursor-pointer bg-blue-50/60 hover:bg-blue-50 transition-colors group border-l-4 border-l-blue-600" onclick="selectIncident('INC-8821', 'Major Rockslide', 'KM 142.4 (NH-1D)', 'Zoji La Pass Passway', 'BLOCKED', 14, '3,528 m', '~1,840 m³ Granite/Schist', 'Failed (68%)', '-4°C Blizzard Imp')">
+<td class="py-3 px-4 font-label-md text-[11px] text-blue-700 font-bold">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
+<span>INC-8821</span>
+</div>
+</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-red-100 text-red-600 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[15px]">landslide</span>
+</div>
+<span class="font-semibold text-slate-900">Major Rockslide</span>
+</div>
+</td>
+<td class="py-3 px-4 font-label-sm text-[11px] text-slate-600">KM 142.4 (NH-1D)</td>
+<td class="py-3 px-4 text-slate-600 font-medium">Zoji La Pass Passway</td>
+<td class="py-3 px-4">
+<span class="px-2 py-0.5 rounded bg-red-100 text-red-700 border border-red-200 font-label-sm text-[10px] font-bold">
+                          BLOCKED
+                        </span>
+</td>
+<td class="py-3 px-4">
+<div class="flex flex-col gap-1 w-28">
+<div class="flex items-center justify-between font-label-sm text-[10px]">
+<span class="text-slate-500">Progress</span>
+<span class="text-red-700 font-bold">14%</span>
+</div>
+<div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-red-600 h-full rounded-full" style="width: 14%"></div>
+</div>
+</div>
+</td>
+<td class="py-3 px-4 text-right">
+<span class="material-symbols-outlined text-[18px] text-blue-600 group-hover:translate-x-0.5 transition-transform">chevron_right</span>
+</td>
+</tr>
+<!-- Row 2: INC-8819 Pillar Shear -->
+<tr class="cursor-pointer hover:bg-slate-50 transition-colors group border-l-4 border-l-transparent" onclick="selectIncident('INC-8819', 'Pillar Shear Fract', 'KM 68.2 (NH-44B)', 'Chenab Crossing North', 'BLOCKED', 5, '1,940 m', '~320 m³ Concrete/Rebar', 'Severe Crack (92%)', '-1°C Heavy Fog')">
+<td class="py-3 px-4 font-label-md text-[11px] text-slate-800 font-bold">INC-8819</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-red-100 text-red-600 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[15px]">domain_verification</span>
+</div>
+<span class="font-semibold text-slate-900">Pillar Shear Fract</span>
+</div>
+</td>
+<td class="py-3 px-4 font-label-sm text-[11px] text-slate-600">KM 68.2 (NH-44B)</td>
+<td class="py-3 px-4 text-slate-600">Chenab Crossing North</td>
+<td class="py-3 px-4">
+<span class="px-2 py-0.5 rounded bg-red-100 text-red-700 border border-red-200 font-label-sm text-[10px] font-bold">
+                          BLOCKED
+                        </span>
+</td>
+<td class="py-3 px-4">
+<div class="flex flex-col gap-1 w-28">
+<div class="flex items-center justify-between font-label-sm text-[10px]">
+<span class="text-slate-500">Progress</span>
+<span class="text-red-700 font-bold">05%</span>
+</div>
+<div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-red-600 h-full rounded-full" style="width: 5%"></div>
+</div>
+</div>
+</td>
+<td class="py-3 px-4 text-right">
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-blue-600 transition-colors">chevron_right</span>
+</td>
+</tr>
+<!-- Row 3: INC-8814 Flash Surcharge -->
+<tr class="cursor-pointer hover:bg-slate-50 transition-colors group border-l-4 border-l-transparent" onclick="selectIncident('INC-8814', 'Flash Surcharge', 'KM 219.0 (SH-08)', 'Teesta Gorge Viaduct', 'AT RISK', 42, '1,280 m', '~620 m³ Silt/Gravel', 'Submerged Deck (45%)', '+4°C Torrential')">
+<td class="py-3 px-4 font-label-md text-[11px] text-slate-800 font-bold">INC-8814</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-amber-100 text-amber-700 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[15px]">flood</span>
+</div>
+<span class="font-semibold text-slate-900">Flash Surcharge</span>
+</div>
+</td>
+<td class="py-3 px-4 font-label-sm text-[11px] text-slate-600">KM 219.0 (SH-08)</td>
+<td class="py-3 px-4 text-slate-600">Teesta Gorge Viaduct</td>
+<td class="py-3 px-4">
+<span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-200 font-label-sm text-[10px] font-bold">
+                          AT RISK
+                        </span>
+</td>
+<td class="py-3 px-4">
+<div class="flex flex-col gap-1 w-28">
+<div class="flex items-center justify-between font-label-sm text-[10px]">
+<span class="text-slate-500">Progress</span>
+<span class="text-amber-800 font-bold">42%</span>
+</div>
+<div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-amber-500 h-full rounded-full" style="width: 42%"></div>
+</div>
+</div>
+</td>
+<td class="py-3 px-4 text-right">
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-blue-600 transition-colors">chevron_right</span>
+</td>
+</tr>
+<!-- Row 4: INC-8810 Mud Slurry Deposit -->
+<tr class="cursor-pointer hover:bg-slate-50 transition-colors group border-l-4 border-l-transparent" onclick="selectIncident('INC-8810', 'Mud Slurry Deposit', 'KM 94.7 (NH-10)', 'Rangpo Link Corridor', 'AT RISK', 60, '820 m', '~940 m³ Mud/Clay', 'Partial Drift (30%)', '+8°C Steady Rain')">
+<td class="py-3 px-4 font-label-md text-[11px] text-slate-800 font-bold">INC-8810</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-amber-100 text-amber-700 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[15px]">water_ec</span>
+</div>
+<span class="font-semibold text-slate-900">Mud Slurry Deposit</span>
+</div>
+</td>
+<td class="py-3 px-4 font-label-sm text-[11px] text-slate-600">KM 94.7 (NH-10)</td>
+<td class="py-3 px-4 text-slate-600">Rangpo Link Corridor</td>
+<td class="py-3 px-4">
+<span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-200 font-label-sm text-[10px] font-bold">
+                          AT RISK
+                        </span>
+</td>
+<td class="py-3 px-4">
+<div class="flex flex-col gap-1 w-28">
+<div class="flex items-center justify-between font-label-sm text-[10px]">
+<span class="text-slate-500">Progress</span>
+<span class="text-amber-800 font-bold">60%</span>
+</div>
+<div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-amber-500 h-full rounded-full" style="width: 60%"></div>
+</div>
+</div>
+</td>
+<td class="py-3 px-4 text-right">
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-blue-600 transition-colors">chevron_right</span>
+</td>
+</tr>
+<!-- Row 5: INC-8806 Black Ice Sheet -->
+<tr class="cursor-pointer hover:bg-slate-50 transition-colors group border-l-4 border-l-transparent" onclick="selectIncident('INC-8806', 'Black Ice Sheet', 'KM 304.1 (NH-03)', 'Baralacha Pass Peak', 'CAUTION', 78, '4,890 m', '~120 m³ Glacial Sheet', 'Surface Glaze (15%)', '-12°C Severe Frost')">
+<td class="py-3 px-4 font-label-md text-[11px] text-slate-800 font-bold">INC-8806</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-sky-100 text-sky-700 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[15px]">ac_unit</span>
+</div>
+<span class="font-semibold text-slate-900">Black Ice Sheet</span>
+</div>
+</td>
+<td class="py-3 px-4 font-label-sm text-[11px] text-slate-600">KM 304.1 (NH-03)</td>
+<td class="py-3 px-4 text-slate-600">Baralacha Pass Peak</td>
+<td class="py-3 px-4">
+<span class="px-2 py-0.5 rounded bg-sky-100 text-sky-800 border border-sky-200 font-label-sm text-[10px] font-bold">
+                          CAUTION
+                        </span>
+</td>
+<td class="py-3 px-4">
+<div class="flex flex-col gap-1 w-28">
+<div class="flex items-center justify-between font-label-sm text-[10px]">
+<span class="text-slate-500">Progress</span>
+<span class="text-sky-800 font-bold">78%</span>
+</div>
+<div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-sky-500 h-full rounded-full" style="width: 78%"></div>
+</div>
+</div>
+</td>
+<td class="py-3 px-4 text-right">
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-blue-600 transition-colors">chevron_right</span>
+</td>
+</tr>
+<!-- Row 6: INC-8798 Cleared Rockfall -->
+<tr class="cursor-pointer hover:bg-slate-50 transition-colors group border-l-4 border-l-transparent" onclick="selectIncident('INC-8798', 'Cleared Rockfall', 'KM 51.5 (NH-58)', 'Devprayag Ridge Line', 'CLEARED', 100, '980 m', 'Debris Evacuated', 'Restored Nominal', '+14°C Clear')">
+<td class="py-3 px-4 font-label-md text-[11px] text-slate-800 font-bold">INC-8798</td>
+<td class="py-3 px-4">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[15px]">check_circle</span>
+</div>
+<span class="font-semibold text-slate-900">Cleared Rockfall</span>
+</div>
+</td>
+<td class="py-3 px-4 font-label-sm text-[11px] text-slate-600">KM 51.5 (NH-58)</td>
+<td class="py-3 px-4 text-slate-600">Devprayag Ridge Line</td>
+<td class="py-3 px-4">
+<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200 font-label-sm text-[10px] font-bold">
+                          CLEARED
+                        </span>
+</td>
+<td class="py-3 px-4">
+<div class="flex flex-col gap-1 w-28">
+<div class="flex items-center justify-between font-label-sm text-[10px]">
+<span class="text-slate-500">Progress</span>
+<span class="text-emerald-700 font-bold">100%</span>
+</div>
+<div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-600 h-full rounded-full" style="width: 100%"></div>
+</div>
+</div>
+</td>
+<td class="py-3 px-4 text-right">
+<span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-blue-600 transition-colors">chevron_right</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer Telemetry & Pagination -->
+<div class="px-4 py-2.5 bg-slate-50 border-t border-slate-200 flex items-center justify-between font-label-sm text-[11px] text-slate-600">
+<span>Showing 6 of 12 tactical records logged within Himalayan Sector 24h</span>
+<div class="flex items-center gap-1.5">
+<button class="px-2.5 py-1 rounded bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 font-medium">Prev</button>
+<span class="px-2 py-1 rounded bg-blue-600 text-white font-bold">1</span>
+<button class="px-2 py-1 rounded bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 font-medium">2</button>
+<button class="px-2.5 py-1 rounded bg-white border border-slate-200 hover:bg-slate-100 text-slate-700 font-medium">Next</button>
+</div>
+</div>
+</div>
+<!-- 3. Bottom Telemetry Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Telemetry Card 1: UAV Aerial Drone Feed / Scout Alpha -->
+<div class="bg-white border border-slate-200 rounded-lg p-3.5 flex flex-col gap-2.5 shadow-xs relative overflow-hidden">
+<div class="flex items-center justify-between border-b border-slate-100 pb-2">
+<span class="font-label-sm text-[11px] text-blue-700 uppercase font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">videocam</span>
+                    UAV SCOUT ALPHA // ZOJI LA OVERFLY
+                  </span>
+<span class="font-label-sm text-[10px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded font-bold">
+                    SIGNAL: 98%
+                  </span>
+</div>
+<div class="relative w-full h-40 rounded border border-slate-200 overflow-hidden bg-slate-900 flex items-center justify-center">
+<img alt="Aerial drone thermal surveillance of rockslide obstacle" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDfoDxJHRB3JJHct_xCFoZSmdXKBFI9SiuAzdB6t1l6zXANawyLmHl4CQKaxAr7wmkj1Ak_NGbjmu8mY18bAFgpMnbmGjJeBpW9Y9Q7MbE0oAazlx96Fp0H6EzkC8gyf9zMHZigWjRZD3JmDxyWEsPwnWAxqgQqbQ4LmhgRiWkK2EOX16eMWAu5svSS_jyRCbb85SDhl14_zPYN4MN54TQqRYjsfELoP7IZOJpBpjt06nFqHXXXqGNdQ"/>
+<!-- Tactical HUD Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-slate-950/30 flex flex-col justify-between p-2.5 pointer-events-none">
+<div class="flex justify-between items-center text-white/90 font-label-sm text-[10px]">
+<span class="bg-slate-900/80 px-1.5 py-0.5 rounded border border-white/20">TARGET LOCKED // COORD 34.29°N 75.52°E</span>
+<span class="bg-red-950/80 text-red-300 px-1.5 py-0.5 rounded border border-red-500/40">LIVE RECON OVERLAY</span>
+</div>
+<div class="flex justify-between items-center font-label-sm text-[10px] text-white">
+<span class="font-semibold bg-slate-900/80 px-2 py-1 rounded">ELEV: 3,528m • WIND: 42km/h NW</span>
+<span class="text-red-300 bg-red-600/90 font-bold px-2 py-0.5 rounded border border-red-400">
+                        SLOPE INSTABILITY: 84%
+                      </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Telemetry Card 2: Geo-Seismic Ridge Telemetry -->
+<div class="bg-white border border-slate-200 rounded-lg p-3.5 flex flex-col gap-2.5 shadow-xs">
+<div class="flex items-center justify-between border-b border-slate-100 pb-2">
+<span class="font-label-sm text-[11px] text-slate-800 uppercase font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-blue-600">show_chart</span>
+                    Geo-Seismic Ridge Telemetry
+                  </span>
+<span class="font-label-sm text-[10px] text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded font-semibold">
+                    FREQ: 1.2Hz
+                  </span>
+</div>
+<div class="w-full h-40 bg-slate-50 border border-slate-200 rounded p-2.5 flex flex-col justify-between">
+<div class="flex items-center justify-between font-label-sm text-[11px]">
+<span class="text-slate-600 font-semibold">Sensor: GS-44A (Sonamarg Fault)</span>
+<span class="text-red-700 bg-red-100 px-1.5 py-0.5 rounded font-bold border border-red-200">
+                      DISPLACEMENT: +4.2mm/h
+                    </span>
+</div>
+<!-- Vector Telemetry Chart with Critical Peak Markers -->
+<div class="relative py-1">
+<svg class="w-full h-20 text-red-600" fill="none" preserveaspectratio="none" viewbox="0 0 200 40">
+<path d="M0 25 L30 26 L50 24 L70 30 L85 10 L100 35 L120 18 L140 28 L160 5 L175 32 L200 20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+<path d="M0 25 L30 26 L50 24 L70 30 L85 10 L100 35 L120 18 L140 28 L160 5 L175 32 L200 20 L200 40 L0 40 Z" fill="currentColor" fill-opacity="0.12"></path>
+</svg>
+<!-- Critical Peak Marker Pin -->
+<div class="absolute top-1 left-[78%] -translate-x-1/2 flex flex-col items-center">
+<span class="w-2.5 h-2.5 rounded-full bg-red-600 ring-2 ring-white"></span>
+<span class="font-label-sm text-[9px] text-red-700 font-bold bg-white px-1 py-0.2 rounded border border-red-300 shadow-xs">PEAK</span>
+</div>
+</div>
+<div class="flex items-center justify-between font-label-sm text-[10px] text-slate-500 border-t border-slate-200 pt-1">
+<span>08:00</span>
+<span>10:00</span>
+<span>12:00</span>
+<span class="text-red-700 font-bold">14:32 CRITICAL DISPLACEMENT PEAK</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. Right-Side Detailed Incident Inspection & Remediation Drawer -->
+<aside class="xl:col-span-5 bg-white border border-slate-200 rounded-lg p-5 flex flex-col gap-4 shadow-sm" id="incident-detail-drawer">
+<!-- Detailed Header with Badges -->
+<div class="flex items-start justify-between pb-3 border-b border-slate-200">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-[20px] text-slate-900 font-bold tracking-tight" id="drawer-incident-id">INC-8821</span>
+<span class="px-2 py-0.5 rounded bg-red-100 border border-red-200 text-red-700 font-label-sm text-[11px] font-bold tracking-wider" id="drawer-status-badge">
+                    BLOCKADE DECLARED
+                  </span>
+</div>
+<span class="font-body-sm text-[12px] text-slate-500">
+                  Logged 09:14 UTC • Reported by Border Roads Taskforce (GREF-14)
+                </span>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="p-1.5 rounded bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-600 hover:text-slate-900 transition-colors" onclick="triggerAlert('GeoJSON tactical node export prepared.')" title="Export GIS GeoJSON">
+<span class="material-symbols-outlined text-[18px]">share_location</span>
+</button>
+<button class="p-1.5 rounded bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-600 hover:text-slate-900 transition-colors" onclick="triggerAlert('Telemetry print buffer generated.')" title="Print Incident Manifest">
+<span class="material-symbols-outlined text-[18px]">print</span>
+</button>
+</div>
+</div>
+<!-- Topological GIS Inset Map with Los Radius & Bypass -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between font-label-sm text-[11px] text-slate-500">
+<span class="uppercase font-semibold text-slate-700 flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-blue-600">map</span>
+                  GIS Topological Node View
+                </span>
+<span class="text-blue-700 font-label-md text-[11px] font-bold">34°17'50.2"N 75°31'40.8"E</span>
+</div>
+<div class="w-full h-48 rounded border border-slate-200 bg-slate-100 bg-cover bg-center relative overflow-hidden flex flex-col justify-between p-3" data-location="Zoji La Pass, Jammu and Kashmir" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwqd40htq3NKkmrCrbqkO3-aTZ2n0yExVHrfWGte6z825SnWOJV80Mk529XwgDZYctXAm54NwQrzrKmut1i3uHPbXCeKFi6Y4AsMtSH5qYnjFI05WjfuicYx4JdlKzM6dedldwyIKTB8B5LIu4xKol5xjVE7wUI1y3j9cPiR6QQmM9z67amPUcoVYRl-fSnf6A-9oJ60fDdGcU7voreEIh94F3N3t76Q_7EWhRRld1IHfSy974zwwtog')">
+<div class="flex items-center justify-between">
+<span class="bg-white/90 backdrop-blur-xs border border-slate-200 text-slate-800 font-label-sm text-[10px] px-2 py-0.5 rounded font-bold shadow-xs">
+                    HIGH-RESOLUTION SATELLITE TOPO
+                  </span>
+<span class="bg-emerald-600 text-white font-label-sm text-[10px] px-2 py-0.5 rounded font-bold shadow-xs flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-white"></span> BYPASS READY
+                  </span>
+</div>
+<div class="bg-white/95 backdrop-blur-sm px-2.5 py-1.5 rounded border border-slate-200 flex items-center justify-between font-label-sm text-[11px] text-slate-800 shadow-sm">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping"></span>
+<span class="font-bold text-red-700">Obstacle Point: 420m Line of Sight Radius</span>
+</div>
+<span class="text-blue-700 font-semibold">Active Perimeter Zone</span>
+</div>
+</div>
+</div>
+<!-- Physical Metrics 4-Grid -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+<div class="bg-slate-50 border border-slate-200 p-2.5 rounded flex flex-col">
+<span class="font-label-sm text-[10px] text-slate-500 uppercase font-semibold">Elevation</span>
+<span class="font-label-lg text-[14px] font-bold text-slate-900 mt-1" id="m-elev">3,528 m</span>
+<span class="font-label-sm text-[10px] text-blue-700 font-medium">Sub-zero Zone</span>
+</div>
+<div class="bg-red-50/50 border border-red-200 p-2.5 rounded flex flex-col">
+<span class="font-label-sm text-[10px] text-red-700 uppercase font-semibold">Debris Mass</span>
+<span class="font-label-lg text-[14px] font-bold text-red-700 mt-1" id="m-debris">~1,840 m³</span>
+<span class="font-label-sm text-[10px] text-red-600 font-medium">Granite/Schist</span>
+</div>
+<div class="bg-slate-50 border border-slate-200 p-2.5 rounded flex flex-col">
+<span class="font-label-sm text-[10px] text-slate-500 uppercase font-semibold">Pavement</span>
+<span class="font-label-lg text-[14px] font-bold text-red-700 mt-1" id="m-pavement">Failed</span>
+<span class="font-label-sm text-[10px] text-slate-500 font-medium">Bed Shear: 68%</span>
+</div>
+<div class="bg-slate-50 border border-slate-200 p-2.5 rounded flex flex-col">
+<span class="font-label-sm text-[10px] text-slate-500 uppercase font-semibold">Local Met</span>
+<span class="font-label-lg text-[14px] font-bold text-blue-700 mt-1" id="m-met">-4°C</span>
+<span class="font-label-sm text-[10px] text-amber-700 font-medium">Blizzard Imp</span>
+</div>
+</div>
+<!-- Supply Chain Exposure Assessment -->
+<div class="bg-slate-50 border border-slate-200 p-3.5 rounded-lg flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-[13px] text-slate-900 font-bold flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[17px] text-blue-600">local_shipping</span>
+                  Supply Chain Exposure Assessment
+                </span>
+<span class="font-label-sm text-[10px] px-2 py-0.5 rounded bg-red-100 text-red-700 font-bold border border-red-200">
+                  HIGH SEVERITY
+                </span>
+</div>
+<!-- Two Key Supply Chain Metrics -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+<div class="bg-white border border-slate-200 p-2.5 rounded">
+<span class="font-label-sm text-[10px] text-slate-500 font-semibold uppercase">Queued Freight Vehicles</span>
+<div class="font-label-lg text-[15px] font-bold text-slate-900 mt-0.5">38 Heavy Commercials</div>
+<div class="font-body-sm text-[11px] text-slate-500 mt-0.5">Stalled along KM 138–142</div>
+</div>
+<div class="bg-red-50 border border-red-200 p-2.5 rounded">
+<span class="font-label-sm text-[10px] text-red-700 font-bold uppercase">Cold-Chain Sensitive Cargo</span>
+<div class="font-label-lg text-[15px] font-bold text-red-700 mt-0.5">6 Refrigerated Reefers</div>
+<div class="font-body-sm text-[11px] text-red-600 font-medium mt-0.5">Critical Pharma / 9h fuel left</div>
+</div>
+</div>
+<!-- Calculated Bypass Corridor Suggestion -->
+<div class="p-2.5 rounded bg-blue-50/70 border border-blue-200 flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-[11px] text-blue-800 font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-blue-600">alt_route</span>
+                    Optimal Remediation Bypass: Link-7B
+                  </span>
+<span class="font-label-sm text-[10px] text-blue-700 font-bold bg-white px-1.5 py-0.5 rounded border border-blue-200">+38 km / +2.1 hrs transit</span>
+</div>
+<p class="font-body-sm text-[12px] text-slate-700 leading-snug mt-0.5">
+                  Reroute via Dras-Kargil Lateral bypass bypasses the rockfall cone with 100% heavy axle clearance. Gradients remain strictly under 9.2%.
+                </p>
+</div>
+</div>
+<!-- Active Remediation Teams Dispatch Status -->
+<div class="bg-slate-50 border border-slate-200 p-3.5 rounded-lg flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-[13px] text-slate-900 font-bold">Active Remediation Teams</span>
+<span class="font-label-sm text-[10px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded font-bold">DISPATCH: ACTIVE</span>
+</div>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between p-2 bg-white border border-slate-200 rounded">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-blue-600">construction</span>
+<span class="text-slate-800 text-[12px] font-semibold">BRO Heavy Excavator Unit (EX-04)</span>
+</div>
+<span class="font-label-sm text-[11px] text-emerald-700 font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> On-Site Working
+                  </span>
+</div>
+<div class="flex items-center justify-between p-2 bg-white border border-slate-200 rounded">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-amber-600">fire_truck</span>
+<span class="text-slate-800 text-[12px] font-semibold">Blast Mitigation Crew &amp; Breakers</span>
+</div>
+<span class="font-label-sm text-[11px] text-amber-800 font-bold bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">
+                    ETA 18 Mins
+                  </span>
+</div>
+</div>
+</div>
+<!-- Tactical Action Triggers -->
+<div class="flex flex-col gap-2 pt-1 border-t border-slate-200">
+<div class="grid grid-cols-2 gap-2">
+<button class="h-10 px-3 bg-blue-600 hover:bg-blue-700 text-white font-headline-sm text-[12px] font-semibold rounded flex items-center justify-center gap-1.5 transition-colors shadow-xs" onclick="triggerAlert('Reroute vector transmission initiated to 38 queued vehicles.')" type="button">
+<span class="material-symbols-outlined text-[17px]">turn_sharp_right</span>
+<span>Issue Reroute Vector</span>
+</button>
+<button class="h-10 px-3 bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-800 font-headline-sm text-[12px] font-semibold rounded flex items-center justify-center gap-1.5 transition-colors" onclick="triggerAlert('Heavy Excavator support battalion dispatched.')" type="button">
+<span class="material-symbols-outlined text-[17px] text-slate-700">handyman</span>
+<span>Deploy Excavator</span>
+</button>
+</div>
+<button class="w-full h-10 bg-red-600 hover:bg-red-700 text-white font-headline-sm text-[12px] font-bold rounded flex items-center justify-center gap-2 transition-colors shadow-xs" onclick="triggerAlert('CRITICAL BROADCAST sent to all 38 convoy nav systems on Band VHF-142.')" type="button">
+<span class="material-symbols-outlined text-[18px]">cell_tower</span>
+<span>Broadcast Driver Red Alert Warning</span>
+</button>
+</div>
+</aside>
+</div>
+</div>
+</main>
+</div>
+<!-- Operational Modal: Log New Field Obstacle -->
+<div class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4" id="modal-new-obstacle">
+<div class="bg-white w-full max-w-xl rounded-lg p-6 flex flex-col gap-4 shadow-xl border border-slate-200">
+<div class="flex items-center justify-between pb-3 border-b border-slate-200">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-blue-100 text-blue-700 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">add_alert</span>
+</div>
+<h2 class="font-headline-md text-[18px] font-bold text-slate-900">Log Field Obstacle Record</h2>
+</div>
+<button class="p-1 text-slate-400 hover:text-slate-700 rounded hover:bg-slate-100 transition-colors" onclick="document.getElementById('modal-new-obstacle').classList.add('hidden')">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<form class="flex flex-col gap-4" onsubmit="event.preventDefault(); submitObstacle();">
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-[11px] text-slate-600 uppercase font-semibold">Hazard Classification</label>
+<select class="h-9 px-2.5 bg-slate-50 border border-slate-200 text-slate-800 font-body-sm text-[12px] rounded focus:outline-none focus:border-blue-600 focus:bg-white">
+<option>Landslide / Rockfall</option>
+<option>Bridge Structural Failure</option>
+<option>Flash Flood Inundation</option>
+<option>Mud Surcharge Slurry</option>
+<option>Glacial Ice / Snowpack Avalanche</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-[11px] text-slate-600 uppercase font-semibold">Disruption Level</label>
+<select class="h-9 px-2.5 bg-slate-50 border border-slate-200 text-red-600 font-body-sm text-[12px] rounded focus:outline-none focus:border-blue-600 focus:bg-white font-bold">
+<option class="text-red-600">Blocked - Total Closure</option>
+<option class="text-amber-600">At Risk - Impending Failure</option>
+<option class="text-blue-600">Caution - Passable with Delay</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-[11px] text-slate-600 uppercase font-semibold">Freight Corridor Marker</label>
+<input class="h-9 px-3 bg-slate-50 border border-slate-200 text-slate-800 placeholder:text-slate-400 font-body-sm text-[12px] rounded focus:outline-none focus:border-blue-600 focus:bg-white" placeholder="e.g. KM 174.2 (NH-1D)" type="text" value="KM 142.4 (NH-1D)"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-[11px] text-slate-600 uppercase font-semibold">GPS Coordinates</label>
+<input class="h-9 px-3 bg-slate-50 border border-slate-200 text-slate-800 placeholder:text-slate-400 font-body-sm text-[12px] rounded focus:outline-none focus:border-blue-600 focus:bg-white" placeholder="Lat, Long" type="text" value="34°17'50.2&quot;N 75°31'40.8&quot;E"/>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="font-label-sm text-[11px] text-slate-600 uppercase font-semibold">Physical Obstacle Description &amp; Estimation</label>
+<textarea class="p-2.5 bg-slate-50 border border-slate-200 text-slate-800 placeholder:text-slate-400 font-body-sm text-[12px] rounded focus:outline-none focus:border-blue-600 focus:bg-white resize-none" placeholder="Volume of rock, stability of overhead crags, immediate cold-chain exposure..." rows="3">Extensive granite boulder collapse over double carriageway. Initial estimation: ~1,840 m³ mass blocking north artery.</textarea>
+</div>
+<div class="flex items-center justify-end gap-3 pt-2 border-t border-slate-200">
+<button class="px-4 h-9 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-headline-sm text-[12px] font-semibold transition-colors" onclick="document.getElementById('modal-new-obstacle').classList.add('hidden')" type="button">
+            Cancel
+          </button>
+<button class="px-5 h-9 rounded bg-blue-600 hover:bg-blue-700 text-white font-headline-sm text-[12px] font-bold shadow-xs transition-colors" type="submit">
+            Commit to Registry
+          </button>
+</div>
+</form>
+</div>
+</div>
+<!-- Notification Toast Container -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none" id="toast-banner">
+<div class="bg-slate-900 text-white px-4 py-3 rounded-lg shadow-xl flex items-center gap-3 border border-slate-700">
+<span class="material-symbols-outlined text-emerald-400 text-[20px]">verified</span>
+<span class="font-body-sm text-[13px] font-medium" id="toast-text">Directive Transmitted</span>
+</div>
+</div>
+<script>
+    function triggerAlert(msg) {
+      const toast = document.getElementById('toast-banner');
+      const text = document.getElementById('toast-text');
+      text.innerText = msg;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3200);
+    }
+
+    function selectIncident(id, hazard, marker, route, status, progress, elev, debris, pavement, met) {
+      document.getElementById('drawer-incident-id').innerText = id;
+      const statusBadge = document.getElementById('drawer-status-badge');
+      if (status === 'BLOCKED') {
+        statusBadge.className = 'px-2 py-0.5 rounded bg-red-100 border border-red-200 text-red-700 font-label-sm text-[11px] font-bold tracking-wider';
+        statusBadge.innerText = 'BLOCKADE DECLARED';
+      } else if (status === 'AT RISK') {
+        statusBadge.className = 'px-2 py-0.5 rounded bg-amber-100 border border-amber-200 text-amber-800 font-label-sm text-[11px] font-bold tracking-wider';
+        statusBadge.innerText = 'AT RISK IMPENDING';
+      } else if (status === 'CAUTION') {
+        statusBadge.className = 'px-2 py-0.5 rounded bg-sky-100 border border-sky-200 text-sky-800 font-label-sm text-[11px] font-bold tracking-wider';
+        statusBadge.innerText = 'CAUTIONARY FLOW';
+      } else {
+        statusBadge.className = 'px-2 py-0.5 rounded bg-emerald-100 border border-emerald-200 text-emerald-800 font-label-sm text-[11px] font-bold tracking-wider';
+        statusBadge.innerText = 'CORRIDOR CLEARED';
+      }
+
+      if (elev) document.getElementById('m-elev').innerText = elev;
+      if (debris) document.getElementById('m-debris').innerText = debris;
+      if (pavement) document.getElementById('m-pavement').innerText = pavement;
+      if (met) document.getElementById('m-met').innerText = met;
+
+      triggerAlert('Telemetry focused on record: ' + id + ' (' + hazard + ')');
+    }
+
+    function submitObstacle() {
+      document.getElementById('modal-new-obstacle').classList.add('hidden');
+      triggerAlert('New Obstacle registered. Auto-calculating emergency bypass vectors.');
+    }
+  </script>
+</body></html>

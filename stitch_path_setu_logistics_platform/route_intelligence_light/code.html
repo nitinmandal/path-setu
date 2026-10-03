@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "surface-dim": "#cbdbf5",
+          "surface-container-low": "#eff4ff",
+          "secondary-container": "#5bb8fe",
+          "inverse-on-surface": "#eaf1ff",
+          "inverse-surface": "#213145",
+          "secondary-fixed-dim": "#93ccff",
+          "secondary": "#006398",
+          "tertiary-container": "#656d84",
+          "on-secondary-fixed-variant": "#004b73",
+          "on-primary-fixed": "#00174b",
+          "surface-container-lowest": "#ffffff",
+          "tertiary-fixed": "#dae2fd",
+          "background": "#f8f9ff",
+          "surface-tint": "#0053db",
+          "error": "#ba1a1a",
+          "on-primary-fixed-variant": "#003ea8",
+          "on-tertiary-container": "#eef0ff",
+          "tertiary-fixed-dim": "#bec6e0",
+          "primary-fixed-dim": "#b4c5ff",
+          "on-secondary-container": "#00476e",
+          "secondary-fixed": "#cce5ff",
+          "on-tertiary": "#ffffff",
+          "inverse-primary": "#b4c5ff",
+          "surface-container": "#e5eeff",
+          "on-tertiary-fixed": "#131b2e",
+          "outline": "#737686",
+          "tertiary": "#4d556b",
+          "on-primary-container": "#eeefff",
+          "on-background": "#0b1c30",
+          "on-surface-variant": "#434655",
+          "surface-container-high": "#dce9ff",
+          "outline-variant": "#c3c6d7",
+          "surface-container-highest": "#d3e4fe",
+          "on-secondary-fixed": "#001d31",
+          "surface": "#f8f9ff",
+          "on-secondary": "#ffffff",
+          "error-container": "#ffdad6",
+          "on-tertiary-fixed-variant": "#3f465c",
+          "on-primary": "#ffffff",
+          "primary-container": "#2563eb",
+          "surface-variant": "#d3e4fe",
+          "on-error": "#ffffff",
+          "surface-bright": "#f8f9ff",
+          "primary": "#004ac6",
+          "primary-fixed": "#dbe1ff",
+          "on-surface": "#0b1c30",
+          "on-error-container": "#93000a"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "space-sm": "0.375rem",
+          "space-xl": "1.5rem",
+          "space-md": "0.75rem",
+          "space-lg": "1rem",
+          "gutter": "0.75rem",
+          "margin": "1rem",
+          "space-xs": "0.25rem"
+        },
+        "fontFamily": {
+          "label-sm": ["JetBrains Mono"],
+          "body-md": ["Geist", "Inter"],
+          "code-sm": ["JetBrains Mono"],
+          "label-md": ["JetBrains Mono"],
+          "headline-md": ["Geist"],
+          "display-lg": ["Geist"],
+          "headline-sm": ["Geist"],
+          "body-lg": ["Geist", "Inter"],
+          "headline-lg": ["Geist"],
+          "code-md": ["JetBrains Mono"],
+          "body-sm": ["Geist", "Inter"]
+        },
+        "fontSize": {
+          "label-sm": ["10px", { lineHeight: "12px", letterSpacing: "0.05em", fontWeight: "600" }],
+          "body-md": ["13px", { lineHeight: "18px", fontWeight: "400" }],
+          "code-sm": ["11px", { lineHeight: "14px", fontWeight: "500" }],
+          "label-md": ["11px", { lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "600" }],
+          "headline-md": ["18px", { lineHeight: "24px", letterSpacing: "-0.01em", fontWeight: "600" }],
+          "display-lg": ["30px", { lineHeight: "36px", letterSpacing: "-0.02em", fontWeight: "700" }],
+          "headline-sm": ["15px", { lineHeight: "20px", fontWeight: "600" }],
+          "body-lg": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+          "headline-lg": ["22px", { lineHeight: "28px", letterSpacing: "-0.015em", fontWeight: "600" }],
+          "code-md": ["12px", { lineHeight: "16px", fontWeight: "500" }],
+          "body-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }]
+        }
+      }
+    }
+  };
+</script></head><body class="bg-[#f8fafc] font-body-md text-[#0f172a] antialiased selection:bg-blue-100 selection:text-blue-900 min-h-screen"><aside class="fixed left-0 top-0 h-full w-64 bg-white border-r border-[#e2e8f0] z-50 flex flex-col justify-between select-none shadow-sm"><div class="flex flex-col flex-1 min-h-0"><div class="h-14 px-margin border-b border-[#e2e8f0] flex items-center justify-between gap-space-sm bg-white"><div class="flex items-center gap-space-sm min-w-0"><img alt="Path Setu Operational Route Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1WSvxUuvZ7tmvynlN-ova5K5oK7uoBaW3uTiCyPL6aCaCFRVvBYzTHmDdWpz_52yHitPVPcolvKhxiTr_FIHDiR3nKNzC7UZQp97Dg4ioEDXK6Sd9ULXktlVNKe-iUPdfFbQg7p1dZOrNP8CCerDv4w9oN5QKHUs_ixM9WxSUYVMwDAVLHinmvC1vO1l5LY6fRvLa8QfUGNvWP0_d1nZBiFwEqvbRcERemmO4Z445svNMlg4bCBGRjbThE"/><div class="flex flex-col min-w-0"><span class="font-headline-sm text-headline-sm text-[#0f172a] tracking-tight truncate leading-none">Path Setu</span><span class="font-label-sm text-label-sm text-[#2563eb] truncate mt-0.5 tracking-wider uppercase font-semibold">Mission Control</span></div></div><span class="px-1.5 py-0.5 rounded bg-slate-100 border border-[#cbd5e1] font-label-sm text-label-sm text-slate-700 font-semibold">OPS v2.4</span></div><div class="px-margin py-space-xs border-b border-[#e2e8f0] bg-slate-50 flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase text-slate-500 tracking-wider">Operational Units</span><span class="font-label-sm text-label-sm text-emerald-600 font-semibold flex items-center gap-1"><span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>SYNCED</span></div><nav class="flex-1 overflow-y-auto px-space-xs py-space-sm flex flex-col gap-0.5"><a class="flex items-center gap-space-md px-space-md py-space-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 rounded border-l-2 border-transparent transition-colors font-body-md text-body-md" data-path="operations-dashboard" href="#"><span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-500">monitoring</span><span class="truncate">Operations Dashboard</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 rounded border-l-2 border-transparent transition-colors font-body-md text-body-md" data-path="live-gis-map" href="#"><span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-500">public</span><span class="truncate">Live GIS Map</span><span class="ml-auto font-label-sm text-label-sm text-emerald-700 px-1 bg-emerald-50 rounded border border-emerald-200">LIVE</span></a><a aria-current="page" class="flex items-center gap-space-md px-space-md py-space-sm rounded transition-colors bg-blue-50/80 text-blue-700 border-l-2 border-[#2563eb] font-semibold" data-path="route-intelligence" href="#"><span class="material-symbols-outlined text-[18px] flex-shrink-0 text-blue-600">alt_route</span><span class="truncate">Route Intelligence</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 rounded border-l-2 border-transparent transition-colors font-body-md text-body-md" data-path="logistics-fleet" href="#"><span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-500">local_shipping</span><span class="truncate">Logistics &amp; Fleet</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 rounded border-l-2 border-transparent transition-colors font-body-md text-body-md" data-path="incidents" href="#"><span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-500">emergency_heat</span><span class="truncate">Incidents</span><span class="ml-auto font-label-sm text-label-sm text-red-700 px-1 bg-red-50 rounded border border-red-200">4</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 rounded border-l-2 border-transparent transition-colors font-body-md text-body-md" data-path="weather-risk" href="#"><span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-500">thunderstorm</span><span class="truncate">Weather Risk</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 rounded border-l-2 border-transparent transition-colors font-body-md text-body-md" data-path="alert-center" href="#"><span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-500">notifications_active</span><span class="truncate">Alert Center</span><span class="ml-auto font-label-sm text-label-sm text-blue-700 px-1 bg-blue-50 rounded border border-blue-200">12</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 rounded border-l-2 border-transparent transition-colors font-body-md text-body-md" data-path="analytics" href="#"><span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-500">bar_chart_4_bars</span><span class="truncate">Analytics</span></a></nav></div><div class="border-t border-[#e2e8f0] bg-slate-50 p-space-md flex flex-col gap-space-sm"><div class="flex items-center justify-between text-slate-600 font-label-sm text-label-sm px-1"><div class="flex items-center gap-1.5"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span></span><span class="font-label-sm text-label-sm text-slate-900 font-semibold">TELEMETRY</span></div><span class="text-emerald-700 font-label-sm text-label-sm font-semibold">NOMINAL 99.8%</span></div><div class="flex items-center justify-between px-1"><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-white border border-[#cbd5e1] text-slate-600 uppercase tracking-wider font-medium">Demo Stream Active</span><a class="text-slate-400 hover:text-slate-700 transition-colors flex items-center" data-path="settings" href="#"><span class="material-symbols-outlined text-[16px]">settings</span></a></div><div class="pt-space-xs border-t border-[#e2e8f0] flex items-center gap-space-md px-1"><div class="w-8 h-8 rounded bg-blue-50 border border-blue-200 flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[#2563eb] text-[18px]">badge</span></div><div class="flex flex-col min-w-0"><span class="font-body-sm text-body-sm text-[#0f172a] font-semibold truncate leading-tight">S. Rao</span><span class="font-label-sm text-label-sm text-slate-500 truncate leading-tight mt-0.5">Dispatch Lead • Sec-04</span></div></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-14 bg-white/95 backdrop-blur border-b border-[#e2e8f0] z-40 px-margin flex items-center justify-between gap-space-lg select-none shadow-sm"><div class="flex items-center gap-space-lg min-w-0"><div class="flex items-center gap-space-sm font-label-md text-label-md text-slate-500 truncate"><span class="text-slate-800 font-semibold">PATH SETU</span><span class="text-slate-300">/</span><span class="text-[#2563eb] font-semibold">TACTICAL DISPATCH</span><span class="text-slate-300">/</span><span class="text-slate-900 font-bold truncate">GRID-NORTH</span></div><div class="hidden xl:flex items-center gap-1.5 px-2 py-1 rounded bg-slate-50 border border-[#e2e8f0] font-label-sm text-label-sm text-slate-600"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span><span class="text-slate-800 font-medium">Simulated Live Feed</span><span class="text-slate-300">•</span><span class="font-label-sm text-label-sm text-[#2563eb] font-semibold">UTC+05:30 14:32:08</span></div></div><div class="flex items-center gap-space-md flex-shrink-0"><div class="relative flex items-center"><span class="material-symbols-outlined absolute left-2.5 text-slate-400 text-[16px] pointer-events-none">search</span><input class="w-64 lg:w-80 h-8 pl-8 pr-3 bg-slate-50 border border-[#cbd5e1] rounded text-[#0f172a] placeholder:text-slate-400 font-body-sm text-body-sm focus:outline-none focus:bg-white focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition-all" placeholder="Find route, road, vehicle, or incident ID..." type="text"/></div><div class="hidden md:flex items-center gap-1 border-x border-[#e2e8f0] px-space-sm"><button class="h-8 px-2.5 bg-slate-50 border border-[#cbd5e1] hover:border-slate-400 rounded text-slate-700 hover:text-slate-900 flex items-center gap-1.5 font-label-sm text-label-sm transition-colors" title="GIS Tactical Layers" type="button"><span class="material-symbols-outlined text-[16px] text-blue-600">layers</span><span class="hidden lg:inline font-medium">Layers</span></button><button class="h-8 px-2 bg-red-50 border border-red-200 hover:bg-red-100 text-red-700 rounded font-label-sm text-label-sm flex items-center gap-1 transition-colors font-semibold" type="button"><span class="w-1.5 h-1.5 rounded-full bg-red-500"></span><span>CRIT: 1</span></button><button class="h-8 px-2 bg-amber-50 border border-amber-200 hover:bg-amber-100 text-amber-800 rounded font-label-sm text-label-sm flex items-center gap-1 transition-colors font-semibold" type="button"><span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span><span>WARN: 3</span></button></div><div class="flex items-center gap-space-sm"><div class="hidden sm:flex items-center gap-1 px-2 py-1 rounded bg-slate-50 border border-[#e2e8f0] font-label-sm text-label-sm text-slate-700"><span class="material-symbols-outlined text-[14px] text-emerald-600">health_metrics</span><span class="text-emerald-700 font-semibold">SYS OK</span></div><button class="relative p-1.5 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded transition-colors" title="Operational Notifications" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-red-500 ring-2 ring-white"></span></button><div class="w-8 h-8 rounded-full bg-[#2563eb] flex items-center justify-center flex-shrink-0 ring-1 ring-blue-300 text-white shadow-sm"><span class="material-symbols-outlined text-white text-[18px]">person</span></div></div></div></header><main class="relative pt-14 bg-[#f8fafc] min-h-screen"><div class="flex flex-col w-full">
+<!-- Sub-Header Status Strip -->
+<div class="w-full bg-white border-b border-[#e2e8f0] px-margin py-space-sm flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm text-[#2563eb] font-bold">
+<span class="w-2 h-2 rounded-full bg-[#2563eb] animate-pulse"></span>
+<span class="uppercase tracking-wider">CORRIDOR RISK SIMULATION ENGINE</span>
+</div>
+<span class="text-slate-300 text-[11px]">•</span>
+<span class="font-label-sm text-label-sm text-slate-600 font-medium">GEO-GRID: EASTERN HIMALAYAN LOGISTICS SECTOR-04</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-emerald-50 border border-emerald-200 text-emerald-700 font-semibold">SIMULATED ROUTE ENGINE v3.1</span>
+<span class="font-label-sm text-label-sm px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-slate-600 font-medium">REFRESH: 14:32:00 UTC</span>
+</div>
+</div>
+<!-- Page Content Shell -->
+<div class="p-margin space-y-space-lg">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-[#2563eb] text-[24px]">alt_route</span>
+<h1 class="font-headline-lg text-headline-lg text-[#0f172a] tracking-tight font-bold">Route Intelligence &amp; Multimodal Risk Analysis</h1>
+</div>
+<p class="font-body-md text-body-md text-slate-600 max-w-4xl">
+          Simulate, evaluate, and compare corridor accessibility across adverse terrain, unstable geo-formations, and active hazard zones in real time.
+        </p>
+</div>
+<div class="flex items-center gap-2 flex-shrink-0">
+<button class="h-8 px-3 rounded bg-white hover:bg-slate-50 border border-[#cbd5e1] text-slate-700 font-body-sm text-body-sm flex items-center gap-1.5 transition-colors shadow-sm font-medium" type="button">
+<span class="material-symbols-outlined text-[16px] text-slate-500">history</span>
+<span>Simulation Logs</span>
+</button>
+<button class="h-8 px-3 rounded bg-white hover:bg-slate-50 border border-[#cbd5e1] text-slate-700 font-body-sm text-body-sm flex items-center gap-1.5 transition-colors shadow-sm font-medium" type="button">
+<span class="material-symbols-outlined text-[16px] text-[#2563eb]">tune</span>
+<span>Param Overrides</span>
+</button>
+</div>
+</div>
+<!-- 2. Top Route Configuration Form -->
+<section class="bg-white rounded-lg p-space-md border border-[#e2e8f0] shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-sm border-b border-[#e2e8f0]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#2563eb] text-[18px]">satellite_alt</span>
+<span class="font-headline-sm text-headline-sm text-[#0f172a] font-bold">Mission Parameters &amp; Convoy Profile</span>
+</div>
+<span class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider font-semibold">Payload Profile: High-Value Temp Sensitive</span>
+</div>
+<form class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md" id="routeForm" onsubmit="event.preventDefault();">
+<!-- Origin -->
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-slate-700 uppercase flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px] text-emerald-600">trip_origin</span>
+            Origin Node
+          </label>
+<div class="relative">
+<input class="w-full h-8 px-2.5 bg-slate-50 border border-[#cbd5e1] text-slate-900 font-body-sm text-body-sm rounded focus:outline-none focus:bg-white focus:ring-1 focus:ring-[#2563eb] focus:border-[#2563eb] truncate font-medium" readonly="" type="text" value="Siliguri Hub-A (120m ASL)"/>
+</div>
+<p class="font-label-sm text-label-sm text-slate-500 truncate">Coord: 26.7271° N, 88.3953° E</p>
+</div>
+<!-- Destination -->
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-slate-700 uppercase flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px] text-red-600">location_on</span>
+            Target Terminal
+          </label>
+<div class="relative">
+<input class="w-full h-8 px-2.5 bg-slate-50 border border-[#cbd5e1] text-slate-900 font-body-sm text-body-sm rounded focus:outline-none focus:bg-white focus:ring-1 focus:ring-[#2563eb] focus:border-[#2563eb] truncate font-medium" readonly="" type="text" value="Gangtok High Depot (Sec-9, 1,650m)"/>
+</div>
+<p class="font-label-sm text-label-sm text-slate-500 truncate">Coord: 27.3389° N, 88.6065° E</p>
+</div>
+<!-- Cargo Type -->
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-slate-700 uppercase flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px] text-[#2563eb]">vaccines</span>
+            Cargo Manifest
+          </label>
+<select class="w-full h-8 px-2 bg-slate-50 border border-[#cbd5e1] text-slate-900 font-body-sm text-body-sm rounded focus:outline-none focus:bg-white focus:ring-1 focus:ring-[#2563eb] focus:border-[#2563eb] font-medium">
+<option selected="">Medical &amp; Cold-Chain Supplies (Sensitive / P1)</option>
+<option>Class 1 Rations &amp; Potable Water Reserves</option>
+<option>Bridge Engineering Spares &amp; Heavy Shoring</option>
+<option>Bulk POL Fuel Tanker Transports</option>
+</select>
+<p class="font-label-sm text-label-sm text-slate-500">Temp Window: 2°C to 8°C (Monitored)</p>
+</div>
+<!-- Vehicle Class -->
+<div class="space-y-1">
+<label class="font-label-sm text-label-sm text-slate-700 uppercase flex items-center gap-1 font-semibold">
+<span class="material-symbols-outlined text-[14px] text-[#2563eb]">local_shipping</span>
+            Fleet Asset Class
+          </label>
+<select class="w-full h-8 px-2 bg-slate-50 border border-[#cbd5e1] text-slate-900 font-body-sm text-body-sm rounded focus:outline-none focus:bg-white focus:ring-1 focus:ring-[#2563eb] focus:border-[#2563eb] font-medium">
+<option selected="">Heavy 6x4 Multi-Axle Rigid Truck (GVW 28T)</option>
+<option>Standard 4x4 High-Clearance Tactical (GVW 12T)</option>
+<option>All-Wheel Drive Articulated Low-Bed (GVW 40T)</option>
+<option>Rapid Response Light 4x4 Utility (GVW 4.5T)</option>
+</select>
+<p class="font-label-sm text-label-sm text-slate-500">Max Axle Load: 10.2T / Axle</p>
+</div>
+<!-- Bottom row controls spanning full width -->
+<div class="lg:col-span-4 pt-space-xs flex flex-wrap items-center justify-between gap-space-md border-t border-[#e2e8f0]">
+<div class="flex items-center gap-space-lg flex-wrap">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-slate-700 uppercase font-semibold">Departure Window:</span>
+<div class="inline-flex rounded bg-slate-100 p-0.5 border border-[#cbd5e1]">
+<button class="px-2.5 py-1 rounded bg-white text-blue-700 font-label-sm text-label-sm font-bold shadow-sm" type="button">Immediate (Current Window)</button>
+<button class="px-2.5 py-1 text-slate-600 hover:text-slate-900 font-label-sm text-label-sm font-medium" type="button">+2h (Post Rain Cell)</button>
+<button class="px-2.5 py-1 text-slate-600 hover:text-slate-900 font-label-sm text-label-sm font-medium" type="button">Dawn Tactical (05:00Z)</button>
+</div>
+</div>
+<div class="flex items-center gap-4 text-slate-600 font-label-sm text-label-sm">
+<span class="flex items-center gap-1 font-medium"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Weather Radar Active</span>
+<span class="flex items-center gap-1 font-medium"><span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>SMC Geo-Sensors Live</span>
+</div>
+</div>
+<button class="h-8 px-4 bg-[#2563eb] hover:bg-blue-700 text-white font-headline-sm text-body-md font-semibold rounded flex items-center gap-2 transition-all active:scale-[0.98] shadow-sm" type="button">
+<span class="material-symbols-outlined text-[18px]">calculate</span>
+<span>Execute Risk &amp; Route Analysis</span>
+</button>
+</div>
+</form>
+</section>
+<!-- Visual Divider & Layout Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-space-lg">
+<!-- Left Column: Primary Recommendation & Map Simulation (7 Cols) -->
+<div class="xl:col-span-7 space-y-space-lg">
+<!-- 3A. Primary Recommended Route Card -->
+<div class="bg-white rounded-lg p-space-md space-y-space-md border border-[#e2e8f0] shadow-sm relative overflow-hidden">
+<!-- Subtle Top Accent Indicator -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-sky-500 to-emerald-500"></div>
+<!-- Card Header & Badges -->
+<div class="flex flex-wrap items-start justify-between gap-space-sm pt-1">
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-300 font-label-sm text-label-sm font-bold tracking-wider uppercase flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                  RECOMMENDED CORRIDOR
+                </span>
+<span class="font-label-sm text-label-sm text-slate-500 font-medium">INDEX #COR-ALF-01</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-[#0f172a] font-bold tracking-tight mt-1">Corridor Alfa (NH-10 via Melli Bypass)</h2>
+<p class="font-body-sm text-body-sm text-slate-600">Primary arterial transit path along Teesta canyon bypass with active rockfall protection galleries.</p>
+</div>
+<!-- Accessibility Score Gauge -->
+<div class="bg-slate-50 border border-[#e2e8f0] px-3 py-2 rounded text-right shadow-sm">
+<span class="font-label-sm text-label-sm text-slate-500 font-semibold block">ACCESSIBILITY SCORE</span>
+<div class="flex items-baseline justify-end gap-1">
+<span class="font-label-lg text-headline-md text-emerald-700 font-bold">84</span>
+<span class="font-label-sm text-label-sm text-slate-400">/ 100</span>
+</div>
+<span class="font-label-sm text-label-sm text-emerald-700 font-semibold flex items-center justify-end gap-1">
+<span class="material-symbols-outlined text-[13px]">verified</span> VIABLE PRIORITY
+              </span>
+</div>
+</div>
+<!-- Key Quantitative Metrics Triplet -->
+<div class="grid grid-cols-3 gap-space-sm bg-slate-50 border border-[#e2e8f0] p-space-sm rounded">
+<div class="text-center p-1 border-r border-[#cbd5e1]/60">
+<span class="font-label-sm text-label-sm text-slate-500 block uppercase font-semibold">Ground Distance</span>
+<span class="font-label-lg text-headline-md text-[#0f172a] font-bold">114 <span class="font-label-sm text-label-sm text-slate-500 font-medium">km</span></span>
+</div>
+<div class="text-center p-1 border-r border-[#cbd5e1]/60">
+<span class="font-label-sm text-label-sm text-slate-500 block uppercase font-semibold">Projected ETA</span>
+<span class="font-label-lg text-headline-md text-[#2563eb] font-bold">4h 25m</span>
+</div>
+<div class="text-center p-1">
+<span class="font-label-sm text-label-sm text-slate-500 block uppercase font-semibold">Overall Risk Rating</span>
+<div class="flex items-center justify-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+<span class="font-label-lg text-headline-md text-amber-700 font-bold">34<span class="text-xs text-slate-400 font-normal">/100</span></span>
+</div>
+</div>
+</div>
+<!-- Overall Route Risk Score Breakdown Progress Gauge -->
+<div class="space-y-1.5 bg-blue-50/50 border border-blue-100 p-space-sm rounded">
+<div class="flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-slate-800 uppercase tracking-wide flex items-center gap-1.5 font-bold">
+<span class="material-symbols-outlined text-[15px] text-[#2563eb]">speed</span>
+                Cumulative Corridor Risk Gauge
+              </span>
+<span class="text-amber-800 font-bold bg-amber-100 px-2 py-0.5 rounded border border-amber-200">34 / 100 — MODERATE RISK</span>
+</div>
+<!-- Segmented Risk Bar -->
+<div class="h-2 w-full bg-slate-200 rounded-full overflow-hidden flex">
+<div class="bg-emerald-500 h-full" style="width: 25%"></div>
+<div class="bg-amber-400 h-full" style="width: 9%"></div>
+<div class="bg-slate-200 h-full" style="width: 66%"></div>
+</div>
+<div class="flex justify-between font-label-sm text-label-sm text-slate-500 text-[10px] font-medium">
+<span>0 (IDEAL SAFE)</span>
+<span>25 (NOMINAL)</span>
+<span class="text-amber-700 font-bold">▲ 34 CURRENT</span>
+<span>60 (HIGH RISK)</span>
+<span>100 (ABORT)</span>
+</div>
+</div>
+<!-- Risk Decomposition Grid (4 analytical breakdown chips) -->
+<div>
+<span class="font-label-sm text-label-sm text-slate-600 uppercase tracking-wider block mb-2 font-bold">Hazard Factor Breakdown</span>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<!-- Item 1: Weather Impact -->
+<div class="bg-slate-50 border border-[#e2e8f0] p-space-sm rounded flex items-start gap-space-sm">
+<div class="p-1.5 rounded bg-sky-100 text-sky-700 border border-sky-200">
+<span class="material-symbols-outlined text-[18px]">rainy</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-slate-800 font-bold">Weather Impact</span>
+<span class="font-label-sm text-label-sm text-sky-700 font-bold">12 / 100</span>
+</div>
+<p class="font-body-sm text-body-sm text-slate-500 truncate mt-0.5">Scattered precipitation, cloud base 1,200m</p>
+</div>
+</div>
+<!-- Item 2: Road Surface Stability -->
+<div class="bg-slate-50 border border-[#e2e8f0] p-space-sm rounded flex items-start gap-space-sm">
+<div class="p-1.5 rounded bg-emerald-100 text-emerald-700 border border-emerald-200">
+<span class="material-symbols-outlined text-[18px]">road</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-slate-800 font-bold">Road Surface Stability</span>
+<span class="font-label-sm text-label-sm text-emerald-700 font-bold">8 / 100</span>
+</div>
+<p class="font-body-sm text-body-sm text-slate-500 truncate mt-0.5">Paved asphalt, minor gravel wash at Km 41</p>
+</div>
+</div>
+<!-- Item 3: Incident Exposure -->
+<div class="bg-slate-50 border border-[#e2e8f0] p-space-sm rounded flex items-start gap-space-sm">
+<div class="p-1.5 rounded bg-amber-100 text-amber-700 border border-amber-200">
+<span class="material-symbols-outlined text-[18px]">warning</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-slate-800 font-bold">Incident Exposure</span>
+<span class="font-label-sm text-label-sm text-amber-700 font-bold">7 / 100</span>
+</div>
+<p class="font-body-sm text-body-sm text-slate-500 truncate mt-0.5">1 active caution point 4.2km off trajectory</p>
+</div>
+</div>
+<!-- Item 4: Gradient & Terrain Severity -->
+<div class="bg-slate-50 border border-[#e2e8f0] p-space-sm rounded flex items-start gap-space-sm">
+<div class="p-1.5 rounded bg-blue-100 text-blue-700 border border-blue-200">
+<span class="material-symbols-outlined text-[18px]">landscape</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-slate-800 font-bold">Gradient &amp; Terrain</span>
+<span class="font-label-sm text-label-sm text-blue-700 font-bold">7 / 100</span>
+</div>
+<p class="font-body-sm text-body-sm text-slate-500 truncate mt-0.5">Max slope 8.5%, hairpin turns 24</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Elevation Cross-Section Inline Visualization -->
+<div class="bg-slate-50 border border-[#e2e8f0] p-space-sm rounded space-y-2">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-slate-700 font-semibold">
+<span class="uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-slate-500">area_chart</span>
+                Topographic Profile &amp; Incline Map (Siliguri → Gangtok)
+              </span>
+<span class="font-label-sm text-label-sm text-[#2563eb] font-bold">Apex: 1,680m @ Km 108</span>
+</div>
+<!-- Monochromatic SVG Elevation Profile -->
+<div class="h-20 w-full relative bg-white rounded border border-[#e2e8f0]">
+<svg class="w-full h-full text-blue-600" preserveaspectratio="none" viewbox="0 0 400 80">
+<defs>
+<lineargradient id="elevGradLight" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#2563eb" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#2563eb" stop-opacity="0.02"></stop>
+</lineargradient>
+</defs>
+<!-- Reference Grid Lines -->
+<line stroke="#cbd5e1" stroke-dasharray="2 2" stroke-opacity="0.6" x1="0" x2="400" y1="20" y2="20"></line>
+<line stroke="#cbd5e1" stroke-dasharray="2 2" stroke-opacity="0.6" x1="0" x2="400" y1="50" y2="50"></line>
+<!-- Profile Area Fill -->
+<polygon fill="url(#elevGradLight)" points="0,75 40,73 90,68 150,58 210,48 260,42 320,24 370,14 400,16 400,80 0,80"></polygon>
+<!-- Profile Line -->
+<polyline fill="none" points="0,75 40,73 90,68 150,58 210,48 260,42 320,24 370,14 400,16" stroke="#2563eb" stroke-width="2.2"></polyline>
+<!-- Hazard Marker on Bridge BR-09 at km 52 -->
+<circle class="fill-emerald-600" cx="150" cy="58" r="4"></circle>
+<!-- Km 41 Washout point -->
+<circle class="fill-amber-500" cx="120" cy="62" r="3.5"></circle>
+</svg>
+<!-- Overlaid Waypoint Tags -->
+<div class="absolute inset-0 flex justify-between items-end px-2 pb-0.5 pointer-events-none font-label-sm text-label-sm text-slate-600 text-[9px] font-semibold">
+<span>Siliguri (120m)</span>
+<span>Sevoke Bridge (280m)</span>
+<span>Melli (390m) [BR-09]</span>
+<span>Rangpo Check (680m)</span>
+<span>Gangtok (1,650m)</span>
+</div>
+</div>
+</div>
+<!-- Key Constraints Status Banner -->
+<div class="p-space-sm bg-emerald-50/70 border border-emerald-200 rounded flex items-center justify-between gap-space-sm text-slate-800 font-body-sm text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-700 text-[18px]">verified_user</span>
+<span><strong class="text-emerald-950">Key Constraints:</strong> Bridge BR-09 load limit 32T compliant; Night convoy restriction lifted for cold-chain vehicles.</span>
+</div>
+<span class="px-2 py-0.5 rounded bg-emerald-200/70 text-emerald-900 border border-emerald-300 font-label-sm text-label-sm font-bold whitespace-nowrap">CLEAR FOR DISPATCH</span>
+</div>
+</div>
+<!-- GIS Tactical Spatial Visualizer Card -->
+<div class="bg-white rounded-lg p-space-md border border-[#e2e8f0] shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#2563eb] text-[18px]">map</span>
+<span class="font-headline-sm text-headline-sm text-[#0f172a] font-bold">Spatial Overlay: Corridor Alfa Alignment</span>
+</div>
+<div class="flex items-center gap-2 font-label-sm text-label-sm">
+<span class="px-2 py-0.5 rounded bg-slate-100 border border-[#cbd5e1] text-slate-700 font-medium">Layer: Contour + Slopes</span>
+<span class="px-2 py-0.5 rounded bg-blue-50 border border-blue-200 text-blue-700 font-semibold">Teesta Catchment</span>
+</div>
+</div>
+<!-- GIS Satellite Representation with data-location -->
+<div class="w-full h-56 bg-cover bg-center rounded border border-[#cbd5e1] relative overflow-hidden flex flex-col justify-between p-space-sm" data-location="Melli, Sikkim, India" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAK62dab0c5lscla6XV6oUSP3JUxAMa3r7oRC6aQZzs9NbZbGHRhPwTrzpA4n9Rb60RdzE0iLwiAlvslE6FHQpLlHzmpgc73iCi0y2GwUvAA-9nPu0ZZnHHn6iOGIALfOwNBufJnaDOWxuih9zWQ_NvH8IiN1lv9DQ5TNkJGPNN9tXsIea-uCziVUYbozGrLgV8cDFILuflne4Icomx4A2FibGD5O3sWaMHUZSTnTjo29XqWlqK54TusQ')">
+<div class="flex items-center justify-between z-10">
+<span class="px-2 py-0.5 rounded bg-white/95 backdrop-blur border border-[#cbd5e1] font-label-sm text-label-sm text-slate-800 font-bold flex items-center gap-1.5 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-emerald-600"></span> LIVE RADAR SYNCED
+              </span>
+<div class="flex gap-1">
+<button class="w-7 h-7 rounded bg-white/95 text-slate-800 hover:bg-slate-100 border border-[#cbd5e1] flex items-center justify-center text-sm font-label-md font-bold shadow-sm" type="button">+</button>
+<button class="w-7 h-7 rounded bg-white/95 text-slate-800 hover:bg-slate-100 border border-[#cbd5e1] flex items-center justify-center text-sm font-label-md font-bold shadow-sm" type="button">-</button>
+</div>
+</div>
+<!-- Overlay HUD Metrics inside Map -->
+<div class="bg-white/95 backdrop-blur border border-[#cbd5e1] p-space-xs rounded z-10 flex flex-wrap items-center justify-between text-slate-800 font-label-sm text-label-sm gap-2 shadow-sm">
+<div class="flex items-center gap-3">
+<span class="text-blue-700 font-bold">Waypoint 04: Melli Jn.</span>
+<span class="text-slate-600 font-medium">Hydro Station Sensor: +1.2m (Normal)</span>
+</div>
+<div class="flex items-center gap-2 text-emerald-700 font-bold">
+<span class="material-symbols-outlined text-[14px]">sensors</span> Telemetry Ping: 18ms
+              </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Comparative Matrix & Tactical Explanation (5 Cols) -->
+<div class="xl:col-span-5 space-y-space-lg">
+<!-- 3C. Analytical Route Explanation Panel -->
+<div class="bg-white rounded-lg p-space-md border border-[#e2e8f0] shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between border-b border-[#e2e8f0] pb-space-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#2563eb] text-[18px]">psychology_alt</span>
+<h3 class="font-headline-sm text-headline-sm text-[#0f172a] font-bold">Operational Intelligence Rationale</h3>
+</div>
+<span class="font-label-sm text-label-sm text-slate-500 font-medium">ALG-ID: SETU-DEC-402</span>
+</div>
+<div class="bg-slate-50 border border-[#e2e8f0] p-space-md rounded space-y-space-sm font-body-sm text-body-sm text-slate-700 leading-relaxed">
+<p>
+<strong class="text-emerald-700 font-bold">Corridor Alfa</strong> is selected as primary due to lower cumulative hazard exposure and verified bridge clearance at BR-09 (capacity 32T vs 28T payload).
+            </p>
+<p>
+              While <span class="text-red-700 font-semibold">Corridor Charlie</span> is 16 km shorter in pure linear displacement, current rainfall intensity (34 mm/h recorded at Singtam station) has triggered active mudslides between Km 32–38, rendering it completely impassable for heavy 6x4 freight.
+            </p>
+<p>
+<span class="text-blue-700 font-semibold">Corridor Bravo</span> remains the qualified operational contingency should Teesta water levels exceed the critical threshold of +2.5m at the low-lying Melli embankment.
+            </p>
+</div>
+<!-- Recommendation Action Bar -->
+<div class="flex flex-col sm:flex-row gap-space-sm pt-space-xs">
+<button class="flex-1 h-8 px-3 rounded bg-[#2563eb] text-white font-headline-sm text-body-sm font-semibold flex items-center justify-center gap-1.5 transition-colors hover:bg-blue-700 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">assignment_turned_in</span>
+<span>Export Manifest to Dispatch</span>
+</button>
+<button class="flex-1 h-8 px-3 rounded bg-white hover:bg-slate-50 border border-[#cbd5e1] text-slate-700 font-headline-sm text-body-sm font-semibold flex items-center justify-center gap-1.5 transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px] text-blue-600">cell_tower</span>
+<span>Push Telemetry to Convoy</span>
+</button>
+</div>
+</div>
+<!-- Terrain Telemetry Micro-Widget -->
+<div class="bg-white rounded-lg p-space-md border border-[#e2e8f0] shadow-sm space-y-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-[#0f172a] font-bold">Dynamic En-Route Hazard Feeds</span>
+<span class="font-label-sm text-label-sm text-emerald-700 font-bold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span> STREAM ACTIVE
+            </span>
+</div>
+<div class="space-y-space-xs">
+<!-- Event 1 -->
+<div class="p-space-xs bg-slate-50 border border-[#e2e8f0] rounded flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-blue-600 text-[16px] mt-0.5">water_drop</span>
+<div>
+<span class="font-label-sm text-label-sm text-slate-900 font-bold block">Teesta River Level @ Melli</span>
+<span class="font-body-sm text-body-sm text-slate-500">Currently +1.2m below alert datum</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-emerald-700 px-1.5 py-0.5 bg-emerald-100 border border-emerald-200 rounded font-bold">NOMINAL</span>
+</div>
+<!-- Event 2 -->
+<div class="p-space-xs bg-slate-50 border border-[#e2e8f0] rounded flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-red-600 text-[16px] mt-0.5">landslide</span>
+<div>
+<span class="font-label-sm text-label-sm text-slate-900 font-bold block">Debris Flow @ Teesta Military Rd</span>
+<span class="font-body-sm text-body-sm text-slate-500">Km 34.2 blocked by 120m³ earthwash</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-red-700 px-1.5 py-0.5 bg-red-100 border border-red-200 rounded font-bold">BLOCKED</span>
+</div>
+<!-- Event 3 -->
+<div class="p-space-xs bg-slate-50 border border-[#e2e8f0] rounded flex items-start justify-between gap-space-sm">
+<div class="flex items-start gap-2">
+<span class="material-symbols-outlined text-amber-600 text-[16px] mt-0.5">foggy</span>
+<div>
+<span class="font-label-sm text-label-sm text-slate-900 font-bold block">Lava Ridge Cloud Base</span>
+<span class="font-body-sm text-body-sm text-slate-500">Visibility reduced to 40m at altitude &gt;1,800m</span>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-amber-800 px-1.5 py-0.5 bg-amber-100 border border-amber-200 rounded font-bold">LOW VIS</span>
+</div>
+</div>
+</div>
+<!-- Quick Contingency Deployment Trigger Box -->
+<div class="p-space-md rounded-lg bg-white border border-[#e2e8f0] shadow-sm space-y-2">
+<span class="font-label-sm text-label-sm text-slate-600 uppercase tracking-wider block font-bold">Rapid Tactical Overrides</span>
+<div class="grid grid-cols-2 gap-space-sm">
+<button class="p-2 rounded bg-slate-50 hover:bg-slate-100 border border-[#cbd5e1] text-left transition-colors" type="button">
+<span class="font-label-sm text-label-sm text-slate-900 font-bold block">Enforce Escort Pilot</span>
+<span class="font-body-sm text-body-sm text-slate-500 text-[11px]">Deploy 4x4 pace vehicle</span>
+</button>
+<button class="p-2 rounded bg-slate-50 hover:bg-slate-100 border border-[#cbd5e1] text-left transition-colors" type="button">
+<span class="font-label-sm text-label-sm text-slate-900 font-bold block">Re-route via Lava</span>
+<span class="font-body-sm text-body-sm text-slate-500 text-[11px]">Shift fleet to Corridor Bravo</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- 3B. Route Comparison Matrix (Full-Width Clean Dense Tabular View) -->
+<section class="bg-white rounded-lg p-space-md border border-[#e2e8f0] shadow-sm space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#e2e8f0] pb-space-sm">
+<div>
+<h2 class="font-headline-md text-headline-md text-[#0f172a] font-bold">Tactical Corridor Comparison Matrix</h2>
+<p class="font-body-sm text-body-sm text-slate-600">Multi-criteria deterministic evaluation for heavy transport across 3 alternate corridors.</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-slate-500 font-medium">Columns: 3 Corridors Evaluated</span>
+<button class="h-7 px-2.5 rounded bg-slate-100 hover:bg-slate-200 border border-[#cbd5e1] text-slate-700 font-label-sm text-label-sm flex items-center gap-1 font-semibold" type="button">
+<span class="material-symbols-outlined text-[14px]">filter_list</span> Filter Vectors
+          </button>
+</div>
+</div>
+<!-- Tabular Grid Wrapper -->
+<div class="overflow-x-auto border border-[#e2e8f0] rounded">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 font-label-sm text-label-sm text-slate-600 uppercase tracking-wider border-b border-[#e2e8f0]">
+<th class="py-2.5 px-3 w-1/4 font-bold">Evaluation Vector</th>
+<th class="py-2.5 px-3 w-1/4 bg-blue-50/80 text-blue-900 border-x border-blue-200 font-bold">
+<div class="flex items-center justify-between">
+<span class="font-bold">1. Recommended (Corridor Alfa)</span>
+<span class="px-1.5 py-0.2 rounded bg-[#2563eb] text-white text-[9px] font-bold">ACTIVE</span>
+</div>
+<div class="text-[10px] text-blue-700 font-medium normal-case mt-0.5">NH-10 via Melli Bypass</div>
+</th>
+<th class="py-2.5 px-3 w-1/4 border-r border-[#e2e8f0]">
+<div class="text-slate-900 font-bold">2. Alternative 1 (Corridor Bravo)</div>
+<div class="text-[10px] text-slate-500 normal-case mt-0.5 font-medium">Via Lava-Algarah Ridge</div>
+</th>
+<th class="py-2.5 px-3 w-1/4">
+<div class="text-slate-900 font-bold">3. Alternative 2 (Corridor Charlie)</div>
+<div class="text-[10px] text-slate-500 normal-case mt-0.5 font-medium">Old Teesta Military Road</div>
+</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#e2e8f0] font-body-sm text-body-sm">
+<!-- Row: Distance -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="py-2.5 px-3 font-semibold text-slate-800 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-slate-400">straighten</span>
+                Ground Distance
+              </td>
+<td class="py-2.5 px-3 bg-blue-50/40 border-x border-blue-200 font-label-sm text-label-sm text-slate-900 font-bold">
+                114 km
+              </td>
+<td class="py-2.5 px-3 border-r border-[#e2e8f0] font-label-sm text-label-sm text-slate-700">
+                142 km <span class="text-red-600 font-semibold text-[10px]">(+28 km)</span>
+</td>
+<td class="py-2.5 px-3 font-label-sm text-label-sm text-slate-700">
+                98 km <span class="text-emerald-700 font-semibold text-[10px]">(-16 km)</span>
+</td>
+</tr>
+<!-- Row: Travel Time (ETA) -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="py-2.5 px-3 font-semibold text-slate-800 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-slate-400">schedule</span>
+                Projected Transit ETA
+              </td>
+<td class="py-2.5 px-3 bg-blue-50/40 border-x border-blue-200 font-label-sm text-label-sm text-[#2563eb] font-bold">
+                4h 25m
+              </td>
+<td class="py-2.5 px-3 border-r border-[#e2e8f0] font-label-sm text-label-sm text-slate-700">
+                6h 10m <span class="text-slate-500 text-[10px]">(+1h 45m)</span>
+</td>
+<td class="py-2.5 px-3 font-label-sm text-label-sm text-slate-400 line-through">
+                3h 50m
+              </td>
+</tr>
+<!-- Row: Road Surface Condition -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="py-2.5 px-3 font-semibold text-slate-800 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-slate-400">texture</span>
+                Surface Condition
+              </td>
+<td class="py-2.5 px-3 bg-blue-50/40 border-x border-blue-200 text-slate-900">
+<div class="font-bold text-emerald-700">Paved / Good</div>
+<div class="text-[11px] text-slate-600">Continuous bituminized two-lane</div>
+</td>
+<td class="py-2.5 px-3 border-r border-[#e2e8f0] text-slate-700">
+<div class="font-semibold text-slate-900">Mixed Gravel</div>
+<div class="text-[11px] text-slate-500">High tire wear, narrow shoulders</div>
+</td>
+<td class="py-2.5 px-3 text-slate-700">
+<div class="font-semibold text-red-700">Broken Asphalt / Slag</div>
+<div class="text-[11px] text-red-600">Severe erosion &amp; water channels</div>
+</td>
+</tr>
+<!-- Row: Weather Hazard Exposure -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="py-2.5 px-3 font-semibold text-slate-800 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-slate-400">cyclone</span>
+                Weather Hazard Exposure
+              </td>
+<td class="py-2.5 px-3 bg-blue-50/40 border-x border-blue-200 text-blue-800">
+<div class="font-bold">Moderate Rain</div>
+<div class="text-[11px] text-slate-600">8-12 mm/h, stable drainage</div>
+</td>
+<td class="py-2.5 px-3 border-r border-[#e2e8f0] text-amber-800">
+<div class="font-semibold">High Fog / Low Visibility</div>
+<div class="text-[11px] text-slate-500">Dense cloud envelope &gt;1,800m</div>
+</td>
+<td class="py-2.5 px-3 text-red-700">
+<div class="font-semibold">Extreme Surcharge Risk</div>
+<div class="text-[11px] text-red-600">Active runoff torrents</div>
+</td>
+</tr>
+<!-- Row: Active Incidents En Route -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="py-2.5 px-3 font-semibold text-slate-800 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-slate-400">report_problem</span>
+                Active Incidents En Route
+              </td>
+<td class="py-2.5 px-3 bg-blue-50/40 border-x border-blue-200 text-slate-900 font-label-sm text-label-sm">
+<span class="px-2 py-0.5 rounded bg-blue-100 text-blue-800 border border-blue-200 font-bold">1 (Monitored)</span>
+</td>
+<td class="py-2.5 px-3 border-r border-[#e2e8f0] text-slate-900 font-label-sm text-label-sm">
+<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold">0 Clear</span>
+</td>
+<td class="py-2.5 px-3 text-red-700 font-label-sm text-label-sm">
+<span class="px-2 py-0.5 rounded bg-red-100 text-red-800 border border-red-200 font-bold">2 (Active Blockage)</span>
+</td>
+</tr>
+<!-- Row: Max Elevation -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="py-2.5 px-3 font-semibold text-slate-800 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-slate-400">elevation</span>
+                Max Elevation
+              </td>
+<td class="py-2.5 px-3 bg-blue-50/40 border-x border-blue-200 font-label-sm text-label-sm text-slate-900 font-bold">
+                1,680m <span class="text-slate-500 text-[11px] font-normal">(Gradual ascent)</span>
+</td>
+<td class="py-2.5 px-3 border-r border-[#e2e8f0] font-label-sm text-label-sm text-slate-700">
+                2,140m <span class="text-slate-500 text-[11px]">(Ridge crest)</span>
+</td>
+<td class="py-2.5 px-3 font-label-sm text-label-sm text-slate-700">
+                1,420m <span class="text-slate-500 text-[11px]">(River bed)</span>
+</td>
+</tr>
+<!-- Row: Overall Risk Score -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="py-2.5 px-3 font-semibold text-slate-800 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-slate-400">analytics</span>
+                Overall Risk Score
+              </td>
+<td class="py-2.5 px-3 bg-blue-50/40 border-x border-blue-200 font-label-sm text-label-sm text-amber-700 font-bold">
+                34 / 100 <span class="font-semibold text-[11px] text-slate-600">(Moderate)</span>
+</td>
+<td class="py-2.5 px-3 border-r border-[#e2e8f0] font-label-sm text-label-sm text-amber-800 font-bold">
+                58 / 100 <span class="font-semibold text-[11px] text-slate-600">(Elevated)</span>
+</td>
+<td class="py-2.5 px-3 font-label-sm text-label-sm text-red-700 font-bold">
+                89 / 100 <span class="font-bold text-[11px] text-red-700">(CRITICAL)</span>
+</td>
+</tr>
+<!-- Row: Accessibility Status Badge -->
+<tr class="hover:bg-slate-50/80 transition-colors">
+<td class="py-2.5 px-3 font-semibold text-slate-800 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px] text-slate-400">traffic</span>
+                Accessibility Status
+              </td>
+<td class="py-2.5 px-3 bg-blue-50/40 border-x border-blue-200">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-300 font-label-sm text-label-sm font-bold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Recommended
+                </span>
+</td>
+<td class="py-2.5 px-3 border-r border-[#e2e8f0]">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-300 font-label-sm text-label-sm font-bold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span> Viable Backup
+                </span>
+</td>
+<td class="py-2.5 px-3">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded bg-red-100 text-red-800 border border-red-300 font-label-sm text-label-sm font-bold uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-red-600"></span> Non-Navigable
+                </span>
+</td>
+</tr>
+<!-- Row: Action button per column -->
+<tr class="bg-slate-50/70">
+<td class="py-3 px-3 font-label-sm text-label-sm text-slate-600 uppercase tracking-wider font-bold">
+                Corridor State Action
+              </td>
+<td class="py-3 px-3 bg-blue-50/60 border-x border-blue-200">
+<button class="w-full h-8 px-2 rounded bg-[#2563eb] text-white font-body-sm text-body-sm font-semibold flex items-center justify-center gap-1 hover:bg-blue-700 shadow-sm transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">check_circle</span>
+<span>Selected Active</span>
+</button>
+</td>
+<td class="py-3 px-3 border-r border-[#e2e8f0]">
+<button class="w-full h-8 px-2 rounded bg-white hover:bg-slate-100 border border-[#cbd5e1] text-slate-800 font-body-sm text-body-sm font-semibold flex items-center justify-center gap-1 transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[15px] text-[#2563eb]">backup_table</span>
+<span>Deploy as Contingency</span>
+</button>
+</td>
+<td class="py-3 px-3">
+<button class="w-full h-8 px-2 rounded bg-red-50 hover:bg-red-100 border border-red-200 text-red-700 font-body-sm text-body-sm font-semibold flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[15px]">block</span>
+<span>Flag as Impassable</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</div>
+<script>
+  // Simple interactive feedback for action triggers
+  document.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const text = this.innerText.trim();
+      if (text.includes('Execute Risk')) {
+        this.innerHTML = '<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span><span>Computing Corridors...</span>';
+        setTimeout(() => {
+          this.innerHTML = '<span class="material-symbols-outlined text-[18px]">done_all</span><span>Calculated (Optimal: Alfa)</span>';
+        }, 800);
+      }
+    });
+  });
+</script></main></div></body></html>

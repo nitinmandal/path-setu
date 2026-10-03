@@ -1,0 +1,82 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface-dim": "#cbdbf5",
+        "surface-container-low": "#f1f5f9",
+        "secondary-container": "#e0f2fe",
+        "inverse-on-surface": "#eaf1ff",
+        "inverse-surface": "#0f172a",
+        "secondary-fixed-dim": "#93ccff",
+        "secondary": "#0284c7",
+        "tertiary-container": "#dcfce7",
+        "on-secondary-fixed-variant": "#004b73",
+        "on-primary-fixed": "#00174b",
+        "surface-container-lowest": "#ffffff",
+        "tertiary-fixed": "#dae2fd",
+        "background": "#f8fafc",
+        "surface-tint": "#2563eb",
+        "error": "#dc2626",
+        "on-primary-fixed-variant": "#003ea8",
+        "on-tertiary-container": "#14532d",
+        "tertiary-fixed-dim": "#bec6e0",
+        "primary-fixed-dim": "#b4c5ff",
+        "on-secondary-container": "#0369a1",
+        "secondary-fixed": "#cce5ff",
+        "on-tertiary": "#ffffff",
+        "inverse-primary": "#b4c5ff",
+        "surface-container": "#ffffff",
+        "on-tertiary-fixed": "#131b2e",
+        "outline": "#64748b",
+        "tertiary": "#16a34a",
+        "on-primary-container": "#ffffff",
+        "on-background": "#0f172a",
+        "on-surface-variant": "#475569",
+        "surface-container-high": "#e2e8f0",
+        "outline-variant": "#cbd5e1",
+        "surface-container-highest": "#e2e8f0",
+        "on-secondary-fixed": "#001d31",
+        "surface": "#ffffff",
+        "on-secondary": "#ffffff",
+        "error-container": "#fee2e2",
+        "on-tertiary-fixed-variant": "#3f465c",
+        "on-primary": "#ffffff",
+        "primary-container": "#2563eb",
+        "surface-variant": "#f1f5f9",
+        "on-error": "#ffffff",
+        "surface-bright": "#ffffff",
+        "primary": "#2563eb",
+        "primary-fixed": "#dbe1ff",
+        "on-surface": "#0f172a",
+        "on-error-container": "#991b1b"
+      },
+      borderRadius: {
+        DEFAULT: "0.125rem",
+        lg: "0.25rem",
+        xl: "0.5rem",
+        full: "0.75rem"
+      },
+      spacing: {
+        "space-xs": "0.25rem",
+        "space-xl": "1.5rem",
+        "space-lg": "1rem",
+        "space-md": "0.75rem",
+        gutter: "0.75rem",
+        margin: "1rem",
+        "space-sm": "0.375rem"
+      },
+      fontFamily: {
+        sans: ['Geist', 'Inter', 'sans-serif'],
+        mono: ['"JetBrains Mono"', 'monospace'],
+        geist: ['Geist', 'sans-serif']
+      }
+    },
+  },
+  plugins: [],
+};

@@ -1,0 +1,2705 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset=utf8>
+  <meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <style>
+    :root {
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px)
+    }
+
+    html {
+      scroll-padding-top: env(safe-area-inset-top, 0px)
+    }
+  </style>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --md-bg: #fff;
+      --md-text: rgba(0, 0, 0, .8);
+      --md-muted: rgba(0, 0, 0, .6);
+      --md-fill: rgba(0, 0, 0, .04);
+      --md-fill-strong: rgba(0, 0, 0, .06);
+      --md-rule: rgba(0, 0, 0, .1);
+      --md-rule-strong: rgba(0, 0, 0, .16);
+      --md-link: hsl(210 100% 45%)
+    }
+
+    @media (prefers-color-scheme:dark) {
+      :root:where(:not([data-theme="light"])) {
+        --md-bg: #0d0d0d;
+        --md-text: rgba(255, 255, 255, .85);
+        --md-muted: rgba(255, 255, 255, .6);
+        --md-fill: rgba(255, 255, 255, .06);
+        --md-fill-strong: rgba(255, 255, 255, .09);
+        --md-rule: rgba(255, 255, 255, .14);
+        --md-rule-strong: rgba(255, 255, 255, .22);
+        --md-link: hsl(210 100% 72%)
+      }
+    }
+
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+      --md-bg: #0d0d0d;
+      --md-text: rgba(255, 255, 255, .85);
+      --md-muted: rgba(255, 255, 255, .6);
+      --md-fill: rgba(255, 255, 255, .06);
+      --md-fill-strong: rgba(255, 255, 255, .09);
+      --md-rule: rgba(255, 255, 255, .14);
+      --md-rule-strong: rgba(255, 255, 255, .22);
+      --md-link: hsl(210 100% 72%)
+    }
+
+    :root[data-theme="light"] {
+      color-scheme: light
+    }
+
+    @media print {
+
+      :root,
+      :root[data-theme="dark"] {
+        color-scheme: light;
+        --md-bg: #fff;
+        --md-text: rgba(0, 0, 0, .8);
+        --md-muted: rgba(0, 0, 0, .6);
+        --md-fill: rgba(0, 0, 0, .04);
+        --md-fill-strong: rgba(0, 0, 0, .06);
+        --md-rule: rgba(0, 0, 0, .1);
+        --md-rule-strong: rgba(0, 0, 0, .16);
+        --md-link: hsl(210 100% 45%)
+      }
+    }
+
+    body {
+      background: var(--md-bg);
+      color: var(--md-text);
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font: 14px/1.55 -apple-system, BlinkMacSystemFont, 'SF Pro', 'Segoe UI', sans-serif;
+      overflow-wrap: break-word
+    }
+
+    body>:first-child {
+      margin-top: 0
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin: 6px 0 0;
+      line-height: 1.25;
+      font-weight: 600;
+      text-wrap: balance
+    }
+
+    h1 {
+      font-size: 1.35em
+    }
+
+    h2 {
+      font-size: 1.15em;
+      color: var(--md-muted)
+    }
+
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-size: 1em
+    }
+
+    p,
+    ul,
+    ol,
+    blockquote,
+    table,
+    pre,
+    hr {
+      margin: 0
+    }
+
+    strong {
+      font-weight: 600
+    }
+
+    a {
+      color: var(--md-link);
+      text-decoration: none
+    }
+
+    a:hover {
+      text-decoration: underline
+    }
+
+    ul,
+    ol {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding-left: 22px
+    }
+
+    ul {
+      list-style: disc
+    }
+
+    ol {
+      list-style: decimal
+    }
+
+    :is(li, td, th)>*+:is(p, ul, ol, blockquote) {
+      margin-top: 6px
+    }
+
+    blockquote {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-left: 2px solid var(--md-rule);
+      padding-left: 10px;
+      color: var(--md-muted)
+    }
+
+    :not(pre)>code {
+      background: var(--md-fill);
+      padding: 1px 3px;
+      border-radius: 4px;
+      font: .92em 'SF Mono', ui-monospace, Menlo, Consolas, monospace
+    }
+
+    a>code {
+      background: none;
+      color: inherit
+    }
+
+    pre {
+      background: var(--md-fill);
+      padding: 10px 12px;
+      border-radius: 6px;
+      overflow-x: auto;
+      font: 12px/1.5 'SF Mono', ui-monospace, Menlo, Consolas, monospace;
+      margin-block: 4px
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      font: inherit
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 2px;
+      font: inherit
+    }
+
+    th,
+    td {
+      padding: 6px 8px;
+      border-radius: 3px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: var(--md-fill-strong);
+      font-weight: 600
+    }
+
+    td {
+      background: var(--md-fill)
+    }
+
+    :is(th, td) :not(pre)>code {
+      background: transparent
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid var(--md-rule-strong);
+      margin-block: 10px
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px
+    }
+  </style>
+</head>
+
+<body>
+  <h1>NER Setu — Product Requirements Document (MVP / Hackathon Prototype)</h1>
+  <blockquote>
+    <p><strong>Status legend used throughout:</strong> 🟢 <strong>REAL</strong> (actually implemented and working) · 🟡
+      <strong>SIMULATED</strong> (realistic generated data, clearly labelled in UI) · 🔴 <strong>NOT BUILT</strong>
+      (future only).
+      <strong>Honesty rule:</strong> the prototype is a <em>risk-scoring decision-support tool</em>. It does
+      <strong>not</strong> scientifically predict landslides, and it has <strong>no</strong> integration with government
+      systems.
+    </p>
+  </blockquote>
+  <hr>
+  <h2>1. Executive Summary</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Detail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Product name</strong></td>
+        <td><strong>Path Setu</strong> (&quot;Setu&quot; = bridge)</td>
+      </tr>
+      <tr>
+        <td><strong>One-line pitch</strong></td>
+        <td>A GIS dashboard that watches road accessibility across North East India, scores route risk from weather and
+          field reports, and reroutes essential-supply vehicles before they get stuck.</td>
+      </tr>
+      <tr>
+        <td><strong>Problem</strong></td>
+        <td>Landslides, floods, damaged bridges and poor connectivity regularly cut off remote NER districts;
+          authorities learn about blockages late, and drivers of medicines/food get stuck with no risk-aware
+          alternative.</td>
+      </tr>
+      <tr>
+        <td><strong>Solution</strong></td>
+        <td>One platform: <strong>Data → Monitor → Predict → Alert → Optimize Route → Track → Field Report → Update
+            Dashboard</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>Target users</strong></td>
+        <td>District/state officials, disaster-management (SDMA/DDMA) officers, logistics operators, drivers, field
+          officers, emergency response teams.</td>
+      </tr>
+      <tr>
+        <td><strong>Value proposition</strong></td>
+        <td>(1) A single live picture of which roads are Accessible / Risky / Blocked / Unknown. (2) Risk-aware
+          rerouting with delay estimates. (3) Field reports that work with zero connectivity.</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h2>2. Problem Definition</h2>
+  <p><strong>Real-world problem.</strong> Essential goods (medicines, food grain, fuel, produce, construction material)
+    move on a thin network of hill highways (e.g., NH-6, NH-37, NH-2, NH-8 corridors). A single blocked segment can
+    isolate a district for days because there is often no parallel road.</p>
+  <p><strong>Why NER is hard.</strong></p>
+  <ul>
+    <li><strong>Terrain:</strong> steep, geologically young hills; many single-lane sections; long detours (a 20 km
+      blockage can mean 150+ km detour).</li>
+    <li><strong>Rainfall:</strong> among the heaviest in the world (Meghalaya, Assam hills, Mizoram); monsoon saturates
+      slopes.</li>
+    <li><strong>Landslides/floods:</strong> slope failures on cut hillsides; Brahmaputra/Barak/Barak tributary flooding
+      cuts valley roads.</li>
+    <li><strong>Infrastructure:</strong> damaged roads, weight-limited or aging bridges, few alternates.</li>
+    <li><strong>Connectivity:</strong> patchy mobile coverage in valleys/hills → delayed incident information.</li>
+  </ul>
+  <p><strong>Current gaps.</strong></p>
+  <ul>
+    <li>Blockage information travels by phone calls, WhatsApp and word of mouth, not to a common map.</li>
+    <li>No shared view linking <em>weather → road risk → vehicles in transit</em>.</li>
+    <li>Field reports are lost when the officer is offline.</li>
+    <li>Rerouting is a driver's guess.</li>
+  </ul>
+  <p><strong>Consequences of delays.</strong> Medicine stock-outs (cold-chain break), food and fuel shortages, missed
+    harvest markets (produce spoils), stalled construction, delayed emergency response, driver safety risk.</p>
+  <p><strong>Why map/navigation apps alone are insufficient.</strong> Consumer navigation optimises time on
+    <em>currently known</em> traffic. It does not (a) forecast disruption from rainfall/terrain, (b) accept
+    authority-verified blockages and photos, (c) treat medicine trucks as priority cargo, (d) give administrators
+    district-level connectivity views, or (e) work offline for reporting.</p>
+  <hr>
+  <h2>3. Target Users (Personas)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Persona</th>
+        <th>Goals</th>
+        <th>Problems</th>
+        <th>Needs from platform</th>
+        <th>Key actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Government / administrative official</strong> (e.g., District Commissioner office)</td>
+        <td>Keep district supplied and connected; report status upward</td>
+        <td>No consolidated view; relies on calls</td>
+        <td>District connectivity score, bottleneck list, delivery status</td>
+        <td>View dashboard, filter by district, export snapshot, monitor critical corridors</td>
+      </tr>
+      <tr>
+        <td><strong>Disaster management official</strong> (SDMA/DDMA)</td>
+        <td>Pre-position resources; keep emergency corridors open</td>
+        <td>Late, unverified incident info</td>
+        <td>Risk forecast, verified incidents, emergency-route view</td>
+        <td>Acknowledge/resolve alerts, verify incidents, mark emergency corridors, override road status</td>
+      </tr>
+      <tr>
+        <td><strong>Logistics operator</strong> (fleet/dispatch manager)</td>
+        <td>On-time delivery, safe fleet</td>
+        <td>Vehicles stuck; no early warning</td>
+        <td>Fleet map, ETA, at-risk deliveries, alternate routes</td>
+        <td>Register vehicles, create deliveries, accept/decline reroute, monitor ETA</td>
+      </tr>
+      <tr>
+        <td><strong>Driver</strong></td>
+        <td>Reach destination safely</td>
+        <td>Unknown road state ahead</td>
+        <td>Simple route + warnings on phone</td>
+        <td>Start trip, view route/warnings, confirm reroute, send quick &quot;blocked&quot; report</td>
+      </tr>
+      <tr>
+        <td><strong>Field officer</strong> (BDO, PWD engineer, local volunteer)</td>
+        <td>Report ground truth fast</td>
+        <td>No signal; complex forms</td>
+        <td>Big-button offline reporting w/ GPS + photo</td>
+        <td>Create report, attach photo, sync later, see reports' verification status</td>
+      </tr>
+      <tr>
+        <td><strong>Emergency response team</strong></td>
+        <td>Reach affected area quickly</td>
+        <td>Don't know which road is passable</td>
+        <td>&quot;Emergency mode&quot; safest route + live blockages</td>
+        <td>Request emergency route, view accessible corridors, report progress</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h2>4. MVP Scope</h2>
+  <h3>A. MUST HAVE (demo cannot work without these)</h3>
+  <ol>
+    <li>Auth with 4 roles (JWT + RBAC).</li>
+    <li>Leaflet map with roads (status-coloured), districts, vehicles, incidents, risk zones; layer toggles and filters.
+    </li>
+    <li>Road status engine (Accessible/Risky/Blocked/Unknown).</li>
+    <li>Weather ingestion (Open-Meteo, real) per road-segment centroid.</li>
+    <li>ML risk score per road segment (trained on <strong>simulated</strong> data, clearly labelled).</li>
+    <li>Risk-aware routing (shortest / safest / balanced + alternative, ETA, extra delay).</li>
+    <li>Vehicle tracking with <strong>simulated GPS</strong> (simulator service) + real GPS ingest endpoint.</li>
+    <li>Alerts (in-app, realtime via Socket.IO) with 4 severities.</li>
+    <li>Field report PWA: GPS, camera/photo, type, description, offline queue + sync.</li>
+    <li>Dashboard KPIs, recent incidents, district connectivity score.</li>
+  </ol>
+  <h3>B. SHOULD HAVE</h3>
+  <ul>
+    <li>Hindi + English UI (i18n), alert templates translated.</li>
+    <li>Delivery entity with at-risk flag and delivery status board.</li>
+    <li>Risk trend chart (24h).</li>
+    <li>Incident verification workflow (Authority confirms/rejects).</li>
+    <li>Web Push notifications.</li>
+    <li>Demo &quot;Scenario Controller&quot; panel (admin-only) to trigger weather change.</li>
+  </ul>
+  <h3>C. NICE TO HAVE</h3>
+  <ul>
+    <li>Duplicate-report clustering UI, heatmap layer of past incidents, CSV export, dark mode, image compression stats,
+      vehicle history playback.</li>
+  </ul>
+  <h3>D. FUTURE VERSION (explicitly out of MVP)</h3>
+  <p>Satellite/drone imagery, IoT slope/rain sensors, computer vision on photos, SMS gateway, real fleet GPS/FASTag,
+    government system integration, demand forecasting, digital twin, disaster simulation, additional regional languages.
+  </p>
+  <blockquote>
+    <p><strong>Scope guard:</strong> any feature not in A or B needs unanimous team approval <em>and</em> must displace
+      an existing B item.</p>
+  </blockquote>
+  <hr>
+  <h2>5. Core User Journeys</h2>
+  <p><strong>J1 — Authority monitors road accessibility</strong></p>
+  <ol>
+    <li>Logs in → lands on Dashboard (KPI cards + map).</li>
+    <li>Sees districts shaded by connectivity score; clicks a low-score district.</li>
+    <li>Map zooms; roads coloured green/amber/red/grey. Clicks a red segment.</li>
+    <li>Side panel: status, risk score, contributing factors (rain, slope, reports), last update, linked
+      incidents/photos.</li>
+    <li>Filters to &quot;Critical corridors only&quot;; exports snapshot (optional).</li>
+  </ol>
+  <p><strong>J2 — Vehicle with medicines meets a high-risk route</strong></p>
+  <ol>
+    <li>Operator's vehicle <code>AS-01-MED-4521</code> is en route (simulated GPS every 5 s).</li>
+    <li>Backend evaluates each vehicle's remaining route edges every 60 s.</li>
+    <li>A downstream edge's risk crosses 0.70 within 20 km ahead.</li>
+    <li>Vehicle marker turns amber; delivery flagged <strong>At Risk</strong>; alert generated (HIGH) for operator +
+      authority.</li>
+    <li>Driver app shows banner: &quot;High-risk stretch ahead — reroute suggested&quot;.</li>
+  </ol>
+  <p><strong>J3 — System predicts a possible disruption</strong></p>
+  <ol>
+    <li>Weather job fetches rainfall + 48h forecast per segment (every 30 min).</li>
+    <li>Feature builder combines weather + static terrain + history + recent reports.</li>
+    <li>ML service returns <code>risk_score</code>, category, predicted disruption type, confidence.</li>
+    <li>Segment status updates (e.g., Accessible → Risky); <code>RiskPrediction</code> stored.</li>
+    <li>Dashboard risk layer refreshes via Socket.IO; MEDIUM/HIGH alert raised if threshold crossed.</li>
+  </ol>
+  <p><strong>J4 — System recommends an alternative route</strong></p>
+  <ol>
+    <li>Trigger: route risk over threshold, or blocked edge on active route.</li>
+    <li>Routing engine recomputes with current edge weights (blocked = removed).</li>
+    <li>Returns up to 3 options: Fastest, Safest, Balanced with distance, ETA, extra delay vs. original, max risk on
+      route.</li>
+    <li>Operator/driver taps <strong>Accept</strong>; vehicle's route updates; ETA recalculated; audit log written.</li>
+  </ol>
+  <p><strong>J5 — Field officer reports a blockage (online)</strong></p>
+  <ol>
+    <li>Opens PWA → big <strong>Report Incident</strong> button.</li>
+    <li>GPS auto-captured (accuracy shown); picks type &quot;Landslide – road blocked&quot;.</li>
+    <li>Takes photo (auto-compressed); optional short note (or voice-to-text later).</li>
+    <li>Submit → 201 → toast &quot;Report sent&quot;. Incident appears on authority map in &lt;3 s.</li>
+    <li>Nearest road segment set to Blocked (unverified) → alert raised.</li>
+  </ol>
+  <p><strong>J6 — Officer has no internet</strong></p>
+  <ol>
+    <li>Offline banner shows; officer still creates report.</li>
+    <li>Report + compressed photo saved in IndexedDB with <code>client_uuid</code>, status <code>PENDING</code>.</li>
+    <li>Queue count badge (&quot;2 waiting to sync&quot;).</li>
+    <li>Connectivity returns → automatic sync (online event / Background Sync).</li>
+    <li>Server dedupes by <code>client_uuid</code>; status → <code>SYNCED</code>; original <code>captured_at</code>
+      timestamp is preserved.</li>
+  </ol>
+  <p><strong>J7 — Authority responds to a critical alert</strong></p>
+  <ol>
+    <li>Push + in-app toast + red badge: &quot;CRITICAL: NH-6 Segment KH-07 blocked&quot;.</li>
+    <li>Opens alert → sees map, photo, affected vehicles/deliveries, suggested reroutes.</li>
+    <li>Actions: <strong>Acknowledge</strong>, <strong>Verify incident</strong>, <strong>Mark emergency
+        corridor</strong>, <strong>Notify operators</strong>.</li>
+    <li>Later marks <strong>Resolved</strong> when a clearance report arrives; road status reverts through engine.</li>
+  </ol>
+  <hr>
+  <h2>6. Functional Requirements</h2>
+  <h3>A. Authentication &amp; Authorization</h3>
+  <ul>
+    <li>Email + password login, JWT access token (15 min) + refresh token (7 days, httpOnly cookie).</li>
+    <li>Password hashing: bcrypt (cost 12).</li>
+  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th>Capability</th>
+        <th style="text-align:center">Admin</th>
+        <th style="text-align:center">Authority</th>
+        <th style="text-align:center">Field officer</th>
+        <th style="text-align:center">Logistics operator</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Manage users</td>
+        <td style="text-align:center">✅</td>
+        <td style="text-align:center">❌</td>
+        <td style="text-align:center">❌</td>
+        <td style="text-align:center">❌</td>
+      </tr>
+      <tr>
+        <td>View full dashboard/map</td>
+        <td style="text-align:center">✅</td>
+        <td style="text-align:center">✅</td>
+        <td style="text-align:center">limited (own district)</td>
+        <td style="text-align:center">own fleet + public road status</td>
+      </tr>
+      <tr>
+        <td>Verify/resolve incidents</td>
+        <td style="text-align:center">✅</td>
+        <td style="text-align:center">✅</td>
+        <td style="text-align:center">❌</td>
+        <td style="text-align:center">❌</td>
+      </tr>
+      <tr>
+        <td>Override road status</td>
+        <td style="text-align:center">✅</td>
+        <td style="text-align:center">✅</td>
+        <td style="text-align:center">❌</td>
+        <td style="text-align:center">❌</td>
+      </tr>
+      <tr>
+        <td>Submit field report</td>
+        <td style="text-align:center">✅</td>
+        <td style="text-align:center">✅</td>
+        <td style="text-align:center">✅</td>
+        <td style="text-align:center">✅ (driver quick report)</td>
+      </tr>
+      <tr>
+        <td>Register vehicles / create deliveries</td>
+        <td style="text-align:center">✅</td>
+        <td style="text-align:center">✅</td>
+        <td style="text-align:center">❌</td>
+        <td style="text-align:center">✅ (own)</td>
+      </tr>
+      <tr>
+        <td>Request/accept routes</td>
+        <td style="text-align:center">✅</td>
+        <td style="text-align:center">✅</td>
+        <td style="text-align:center">❌</td>
+        <td style="text-align:center">✅</td>
+      </tr>
+      <tr>
+        <td>Acknowledge alerts</td>
+        <td style="text-align:center">✅</td>
+        <td style="text-align:center">✅</td>
+        <td style="text-align:center">❌</td>
+        <td style="text-align:center">own-fleet alerts</td>
+      </tr>
+      <tr>
+        <td>Scenario controller</td>
+        <td style="text-align:center">✅</td>
+        <td style="text-align:center">❌</td>
+        <td style="text-align:center">❌</td>
+        <td style="text-align:center">❌</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>B. GIS / Map Module</h3>
+  <ul>
+    <li><strong>Leaflet + OpenStreetMap tiles</strong> (MapLibre optional later). Center ~ (25.6, 92.5), zoom 7.</li>
+    <li><strong>Layers (toggle):</strong> Districts (GeoJSON polygons, choropleth by connectivity score) · Roads
+      (LineString, colour by status) · Bridges (points, icon by status) · Vehicles (marker clusters, colour by delivery
+      risk) · Incidents (icon by type/severity) · Risk zones (circle/polygons from high-risk segments) · Rainfall
+      overlay (circle markers sized by mm/h) · Emergency corridors (dashed blue).</li>
+    <li><strong>Colours:</strong> Accessible <code>#2e7d32</code>, Risky <code>#f9a825</code>, Blocked
+      <code>#c62828</code>, Unknown <code>#757575</code>.</li>
+    <li><strong>Filters:</strong> district, road/NH name, status, vehicle cargo type, incident type, severity, time
+      window (1h/6h/24h/7d).</li>
+    <li><strong>Interactions:</strong> click road → detail drawer; click vehicle → route + ETA; hover tooltips; legend;
+      &quot;fit to district&quot;.</li>
+    <li><strong>Data volume target:</strong> ≤ 400 road segments, ≤ 60 bridges, ≤ 30 vehicles for demo. Use simplified
+      geometry.</li>
+  </ul>
+  <h3>C. Road Accessibility Monitoring</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th>Determined by (evaluated in this priority order)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Blocked</strong></td>
+        <td>(1) Authority-verified blocking incident active; or (2) unverified blocking report from ≥1 trusted source
+          <strong>and</strong> risk ≥ 0.7; or (3) admin manual override. Auto-expires to <em>Unknown</em> after 12 h
+          without confirmation.</td>
+      </tr>
+      <tr>
+        <td><strong>Unknown</strong></td>
+        <td>No weather/prediction update &gt; 3 h <strong>or</strong> no data at all for the segment (stale-data rule).
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Risky</strong></td>
+        <td><code>risk_score</code> ≥ 0.35 and &lt; 0.70, or non-blocking incident (e.g., minor slip, waterlogging)
+          within 500 m in the last 6 h.</td>
+      </tr>
+      <tr>
+        <td><strong>Accessible</strong></td>
+        <td><code>risk_score</code> &lt; 0.35 and no active incident and data fresher than 3 h.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><code>segment.status</code> is recomputed by a scheduled job (every 5 min) and immediately on new incident /
+    override. Status history is stored (for trend charts).</p>
+  <h3>D. Weather Intelligence</h3>
+  <ul>
+    <li><strong>Source:</strong> Open-Meteo API (free, no key) 🟢 real. IMD API integration = future.</li>
+    <li><strong>Sampling:</strong> one query per <em>weather cell</em> (~0.25° grid, ~25–40 cells for demo), not per
+      road; segments inherit the nearest cell. Cache 30 min in memory/Redis (or Mongo TTL).</li>
+    <li><strong>Fields tracked:</strong> precipitation (mm/h), 24h and 72h cumulative rainfall, 48h forecast
+      precipitation, wind gusts, weather code, derived <code>weather_severity</code> (0–3).</li>
+    <li><strong>Severe weather warning rule (derived, not official IMD alert):</strong> 24h rain &gt; 115 mm →
+      &quot;Heavy&quot;, &gt; 204 mm → &quot;Extreme&quot; (aligned with IMD rainfall categories); label as
+      <em>derived</em>.</li>
+    <li><strong>Effect on risk:</strong> rainfall features feed the ML model (Section 7), and a deterministic
+      <em>weather multiplier</em> is applied at routing time (Section 8).</li>
+    <li><strong>Demo hook:</strong> <code>POST /api/admin/scenario/weather</code> can override a cell's rainfall
+      (clearly marked &quot;SIMULATED WEATHER&quot; banner).</li>
+  </ul>
+  <h3>E. AI/ML Disruption Prediction (prototype)</h3>
+  <ul>
+    <li><strong>Model:</strong> Random Forest classifier (multi-class) + calibrated probabilities. Trained on
+      <strong>simulated dataset</strong> (Section 20).</li>
+    <li><strong>Inputs:</strong> rainfall (1h/24h/72h), forecast rain 24h, road condition, slope, elevation, river
+      distance, flood-prone flag, historical incident count (per 5 yrs), days since last incident, traffic level,
+      previous landslide flag, road width, bridge count, recent field reports (count within 6h/5 km).</li>
+    <li><strong>Outputs:</strong></li>
+  </ul>
+  <pre><code class="language-json">{ &#34;risk_score&#34;: 0.78, &#34;risk_category&#34;: &#34;HIGH&#34;,
+  &#34;predicted_disruption_type&#34;: &#34;LANDSLIDE_RISK&#34;,
+  &#34;confidence&#34;: 0.71, &#34;top_factors&#34;: [&#34;rain_24h_mm&#34;,&#34;slope_deg&#34;,&#34;recent_reports_5km&#34;],
+  &#34;model_version&#34;: &#34;rf-sim-0.1&#34;, &#34;data_mode&#34;: &#34;SIMULATED_TRAINING&#34; }
+</code></pre>
+  <ul>
+    <li><code>risk_score</code> = expected severity: P(medium)×0.5 + P(high)×1.0 (+ small weight for disruption class),
+      clipped 0–1.</li>
+    <li><strong>Disruption types:</strong> <code>NONE</code>, <code>LANDSLIDE_RISK</code>, <code>FLOOD_RISK</code>,
+      <code>ROAD_DAMAGE_RISK</code>, <code>CONGESTION_RISK</code>.</li>
+    <li><strong>Mandatory disclaimer in UI:</strong> &quot;Prototype risk indicator based on simulated training data.
+      Not a scientific landslide forecast.&quot;</li>
+    <li><strong>Confidence:</strong> max class probability, reduced when input features are missing/imputed or weather
+      data is stale.</li>
+  </ul>
+  <h3>F. Route Optimization Engine</h3>
+  <ul>
+    <li>Modes: <strong>Shortest</strong> (distance), <strong>Fastest</strong> (time), <strong>Safest</strong>
+      (risk-dominant), <strong>Balanced</strong> (default), <strong>Emergency</strong> (safest, ignores traffic, allows
+      Risky only if no alternative).</li>
+    <li>Returns: geometry, distance km, ETA, <code>extra_delay_min</code> vs. original route, max/avg risk, list of
+      risky/blocked edges avoided, alternative list (≤3).</li>
+    <li>Algorithm &amp; formula: Section 8.</li>
+  </ul>
+  <h3>G. GPS Vehicle Tracking</h3>
+  <ul>
+    <li><strong>Vehicle fields:</strong> registration, type (truck/tempo/van/ambulance/pickup), cargo type
+      (MEDICINE/FOOD/FUEL/AGRI/CONSTRUCTION), origin, destination, current position, speed, heading, ETA, route, status
+      (<code>IDLE</code>, <code>EN_ROUTE</code>, <code>DELAYED</code>, <code>AT_RISK</code>, <code>REROUTED</code>,
+      <code>DELIVERED</code>, <code>OFFLINE</code>).</li>
+    <li><strong>Sources:</strong> (1) 🟡 <strong>GPS simulator</strong> (Node script moves vehicles along route
+      polylines at 20–50 km/h with jitter) — default for demo; (2) 🟢 real ingest via <code>POST /api/gps</code> and a
+      &quot;Driver mode&quot; PWA that posts <code>navigator.geolocation</code> (proves real GPS path works).</li>
+    <li>Update interval: 5 s (demo), stored downsampled (1 per 30 s) in history.</li>
+    <li>Off-route detection: if position &gt; 150 m from route polyline for 3 consecutive pings → <code>off_route</code>
+      flag + LOW/MEDIUM alert.</li>
+  </ul>
+  <h3>H. Alert System</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Trigger</th>
+        <th>Default severity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ROAD_BLOCKED</td>
+        <td>Segment becomes Blocked</td>
+        <td>HIGH (CRITICAL if critical corridor or medicine on it)</td>
+      </tr>
+      <tr>
+        <td>HIGH_DISRUPTION_RISK</td>
+        <td>risk ≥ 0.70</td>
+        <td>HIGH</td>
+      </tr>
+      <tr>
+        <td>SEVERE_WEATHER</td>
+        <td>derived rainfall &quot;Heavy/Extreme&quot; in cell with ≥1 segment</td>
+        <td>MEDIUM / HIGH</td>
+      </tr>
+      <tr>
+        <td>VEHICLE_DELAYED</td>
+        <td>ETA slippage &gt; 30 min</td>
+        <td>MEDIUM</td>
+      </tr>
+      <tr>
+        <td>DELIVERY_AT_RISK</td>
+        <td>Active route crosses risk ≥ 0.70 or blocked edge</td>
+        <td>HIGH (CRITICAL for MEDICINE cargo)</td>
+      </tr>
+      <tr>
+        <td>CRITICAL_CORRIDOR</td>
+        <td>Corridor flagged critical loses all alternates or is Blocked</td>
+        <td>CRITICAL</td>
+      </tr>
+      <tr>
+        <td>FIELD_INCIDENT</td>
+        <td>New field report</td>
+        <td>LOW–HIGH by incident type</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Severity:</strong> LOW (info; dashboard only) · MEDIUM (in-app + badge) · HIGH (in-app + push + toast) ·
+    CRITICAL (in-app + push + persistent banner + sound; requires acknowledgement; auto-escalates if unacknowledged 10
+    min).
+    <strong>Dedup:</strong> same <code>(type, entity_id)</code> within 30 min updates the existing alert rather than
+    creating a new one.
+  </p>
+  <h3>I. Field Reporting</h3>
+  <p>Fields: <code>client_uuid</code>, incident type (LANDSLIDE, FLOOD, ROAD_DAMAGE, BRIDGE_DAMAGE, TREE_FALL,
+    WATERLOGGING, TRAFFIC_JAM, CLEARED), severity guess (Minor / Partial block / Fully blocked), description (≤ 500
+    chars), photos (≤ 3, compressed ≤ 300 KB each), GPS (lat, lon, accuracy_m), <code>captured_at</code> (device time) +
+    <code>received_at</code> (server time), reporter, district (auto via point-in-polygon).</p>
+  <h3>J. Offline-First Support</h3>
+  <ul>
+    <li><strong>Stack:</strong> Service Worker (Workbox) caches app shell + last road-status snapshot; <strong>IndexedDB
+        (Dexie.js)</strong> stores report queue and blobs.</li>
+    <li><strong>Offline incident creation:</strong> identical form; saved with <code>sync_status=PENDING</code>.</li>
+    <li><strong>Queue:</strong> FIFO; each item retried with exponential back-off (5 s → 5 min), max 8 tries then
+      <code>FAILED</code> (manual retry).</li>
+    <li><strong>Auto-sync:</strong> on <code>online</code> event, app open, and Background Sync API where supported
+      (fallback: polling).</li>
+    <li><strong>Idempotency:</strong> server enforces unique <code>client_uuid</code>; repeated POST returns the
+      original record (HTTP 200).</li>
+    <li><strong>Conflict handling:</strong> server never overwrites; conflicting reports are stored as separate reports
+      and clustered by proximity (100 m) + time (±30 min) + type. Cluster status derived by majority + reporter trust
+      (Authority &gt; Field officer &gt; Driver). Authority verification is the tie-breaker.</li>
+    <li><strong>Cached read data offline:</strong> last-known road status GeoJSON (with &quot;as of hh:mm&quot; label).
+    </li>
+  </ul>
+  <h3>K. Dashboard Components</h3>
+  <p>KPI cards: <strong>Accessible routes</strong> · <strong>Risky routes</strong> · <strong>Blocked routes</strong> ·
+    <strong>Unknown routes</strong> · <strong>Active vehicles</strong> · <strong>Active incidents</strong> ·
+    <strong>Critical alerts (unacked)</strong>. Plus: <strong>District connectivity score</strong> table/choropleth,
+    <strong>Supply delivery status</strong> (In transit / At risk / Delayed / Delivered), central <strong>map</strong>,
+    <strong>Recent incidents</strong> feed (last 10), <strong>Risk trend</strong> line chart (avg risk &amp;
+    #risky/blocked per hour, last 24 h), <strong>Bottleneck list</strong> (segments where many active deliveries pass
+    and risk is high).</p>
+  <p><strong>District connectivity score (0–100):</strong>
+    <code>score = 100 × (Σ length_km(accessible)×1.0 + Σ length(risky)×0.5 + Σ length(unknown)×0.3) / Σ length_km(all district roads)</code>,
+    then capped at 20 if no accessible path exists from the district HQ node to the state's main hub (graph reachability
+    check).
+  </p>
+  <hr>
+  <h2>7. AI/ML Design</h2>
+  <p><strong>Dataset requirements.</strong> Real: road inventory (OSM), terrain (SRTM DEM 30 m → slope/elevation),
+    rainfall (Open-Meteo archive, free), historical landslide inventory (NASA Global Landslide Catalog / GSI Bhukosh —
+    sparse), incident labels from government logs (<strong>unavailable</strong>). Therefore: <strong>hybrid synthetic
+      strategy</strong> (Section 20): real terrain/rainfall features + <em>simulated labels</em> from a documented
+    rule-based generator with noise.</p>
+  <p><strong>Preprocessing.</strong> Impute missing numerics with median + missing-indicator; clip outliers (rain &gt;
+    500 mm/24h); categorical → one-hot (road_condition, traffic_level via ordinal); standardise only if using logistic
+    regression; stratified split by <em>segment_id group</em> (GroupKFold, avoids leakage).</p>
+  <p><strong>Feature engineering.</strong> Rolling 1h/24h/72h rainfall sums; rain intensity ratio
+    (<code>rain_24h / (rain_72h+1)</code>); slope × rain interaction; <code>days_since_last_incident</code>;
+    <code>incidents_per_km_5y</code>; river distance bucket; <code>report_density_6h_5km</code>; night/monsoon-season
+    flags.</p>
+  <p><strong>Model comparison</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Pros</th>
+        <th>Cons</th>
+        <th>MVP fit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Logistic Regression</td>
+        <td>Fast, interpretable, baseline</td>
+        <td>Can't capture rain×slope interactions well</td>
+        <td>Baseline only</td>
+      </tr>
+      <tr>
+        <td><strong>Random Forest</strong></td>
+        <td>Handles non-linearity + mixed features, robust on small/noisy data, built-in feature importance, little
+          tuning, easy <code>predict_proba</code></td>
+        <td>Larger model file, slightly less accurate than boosting on big data</td>
+        <td>✅ <strong>Selected</strong></td>
+      </tr>
+      <tr>
+        <td>XGBoost</td>
+        <td>Best accuracy on tabular data, handles missing values</td>
+        <td>More hyper-parameters, easy to overfit a <em>simulated</em> dataset, extra dependency</td>
+        <td>Optional upgrade</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Why Random Forest:</strong> with simulated labels, over-tuning gains nothing; RF is stable, explainable
+    (feature importance + per-prediction top factors), trains in seconds and works out-of-the-box with scikit-learn —
+    ideal for a student team.</p>
+  <p><strong>Training.</strong> 20k rows simulated; 80/20 grouped split; 5-fold CV;
+    <code>RandomForestClassifier(n_estimators=300, max_depth=12, class_weight=&quot;balanced&quot;, random_state=42)</code>;
+    probability calibration via <code>CalibratedClassifierCV(method=&quot;isotonic&quot;)</code>. Label:
+    <code>risk_level ∈ {LOW, MEDIUM, HIGH}</code> and <code>disruption_type</code>.</p>
+  <p><strong>Evaluation.</strong> Macro-F1, per-class recall (HIGH recall prioritised), confusion matrix, ROC-AUC
+    (one-vs-rest), Brier score/calibration curve, feature importance sanity check (rain and slope should dominate).
+    <strong>Report all metrics as &quot;on simulated data — validates pipeline, not real-world accuracy&quot;.</strong>
+  </p>
+  <p><strong>Prediction API (FastAPI).</strong> <code>POST /predict</code> (batch of segment feature vectors → list of
+    outputs), <code>GET /health</code>, <code>GET /model/info</code>. Latency target &lt; 300 ms for 400 segments
+    (vectorised).</p>
+  <p><strong>Retraining strategy.</strong> MVP: manual script <code>train.py</code> versioned model files
+    (<code>rf-sim-0.1.joblib</code>). Future: monthly retrain when verified incident labels ≥ N; store predictions +
+    eventual outcomes to measure real accuracy; shadow-deploy new model before promotion; drift monitoring on rainfall
+    distribution.</p>
+  <hr>
+  <h2>8. Route Optimization Design</h2>
+  <p><strong>Graph.</strong> Nodes = intersections/towns/bridge endpoints; edges = road segments (directed if one-way).
+    For the demo, use a <strong>curated OSM subgraph</strong> (~150 nodes / ~400 edges) for 2 corridors with genuine
+    alternates. Real place names, <strong>simulated statuses</strong>. Built offline with <code>osmnx</code> → exported
+    to JSON; loaded into memory in Node at startup (Mongo stores the canonical segments).</p>
+  <p><strong>Edge attributes:</strong> <code>length_km</code>, <code>free_flow_speed_kph</code> (by road
+    class/condition), <code>risk_score</code> (latest), <code>status</code>, <code>weather_multiplier</code>,
+    <code>traffic_factor</code>, <code>bridge_restriction</code>.</p>
+  <p><strong>Edge cost</strong></p>
+  <pre><code>travel_time_h = length_km / (free_flow_speed × traffic_speed_factor)
+risk_penalty  = risk_score^γ × length_km × R          (γ = 2 → penalise high risk non-linearly)
+cost = w_d × length_km + w_t × travel_time_h×60 + w_r × risk_penalty
+if status == BLOCKED: cost = ∞ (edge removed)
+if status == UNKNOWN: risk_score = max(risk_score, 0.4)  (be conservative)
+</code></pre>
+  <p><strong>Weight profiles</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Mode</th>
+        <th>w_d</th>
+        <th>w_t</th>
+        <th>w_r</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Shortest</td>
+        <td>1.0</td>
+        <td>0</td>
+        <td>0</td>
+        <td>ignores risk (except blocked)</td>
+      </tr>
+      <tr>
+        <td>Fastest</td>
+        <td>0</td>
+        <td>1.0</td>
+        <td>0.1</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Balanced</td>
+        <td>0.2</td>
+        <td>1.0</td>
+        <td>1.5</td>
+        <td>default</td>
+      </tr>
+      <tr>
+        <td>Safest</td>
+        <td>0</td>
+        <td>0.3</td>
+        <td>4.0</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Emergency</td>
+        <td>0</td>
+        <td>0.5</td>
+        <td>3.0</td>
+        <td>Risky edges allowed only if no other path</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Why a safer route can be longer:</strong> risk penalty scales with <code>risk²×length</code>. A 60 km
+    stretch at risk 0.8 adds <code>0.64×60×R</code> — e.g., with w_r=1.5,R=50 → +2,880 cost units versus a clean 110 km
+    detour costing ≈ +2,200 units (distance+time). The detour wins, and the UI shows the trade-off (&quot;+50 km, +85
+    min, risk 0.18 vs 0.81&quot;).</p>
+  <p><strong>Algorithm.</strong> Dijkstra (A* with haversine heuristic optional) in Node (<code>ngraph.path</code> or
+    hand-rolled binary-heap Dijkstra; graph is small so &lt;50 ms). <strong>Alternatives:</strong> <em>penalty
+      method</em> — after the best route, multiply weights of its edges ×1.5 and re-run up to 2 times; keep routes with
+    &lt;70% overlap and ≤1.6× best cost.
+    <strong>ETA:</strong> Σ travel_time × (1 + weather delay factor: light rain +5%, heavy +15%, extreme +30%) ×
+    traffic.
+    <strong>Extra delay</strong> = ETA(new) − ETA(current route recomputed <em>with</em> current conditions), or vs.
+    original planned ETA.
+    <strong>Re-route triggers:</strong> edge on active route becomes Blocked, or risk ≥ 0.70 within next 30 km, or
+    operator request. Rerouting is <strong>suggested</strong>, never forced (except demo auto-accept toggle).
+  </p>
+  <hr>
+  <h2>9. System Architecture</h2>
+  <pre><code>                        ┌──────────────────────────────────────────────┐
+                        │                 CLIENTS                      │
+                        │  React+Vite Web Dashboard   PWA (Field/Driver)│
+                        │  Leaflet map | i18n         IndexedDB | SW   │
+                        └───────┬─────────────────────────┬────────────┘
+                     HTTPS/REST + WebSocket (Socket.IO)   │ Background Sync
+                                │                         │
+                        ┌───────▼─────────────────────────▼────────────┐
+                        │      API GATEWAY / BACKEND (Node+Express)     │
+                        │  Auth(JWT/RBAC) | Validation | Rate limit     │
+                        │  Modules: Roads | Vehicles | Incidents |      │
+                        │  Alerts | Routes | Dashboard | Weather        │
+                        │  Socket.IO server (realtime events)           │
+                        └─┬─────┬──────────┬───────────┬───────────┬────┘
+                          │     │          │           │           │
+              ┌───────────▼┐ ┌──▼────────┐ ┌▼─────────┐ ┌▼────────┐ ┌▼───────────┐
+              │ MongoDB     │ │ ML service │ │ Routing  │ │ Weather │ │ Notification│
+              │ Atlas       │ │ FastAPI +  │ │ engine   │ │ service │ │ service     │
+              │ (2dsphere)  │ │ scikit-    │ │ (Node    │ │ (cron + │ │ (in-app,    │
+              │             │ │ learn      │ │ module,  │ │ Open-   │ │ Web Push;   │
+              └───────────┬─┘ │ joblib)    │ │ Dijkstra)│ │ Meteo)  │ │ SMS=future) │
+                          │   └────────────┘ └──────────┘ └────┬────┘ └─────────────┘
+              ┌───────────▼───────┐   ┌─────────────────┐      │
+              │ File/Image storage │   │ Cache (in-memory│ ◄────┘ 30-min TTL
+              │ Cloudinary (free)  │   │ node-cache →    │
+              │ or Mongo GridFS    │   │ Redis later)    │
+              └────────────────────┘   └─────────────────┘
+      ┌──────────────────────┐        ┌──────────────────────────────┐
+      │ GPS service          │        │ Scheduler (node-cron)        │
+      │ Simulator (🟡) +     │───────►│ weather 30m | predict 30m |  │
+      │ /api/gps ingest (🟢) │        │ status 5m | vehicle eval 60s │
+      └──────────────────────┘        └──────────────────────────────┘
+      OSM tiles (public map)   |   Auth: JWT + refresh cookie   |   HTTPS via Vercel/Render
+</code></pre>
+  <p><strong>Data flow:</strong> Scheduler → Weather service → feature builder → ML service →
+    <code>RiskPrediction</code> → status engine → alert engine → Socket.IO → dashboard. Field report → API → incident →
+    status engine → alerts → routing re-evaluation of affected vehicles.</p>
+  <p><strong>Scalability path (later):</strong> split modules into services, add Redis pub/sub + Socket.IO adapter,
+    PostGIS for spatial queries, message queue (BullMQ/Kafka), object storage (S3), tile server.</p>
+  <hr>
+  <h2>10. Database Design (MongoDB + Mongoose)</h2>
+  <blockquote>
+    <p>All docs have <code>_id: ObjectId</code>, <code>createdAt</code>, <code>updatedAt</code>. Geo fields are GeoJSON
+      with <code>2dsphere</code> indexes.</p>
+  </blockquote>
+  <p><strong>User</strong> — <code>name:String</code>, <code>email:String (unique)</code>,
+    <code>passwordHash:String</code>, <code>role:Enum[ADMIN,AUTHORITY,FIELD_OFFICER,OPERATOR]</code>,
+    <code>districtIds:[ObjectId→District]</code>, <code>organization:String</code>, <code>language:Enum[en,hi]</code>,
+    <code>pushSubscription:Object</code>, <code>isActive:Bool</code>, <code>lastLoginAt:Date</code>. <em>Indexes:</em>
+    <code>email</code> unique, <code>role</code>.</p>
+  <p><strong>District</strong> — <code>name</code>, <code>state</code>, <code>code</code>,
+    <code>boundary:Polygon/MultiPolygon</code>, <code>hqLocation:Point</code>, <code>population:Number</code>,
+    <code>connectivityScore:Number</code>, <code>scoreUpdatedAt:Date</code>. <em>Indexes:</em> <code>boundary</code>
+    2dsphere, <code>code</code> unique.</p>
+  <p><strong>Road</strong> (segment) — <code>segmentId:String (unique)</code>, <code>name</code>,
+    <code>highwayRef</code> (e.g., &quot;NH-6&quot;), <code>roadClass:Enum[NH,SH,MDR,LOCAL]</code>,
+    <code>geometry:LineString</code>, <code>centroid:Point</code>, <code>lengthKm:Number</code>,
+    <code>districtId→District</code>, <code>startNode</code>, <code>endNode</code>, <code>isBridge:Bool</code>,
+    <code>bridgeMaxTonnes:Number</code>, <code>roadCondition:Enum[GOOD,FAIR,POOR]</code>, <code>widthM</code>,
+    <code>slopeDeg</code>, <code>elevationM</code>, <code>riverDistM</code>, <code>floodProne:Bool</code>,
+    <code>isCriticalCorridor:Bool</code>, <code>weatherCellId</code>,
+    <code>status:Enum[ACCESSIBLE,RISKY,BLOCKED,UNKNOWN]</code>, <code>statusReason:String</code>,
+    <code>statusSource:Enum[AUTO,REPORT,OVERRIDE]</code>, <code>statusUpdatedAt</code>, <code>currentRisk:Number</code>.
+    <em>Indexes:</em> <code>segmentId</code> unique, <code>geometry</code> 2dsphere, <code>{districtId,status}</code>,
+    <code>weatherCellId</code>, <code>isCriticalCorridor</code>.</p>
+  <p><strong>Route</strong> — <code>name</code>, <code>originNode</code>, <code>destNode</code>,
+    <code>geometry:LineString</code>, <code>segmentIds:[String]</code>, <code>distanceKm</code>, <code>etaMin</code>,
+    <code>avgRisk</code>, <code>maxRisk</code>, <code>mode:Enum[SHORTEST,FASTEST,BALANCED,SAFEST,EMERGENCY]</code>,
+    <code>vehicleId→Vehicle?</code>, <code>type:Enum[PLANNED,ALTERNATE,ACTIVE]</code>, <code>computedAt</code>,
+    <code>isActive:Bool</code>. <em>Indexes:</em> <code>vehicleId</code>, <code>{isActive}</code>.</p>
+  <p><strong>Vehicle</strong> — <code>registrationNo (unique)</code>, <code>type</code>, <code>cargoType</code>,
+    <code>capacityTonnes</code>, <code>operatorId→User</code>, <code>driverName/phone</code>,
+    <code>origin:{name,location:Point}</code>, <code>destination:{...}</code>, <code>currentLocation:Point</code>,
+    <code>speedKph</code>, <code>heading</code>, <code>lastPingAt</code>, <code>status</code>,
+    <code>activeRouteId→Route</code>, <code>etaAt:Date</code>, <code>deliveryId→Delivery</code>,
+    <code>isSimulated:Bool</code>. <em>Indexes:</em> <code>registrationNo</code> unique, <code>currentLocation</code>
+    2dsphere, <code>{operatorId,status}</code>.</p>
+  <p><strong>GpsPing</strong> (time-series, optional collection) — <code>vehicleId</code>, <code>location:Point</code>,
+    <code>speedKph</code>, <code>accuracyM</code>, <code>ts</code>. <em>Index:</em> <code>{vehicleId,ts:-1}</code>, TTL
+    7 days.</p>
+  <p><strong>Delivery</strong> — <code>vehicleId</code>, <code>cargoType</code>, <code>cargoDescription</code>,
+    <code>priority:Enum[NORMAL,HIGH,EMERGENCY]</code>, <code>originName</code>, <code>destinationName</code>,
+    <code>destinationDistrictId</code>, <code>plannedDepartureAt</code>, <code>plannedEtaAt</code>,
+    <code>currentEtaAt</code>, <code>status:Enum[SCHEDULED,IN_TRANSIT,AT_RISK,DELAYED,REROUTED,DELIVERED,FAILED]</code>,
+    <code>deliveredAt</code>, <code>delayMin</code>, <code>createdBy</code>. <em>Indexes:</em> <code>{status}</code>,
+    <code>{destinationDistrictId,status}</code>, <code>vehicleId</code>.</p>
+  <p><strong>Incident</strong> — <code>type</code>, <code>severity</code>,
+    <code>blocking:Enum[NONE,PARTIAL,FULL]</code>, <code>location:Point</code>, <code>roadId→Road (nearest)</code>,
+    <code>districtId</code>, <code>status:Enum[REPORTED,VERIFIED,REJECTED,RESOLVED]</code>, <code>verifiedBy</code>,
+    <code>reportIds:[FieldReport]</code>, <code>confidenceScore</code>, <code>startedAt</code>, <code>resolvedAt</code>,
+    <code>source:Enum[FIELD,SYSTEM,AUTHORITY]</code>. <em>Indexes:</em> <code>location</code> 2dsphere,
+    <code>{status,severity}</code>, <code>roadId</code>, <code>{createdAt:-1}</code>.</p>
+  <p><strong>FieldReport</strong> — <code>clientUuid (unique)</code>, <code>reporterId→User</code>,
+    <code>incidentType</code>, <code>blockingLevel</code>, <code>description</code>,
+    <code>photos:[{url,thumbUrl,sizeKb}]</code>, <code>location:Point</code>, <code>gpsAccuracyM</code>,
+    <code>capturedAt</code>, <code>receivedAt</code>, <code>syncedFromOffline:Bool</code>,
+    <code>incidentId→Incident</code>, <code>language</code>, <code>status:Enum[NEW,LINKED,DUPLICATE,REJECTED]</code>.
+    <em>Indexes:</em> <code>clientUuid</code> unique, <code>location</code> 2dsphere,
+    <code>{reporterId,capturedAt:-1}</code>.</p>
+  <p><strong>WeatherData</strong> — <code>cellId</code>, <code>location:Point</code>, <code>fetchedAt</code>,
+    <code>validAt</code>, <code>precipMmH</code>, <code>rain24hMm</code>, <code>rain72hMm</code>,
+    <code>forecast24hMm</code>, <code>windGustKph</code>, <code>weatherCode</code>, <code>severity:Number(0-3)</code>,
+    <code>isSimulatedOverride:Bool</code>, <code>source</code>. <em>Indexes:</em> <code>{cellId,fetchedAt:-1}</code>,
+    TTL 14 days.</p>
+  <p><strong>RiskPrediction</strong> — <code>roadId</code>, <code>segmentId</code>, <code>riskScore</code>,
+    <code>riskCategory:Enum[LOW,MEDIUM,HIGH]</code>, <code>disruptionType</code>, <code>confidence</code>,
+    <code>topFactors:[String]</code>, <code>features:Object</code>, <code>modelVersion</code>, <code>dataMode</code>,
+    <code>predictedAt</code>, <code>horizonHours:Number</code>. <em>Indexes:</em> <code>{roadId,predictedAt:-1}</code>,
+    TTL 30 days.</p>
+  <p><strong>Alert</strong> — <code>type</code>, <code>severity</code>, <code>title/message</code> (i18n key + params),
+    <code>entityType</code>, <code>entityId</code>, <code>location:Point</code>, <code>districtId</code>,
+    <code>targetRoles</code>, <code>targetUserIds</code>, <code>status:Enum[OPEN,ACKNOWLEDGED,RESOLVED]</code>,
+    <code>acknowledgedBy/At</code>, <code>resolvedAt</code>, <code>dedupeKey</code>, <code>escalatedAt</code>.
+    <em>Indexes:</em> <code>{status,severity,createdAt:-1}</code>, <code>dedupeKey</code>.</p>
+  <p><strong>AuditLog</strong> — <code>userId</code>, <code>action</code>, <code>entity</code>, <code>entityId</code>,
+    <code>before/after</code>, <code>ip</code>, <code>ts</code>. <em>Index:</em> <code>{ts:-1}</code>,
+    <code>{userId,ts:-1}</code>.</p>
+  <p><strong>Relationships:</strong> District 1─* Road; Road 1─* RiskPrediction; Road 1─* Incident; Incident 1─*
+    FieldReport; Vehicle 1─1 active Route; Vehicle 1─* Delivery; Delivery/Road/Incident ─* Alert.</p>
+  <hr>
+  <h2>11. API Design</h2>
+  <p><strong>Conventions:</strong> base <code>/api/v1</code>, JSON, <code>Authorization: Bearer &lt;JWT&gt;</code>;
+    pagination <code>?page=&amp;limit=</code>; error shape:</p>
+  <pre><code class="language-json">{ &#34;error&#34;: { &#34;code&#34;: &#34;VALIDATION_ERROR&#34;, &#34;message&#34;: &#34;lat must be between -90 and 90&#34;, &#34;details&#34;: [] } }
+</code></pre>
+  <p><strong>Common errors (all endpoints):</strong> <code>401 UNAUTHENTICATED</code>, <code>403 FORBIDDEN</code>,
+    <code>422 VALIDATION_ERROR</code>, <code>429 RATE_LIMITED</code>, <code>500 INTERNAL</code>.</p>
+  <h3>Endpoint summary</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Group</th>
+        <th>Method &amp; Endpoint</th>
+        <th>Purpose</th>
+        <th>Auth</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Auth</td>
+        <td><code>POST /auth/login</code></td>
+        <td>Login</td>
+        <td>Public</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>POST /auth/refresh</code></td>
+        <td>New access token</td>
+        <td>Refresh cookie</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>POST /auth/logout</code></td>
+        <td>Invalidate refresh</td>
+        <td>Any</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>GET /auth/me</code></td>
+        <td>Current user</td>
+        <td>Any</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>POST /users</code></td>
+        <td>Create user</td>
+        <td>Admin</td>
+      </tr>
+      <tr>
+        <td>Vehicles</td>
+        <td><code>GET /vehicles</code></td>
+        <td>List (filters: status, cargo, district)</td>
+        <td>Auth (scoped)</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>POST /vehicles</code></td>
+        <td>Register vehicle</td>
+        <td>Operator/Admin</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>GET /vehicles/:id</code></td>
+        <td>Detail + route + ETA</td>
+        <td>Auth (scoped)</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>PATCH /vehicles/:id</code></td>
+        <td>Update</td>
+        <td>Operator/Admin</td>
+      </tr>
+      <tr>
+        <td>GPS</td>
+        <td><code>POST /gps</code></td>
+        <td>Submit position ping</td>
+        <td>Driver/Operator/Sim key</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>GET /gps/:vehicleId/history</code></td>
+        <td>Track history</td>
+        <td>Auth (scoped)</td>
+      </tr>
+      <tr>
+        <td>Routes</td>
+        <td><code>POST /routes/optimize</code></td>
+        <td>Compute routes</td>
+        <td>Operator/Authority/Admin</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>POST /routes/:vehicleId/reroute</code></td>
+        <td>Accept alternate</td>
+        <td>Operator/Admin</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>GET /routes/:id</code></td>
+        <td>Route detail</td>
+        <td>Auth</td>
+      </tr>
+      <tr>
+        <td>Roads</td>
+        <td><code>GET /roads</code></td>
+        <td>GeoJSON (bbox, status, district)</td>
+        <td>Auth</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>GET /roads/:id</code></td>
+        <td>Detail + history</td>
+        <td>Auth</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>PATCH /roads/:id/status</code></td>
+        <td>Manual override</td>
+        <td>Authority/Admin</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>GET /districts</code></td>
+        <td>Districts + scores (GeoJSON)</td>
+        <td>Auth</td>
+      </tr>
+      <tr>
+        <td>Incidents</td>
+        <td><code>GET /incidents</code></td>
+        <td>List</td>
+        <td>Auth</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>PATCH /incidents/:id</code></td>
+        <td>Verify/reject/resolve</td>
+        <td>Authority/Admin</td>
+      </tr>
+      <tr>
+        <td>Field reports</td>
+        <td><code>POST /field-reports</code></td>
+        <td>Create (multipart, idempotent)</td>
+        <td>Field/Any role</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>POST /field-reports/batch</code></td>
+        <td>Offline batch sync</td>
+        <td>Field/Any role</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>GET /field-reports</code></td>
+        <td>List</td>
+        <td>Authority/Admin/owner</td>
+      </tr>
+      <tr>
+        <td>Weather</td>
+        <td><code>GET /weather</code></td>
+        <td>Cells latest</td>
+        <td>Auth</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>GET /weather/:cellId/forecast</code></td>
+        <td>Forecast</td>
+        <td>Auth</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>POST /admin/scenario/weather</code></td>
+        <td>Demo override</td>
+        <td>Admin</td>
+      </tr>
+      <tr>
+        <td>Risk</td>
+        <td><code>GET /risk/segments</code></td>
+        <td>Latest risk (filters)</td>
+        <td>Auth</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>POST /risk/run</code></td>
+        <td>Trigger prediction run</td>
+        <td>Admin/Authority</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>POST ml:/predict</code></td>
+        <td>ML service (internal only)</td>
+        <td>Service key</td>
+      </tr>
+      <tr>
+        <td>Alerts</td>
+        <td><code>GET /alerts</code></td>
+        <td>List</td>
+        <td>Auth (scoped)</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>PATCH /alerts/:id/ack</code></td>
+        <td>Acknowledge</td>
+        <td>Authority/Admin/Operator</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>PATCH /alerts/:id/resolve</code></td>
+        <td>Resolve</td>
+        <td>Authority/Admin</td>
+      </tr>
+      <tr>
+        <td>Dashboard</td>
+        <td><code>GET /dashboard/summary</code></td>
+        <td>KPIs</td>
+        <td>Auth</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>GET /dashboard/districts</code></td>
+        <td>Connectivity scores</td>
+        <td>Auth</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>GET /dashboard/risk-trend?hours=24</code></td>
+        <td>Trend series</td>
+        <td>Auth</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><code>GET /dashboard/bottlenecks</code></td>
+        <td>Bottleneck list</td>
+        <td>Authority/Admin</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Detailed specs (key endpoints)</h3>
+  <p><strong>POST /auth/login</strong>
+    Request:
+    <code>{ &quot;email&quot;:&quot;officer@kohima.gov.demo&quot;, &quot;password&quot;:&quot;••••&quot; }</code>
+    200:
+    <code>{ &quot;accessToken&quot;:&quot;&lt;jwt&gt;&quot;, &quot;user&quot;:{ &quot;id&quot;:&quot;u1&quot;,&quot;name&quot;:&quot;R. Sema&quot;,&quot;role&quot;:&quot;FIELD_OFFICER&quot;,&quot;language&quot;:&quot;en&quot; } }</code>
+    Errors: <code>401 INVALID_CREDENTIALS</code>, <code>423 ACCOUNT_LOCKED</code> (5 failures/15 min), <code>422</code>.
+  </p>
+  <p><strong>POST /gps</strong>
+    Request:
+    <code>{ &quot;vehicleId&quot;:&quot;v_101&quot;,&quot;lat&quot;:25.4670,&quot;lng&quot;:91.8830,&quot;speedKph&quot;:34,&quot;accuracyM&quot;:12,&quot;ts&quot;:&quot;2026-09-28T09:15:02Z&quot; }</code>
+    200:
+    <code>{ &quot;ok&quot;:true,&quot;status&quot;:&quot;EN_ROUTE&quot;,&quot;etaAt&quot;:&quot;2026-09-28T14:32:00Z&quot;,&quot;offRoute&quot;:false }</code>
+    Errors: <code>404 VEHICLE_NOT_FOUND</code>, <code>422 INVALID_COORDINATES</code>, <code>409 STALE_TIMESTAMP</code>
+    (older than last ping), <code>403</code> (vehicle not owned).</p>
+  <p><strong>POST /routes/optimize</strong>
+    Request:
+    <code>{ &quot;origin&quot;:{&quot;lat&quot;:26.14,&quot;lng&quot;:91.74}, &quot;destination&quot;:{&quot;lat&quot;:24.83,&quot;lng&quot;:92.78}, &quot;mode&quot;:&quot;BALANCED&quot;, &quot;alternatives&quot;:2, &quot;vehicleId&quot;:&quot;v_101&quot; }</code>
+    200:</p>
+  <pre><code class="language-json">{ &#34;routes&#34;:[
+  { &#34;id&#34;:&#34;r1&#34;,&#34;label&#34;:&#34;Balanced (recommended)&#34;,&#34;distanceKm&#34;:352.4,&#34;etaMin&#34;:471,&#34;extraDelayMin&#34;:0,&#34;avgRisk&#34;:0.31,&#34;maxRisk&#34;:0.64,&#34;avoided&#34;:[],&#34;geometry&#34;:{&#34;type&#34;:&#34;LineString&#34;,&#34;coordinates&#34;:[[91.74,26.14],[...]]} },
+  { &#34;id&#34;:&#34;r2&#34;,&#34;label&#34;:&#34;Safest&#34;,&#34;distanceKm&#34;:401.9,&#34;etaMin&#34;:536,&#34;extraDelayMin&#34;:65,&#34;avgRisk&#34;:0.14,&#34;maxRisk&#34;:0.29,&#34;avoided&#34;:[&#34;KH-07&#34;,&#34;KH-08&#34;],&#34;geometry&#34;:{...} }
+ ], &#34;computedAt&#34;:&#34;2026-09-28T09:15:04Z&#34;, &#34;dataAsOf&#34;:{&#34;weather&#34;:&#34;09:00&#34;,&#34;risk&#34;:&#34;09:00&#34;} }
+</code></pre>
+  <p>Errors: <code>404 NO_ROUTE_FOUND</code> (all paths blocked → returns nearest reachable node and blocked segments),
+    <code>422 ORIGIN_OUTSIDE_NETWORK</code>, <code>503 RISK_DATA_STALE</code> (falls back to distance-only with warning
+    flag instead of failing).</p>
+  <p><strong>POST /field-reports</strong> (multipart/form-data)
+    Fields: <code>clientUuid</code>, <code>incidentType</code>, <code>blockingLevel</code>, <code>description</code>,
+    <code>lat</code>, <code>lng</code>, <code>gpsAccuracyM</code>, <code>capturedAt</code>, <code>photos[]</code> (≤3,
+    jpeg/png/webp, ≤ 2 MB each after client compression).
+    201:
+    <code>{ &quot;id&quot;:&quot;fr_88&quot;,&quot;incidentId&quot;:&quot;inc_31&quot;,&quot;linked&quot;:true,&quot;roadSegment&quot;:&quot;KH-07&quot;,&quot;status&quot;:&quot;LINKED&quot; }</code>
+    200 (duplicate <code>clientUuid</code>): returns existing record.
+    Errors: <code>413 FILE_TOO_LARGE</code>, <code>415 UNSUPPORTED_MEDIA</code>, <code>422 INVALID_COORDINATES</code>,
+    <code>429</code>.</p>
+  <p><strong>POST /field-reports/batch</strong>
+    Request: <code>{ &quot;reports&quot;:[ {..metadata + photoRef..}, ... ] }</code> (photos uploaded separately first
+    via <code>POST /uploads</code> to get <code>photoRef</code>)
+    200:
+    <code>{ &quot;results&quot;:[ {&quot;clientUuid&quot;:&quot;...&quot;,&quot;status&quot;:&quot;CREATED&quot;,&quot;id&quot;:&quot;fr_91&quot;}, {&quot;clientUuid&quot;:&quot;...&quot;,&quot;status&quot;:&quot;DUPLICATE&quot;,&quot;id&quot;:&quot;fr_60&quot;}, {&quot;clientUuid&quot;:&quot;...&quot;,&quot;status&quot;:&quot;REJECTED&quot;,&quot;reason&quot;:&quot;INVALID_COORDINATES&quot;} ] }</code>
+    (partial success allowed).</p>
+  <p><strong>PATCH /incidents/:id</strong> — Request:
+    <code>{ &quot;status&quot;:&quot;VERIFIED&quot;, &quot;note&quot;:&quot;Confirmed by PWD JE&quot; }</code> → 200
+    updated incident + recalculated road status. Errors: <code>404</code>, <code>409 INVALID_TRANSITION</code>.</p>
+  <p><strong>PATCH /roads/:id/status</strong> — Request:
+    <code>{ &quot;status&quot;:&quot;BLOCKED&quot;,&quot;reason&quot;:&quot;Bridge inspection&quot;,&quot;expiresAt&quot;:&quot;2026-09-29T00:00:00Z&quot; }</code>.
+    Errors: <code>404</code>, <code>403</code>, <code>422</code>.</p>
+  <p><strong>GET /alerts?status=OPEN&amp;severity=CRITICAL</strong> →
+    <code>{ &quot;items&quot;:[{ &quot;id&quot;:&quot;a_5&quot;,&quot;type&quot;:&quot;DELIVERY_AT_RISK&quot;,&quot;severity&quot;:&quot;CRITICAL&quot;,&quot;titleKey&quot;:&quot;alert.deliveryAtRisk.title&quot;,&quot;params&quot;:{&quot;vehicle&quot;:&quot;AS-01-MED-4521&quot;,&quot;road&quot;:&quot;NH-6 KH-07&quot;},&quot;createdAt&quot;:&quot;...&quot;,&quot;status&quot;:&quot;OPEN&quot; }], &quot;page&quot;:1,&quot;total&quot;:3 }</code>
+  </p>
+  <p><strong>GET /dashboard/summary</strong> →</p>
+  <pre><code class="language-json">{ &#34;routes&#34;:{&#34;accessible&#34;:212,&#34;risky&#34;:41,&#34;blocked&#34;:6,&#34;unknown&#34;:9},
+  &#34;activeVehicles&#34;:18,&#34;activeIncidents&#34;:7,&#34;criticalAlerts&#34;:2,
+  &#34;deliveries&#34;:{&#34;inTransit&#34;:11,&#34;atRisk&#34;:3,&#34;delayed&#34;:2,&#34;delivered&#34;:9},
+  &#34;updatedAt&#34;:&#34;2026-09-28T09:15:10Z&#34;,&#34;dataMode&#34;:&#34;DEMO_SIMULATED&#34; }
+</code></pre>
+  <p><strong>ML service (internal):</strong> <code>POST /predict</code> body
+    <code>{ &quot;segments&quot;:[{ &quot;segmentId&quot;:&quot;KH-07&quot;,&quot;rain_1h_mm&quot;:12.4,&quot;rain_24h_mm&quot;:118,... }] }</code>
+    →
+    <code>{ &quot;predictions&quot;:[{ &quot;segmentId&quot;:&quot;KH-07&quot;,&quot;riskScore&quot;:0.78,... }], &quot;modelVersion&quot;:&quot;rf-sim-0.1&quot; }</code>.
+    Errors: <code>422 MISSING_FEATURES</code> (imputed with flag), <code>503 MODEL_NOT_LOADED</code> (backend falls back
+    to rule-based scorer).</p>
+  <p><strong>Realtime (Socket.IO) events:</strong> <code>road:status</code>, <code>vehicle:update</code>,
+    <code>incident:new</code>, <code>alert:new</code>, <code>risk:update</code>, <code>route:suggested</code>,
+    <code>dashboard:tick</code>. Rooms per role/district.</p>
+  <hr>
+  <h2>12. Frontend Page Structure</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Page</th>
+        <th>Components</th>
+        <th>Data</th>
+        <th>Actions</th>
+        <th>APIs</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><strong>Login</strong></td>
+        <td>Form, language toggle, demo-credentials hint</td>
+        <td>—</td>
+        <td>Sign in</td>
+        <td><code>/auth/login</code></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>Main Dashboard</strong></td>
+        <td>KPI cards, mini map, delivery status donut, risk trend chart, recent incidents, critical alert strip,
+          district score list</td>
+        <td>Summary KPIs</td>
+        <td>Click-through to map/alerts</td>
+        <td><code>/dashboard/*</code>, socket</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>GIS Monitoring Map</strong></td>
+        <td>Full map, layer control, filter bar, road detail drawer, legend, time slider (nice-to-have)</td>
+        <td>Roads, bridges, vehicles, incidents, districts, weather</td>
+        <td>Filter, inspect, override status (Authority)</td>
+        <td><code>/roads</code>, <code>/districts</code>, <code>/vehicles</code>, <code>/incidents</code>,
+          <code>/weather</code></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>Route Intelligence</strong></td>
+        <td>Origin/destination pickers, mode selector, route comparison cards, map with route overlays, risk profile
+          chart along route</td>
+        <td>Route options</td>
+        <td>Compute, compare, assign to vehicle</td>
+        <td><code>/routes/optimize</code>, <code>/routes/:id/reroute</code></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><strong>Vehicle Tracking</strong></td>
+        <td>Vehicle table + live map, ETA, status badge, route line, history playback, register-vehicle modal</td>
+        <td>Vehicles, pings</td>
+        <td>Register, select, view route, reroute</td>
+        <td><code>/vehicles</code>, <code>/gps/:id/history</code></td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><strong>Incident Management</strong></td>
+        <td>Table + map, photo gallery, status timeline, verify/reject/resolve buttons</td>
+        <td>Incidents &amp; linked reports</td>
+        <td>Verify, resolve, merge duplicates</td>
+        <td><code>/incidents</code>, <code>/field-reports</code></td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><strong>Field Reporting (PWA)</strong></td>
+        <td>Big &quot;Report&quot; button, type tiles, camera, GPS chip, note, offline queue list, sync badge</td>
+        <td>Own reports</td>
+        <td>Create, retry sync</td>
+        <td><code>/field-reports</code>, <code>/field-reports/batch</code></td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td><strong>Alerts</strong></td>
+        <td>Filterable list (severity chips), detail modal w/ map, ack/resolve</td>
+        <td>Alerts</td>
+        <td>Ack, resolve, open in map</td>
+        <td><code>/alerts</code></td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td><strong>Delivery Tracking</strong></td>
+        <td>Delivery board (kanban by status), detail panel, delay reason</td>
+        <td>Deliveries</td>
+        <td>Create delivery, view at-risk</td>
+        <td><code>/deliveries</code> (via vehicles/dashboard)</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td><strong>Analytics</strong></td>
+        <td>Risk-trend chart, incident heatmap, district scores over time, bottleneck table, model info panel (version,
+          &quot;simulated data&quot; label)</td>
+        <td>Aggregates</td>
+        <td>Change time range, export CSV</td>
+        <td><code>/dashboard/*</code>, <code>/risk/segments</code></td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td><strong>Settings</strong></td>
+        <td>Profile, language, notification prefs, user management (Admin), scenario controller (Admin), data-mode
+          banner toggle</td>
+        <td>User, config</td>
+        <td>Save prefs, create users, trigger scenario</td>
+        <td><code>/auth/me</code>, <code>/users</code>, <code>/admin/scenario/*</code></td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h2>13. Mobile / PWA Design (Field Officer)</h2>
+  <ul>
+    <li><strong>Installable PWA</strong> (manifest + service worker); works on low-end Android Chrome.</li>
+    <li><strong>Home screen: only 3 buttons</strong> (min 64 px tall, high contrast): 🚧 <strong>Report
+        Incident</strong>, 📤 <strong>Pending (n)</strong>, 🗺️ <strong>Road Status</strong>.</li>
+    <li><strong>Report flow (max 4 taps):</strong> (1) choose incident type tile with icon (Landslide / Flood / Road
+      damage / Bridge / Cleared) → (2) confirm auto-GPS (show accuracy; allow manual pin drop) → (3) take photo
+      (optional, <code>&lt;input capture=&quot;environment&quot;&gt;</code>) → (4) <strong>Send</strong>.</li>
+    <li><strong>GPS:</strong> <code>navigator.geolocation.getCurrentPosition</code> high-accuracy, 10 s timeout, fall
+      back to last-known location with a &quot;location approximate&quot; flag.</li>
+    <li><strong>Camera:</strong> compress client-side (canvas → JPEG, max 1280 px, quality 0.6, ≈ 150–300 KB).</li>
+    <li><strong>Offline:</strong> persistent banner (🟠 Offline – reports will be sent later); queue screen with status
+      chips (Pending / Sending / Sent / Failed → Retry).</li>
+    <li><strong>Low bandwidth:</strong> JSON minimal payloads, gzip, no map tiles required for reporting, cached
+      road-status snapshot (~50 KB), lazy-load charts, no auto-playing media; photos uploaded after metadata on poor
+      networks.</li>
+    <li><strong>Multilingual:</strong> language toggle on first screen; icon-first UI to reduce reading load; all
+      strings from i18n JSON.</li>
+    <li><strong>Accessibility:</strong> min 16 px font, WCAG AA contrast, sunlight-readable theme, haptic vibrate on
+      success.</li>
+    <li><strong>Driver mode:</strong> same PWA: &quot;Start Trip&quot; posts GPS every 10 s (foreground), shows
+      next-risk banner and one-tap &quot;Road blocked ahead&quot;.</li>
+  </ul>
+  <hr>
+  <h2>14. Multilingual Support</h2>
+  <ul>
+    <li><strong>Frontend:</strong> <code>react-i18next</code> + <code>i18next-browser-languagedetector</code>;
+      namespaced JSON: <code>/locales/{lng}/{common,dashboard,alerts,report,errors}.json</code>; lazy-loaded per
+      language; language stored in user profile + localStorage.</li>
+    <li><strong>Key convention:</strong> <code>alert.deliveryAtRisk.title</code> with ICU-style params
+      (<code>{{vehicle}}</code>, <code>{{road}}</code>).</li>
+    <li><strong>Backend:</strong> alerts/notifications store <strong><code>templateKey</code> +
+        <code>params</code></strong> (not translated text); rendering happens in the client, or in the push service per
+      recipient's <code>language</code>. Enum values (status, severity) stay language-neutral codes.</li>
+    <li><strong>MVP languages:</strong> <code>en</code>, <code>hi</code>. <strong>Add a language = add a folder +
+        register code</strong> (no code change). Fallback chain: user lang → <code>en</code>.</li>
+    <li><strong>Future:</strong> Assamese (<code>as</code>), Bengali (<code>bn</code>), Manipuri (<code>mni</code>),
+      Khasi (<code>kha</code>), Mizo (<code>lus</code>), Nagamese (<code>nag</code>) — need font support (Noto family),
+      RTL not required, community review of translations (machine translation only as a draft).</li>
+    <li><strong>Formatting:</strong> <code>Intl.DateTimeFormat</code>/<code>NumberFormat</code>, timezone IST.</li>
+    <li><strong>Quality:</strong> CI check that all languages contain the same key set.</li>
+  </ul>
+  <hr>
+  <h2>15. Notification System</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Channel</th>
+        <th>MVP?</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>In-app (toast, bell badge, alert list)</td>
+        <td>🟢</td>
+        <td>Socket.IO real-time; persisted <code>Alert</code> collection</td>
+      </tr>
+      <tr>
+        <td>Web Push</td>
+        <td>🟢 (Should-have)</td>
+        <td>VAPID keys, <code>web-push</code> npm, service worker <code>push</code> event; HIGH/CRITICAL only</td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td>🔴 Future (optional Nodemailer/Brevo free tier)</td>
+        <td>Daily digest, critical alerts</td>
+      </tr>
+      <tr>
+        <td>SMS</td>
+        <td>🔴 Future</td>
+        <td>Gateway (e.g., Twilio/MSG91) — critical for no-data areas; not built in MVP</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Priority &amp; rules</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Severity</th>
+        <th>Channels</th>
+        <th>Recipients</th>
+        <th>Behaviour</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>LOW</td>
+        <td>in-app (feed)</td>
+        <td>Authority in district</td>
+        <td>silent</td>
+      </tr>
+      <tr>
+        <td>MEDIUM</td>
+        <td>in-app + badge</td>
+        <td>Authority + affected operator</td>
+        <td>grouped</td>
+      </tr>
+      <tr>
+        <td>HIGH</td>
+        <td>in-app + push + toast</td>
+        <td>Authority, DM officials, affected operators/drivers</td>
+        <td>immediate</td>
+      </tr>
+      <tr>
+        <td>CRITICAL</td>
+        <td>all above + persistent banner + sound</td>
+        <td>+ Admin; escalates after 10 min unacknowledged</td>
+        <td>requires ack</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Rules:</strong> dedupe within 30 min; quiet hours not applied to CRITICAL; rate cap 10 push/user/hour
+    (except CRITICAL); recipients filtered by district and fleet ownership; messages rendered in recipient's language.
+  </p>
+  <hr>
+  <h2>16. Security</h2>
+  <ul>
+    <li><strong>JWT:</strong> access token 15 min (memory only), refresh token 7 days httpOnly + Secure +
+      SameSite=Strict cookie, rotation on refresh.</li>
+    <li><strong>RBAC:</strong> middleware <code>authorize(...roles)</code> + resource scoping (operator sees own fleet;
+      field officer sees own district/reports); tested per endpoint.</li>
+    <li><strong>Passwords:</strong> bcrypt cost 12; min 10 chars; lockout after 5 failures/15 min.</li>
+    <li><strong>API validation:</strong> <code>zod</code>/<code>joi</code> schemas for every body/query; reject unknown
+      fields.</li>
+    <li><strong>Rate limiting:</strong> <code>express-rate-limit</code> — 100 req/min/IP global; 10/min login; 30/min
+      field-report; GPS 1 per 3 s/vehicle.</li>
+    <li><strong>Secure uploads:</strong> MIME sniffing (magic bytes) not extension, max 2 MB, ≤3 files, image
+      re-encoding to strip EXIF except GPS-derived fields we store separately, random filenames, no public listing,
+      virus-scan = future.</li>
+    <li><strong>Sanitization:</strong> <code>express-mongo-sanitize</code>, <code>xss-clean</code>/DOMPurify for
+      descriptions, escape output in React (default).</li>
+    <li><strong>HTTPS:</strong> enforced via hosting (Vercel/Render); HSTS via <code>helmet</code>; strict CORS
+      allow-list.</li>
+    <li><strong>Audit logs:</strong> login, status overrides, incident verification, alert ack, user changes;
+      append-only.</li>
+    <li><strong>Location protection:</strong> vehicle positions only to owning operator + authorities; precision reduced
+      for non-privileged roles (e.g., round to 1 km); GPS history TTL 7 days.</li>
+    <li><strong>Secrets:</strong> environment variables; no keys in repo; <code>.env.example</code> only.</li>
+  </ul>
+  <hr>
+  <h2>17. Data Privacy</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Classification</th>
+        <th>Protection</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Vehicle location</td>
+        <td>Sensitive (operational)</td>
+        <td>Role-scoped access, TLS, TTL on history, coarse location for public views, no third-party sharing</td>
+      </tr>
+      <tr>
+        <td>User information</td>
+        <td>Personal</td>
+        <td>Store only name/email/role/phone; hashed passwords; admin-only user list; deletion on request</td>
+      </tr>
+      <tr>
+        <td>Field reports &amp; photos</td>
+        <td>Potentially sensitive (faces, plates, homes)</td>
+        <td>Strip EXIF, authority-only full-res access, 90-day retention default, blur faces/plates = future CV</td>
+      </tr>
+      <tr>
+        <td>Government operational info (e.g., critical corridors, emergency routes)</td>
+        <td>Restricted</td>
+        <td>Authority/Admin only; not in public endpoints; audit-logged access</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Principles:</strong> data minimisation, purpose limitation (logistics/disaster only), consent notice for
+    GPS in driver mode, encryption in transit (TLS) and at rest (Atlas/Cloudinary defaults), access logs, backup restore
+    test. Align to India's <strong>DPDP Act 2023</strong> principles (notice, consent, purpose limitation) — state as
+    &quot;designed with DPDP principles in mind&quot;, <em>not</em> as compliance certification.</p>
+  <hr>
+  <h2>18. Tech Stack</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Layer</th>
+        <th>Choice</th>
+        <th>Why</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Frontend</td>
+        <td><strong>React + Vite + Tailwind CSS</strong></td>
+        <td>Fast HMR, huge community, quick UI; Tailwind speeds up responsive layouts</td>
+      </tr>
+      <tr>
+        <td>State/data</td>
+        <td>TanStack Query + Zustand</td>
+        <td>Caching/refetch for API; light global state</td>
+      </tr>
+      <tr>
+        <td>Map</td>
+        <td><strong>Leaflet + OpenStreetMap</strong> (react-leaflet, leaflet.markercluster)</td>
+        <td>Free, no API key, simple; Mapbox needs billing/token; MapLibre is an upgrade path</td>
+      </tr>
+      <tr>
+        <td>Charts</td>
+        <td>Recharts</td>
+        <td>Easy React charts</td>
+      </tr>
+      <tr>
+        <td>PWA/offline</td>
+        <td>Workbox (vite-plugin-pwa) + <strong>Dexie.js (IndexedDB)</strong></td>
+        <td>Stable, small, minimal boilerplate</td>
+      </tr>
+      <tr>
+        <td>i18n</td>
+        <td>react-i18next</td>
+        <td>Standard, lazy loading</td>
+      </tr>
+      <tr>
+        <td>Backend</td>
+        <td><strong>Node.js + Express</strong></td>
+        <td>Team already knows JS; same language as frontend; easy Socket.IO</td>
+      </tr>
+      <tr>
+        <td>Realtime</td>
+        <td><strong>Socket.IO</strong></td>
+        <td>Reliable fallback transports, rooms, simple API</td>
+      </tr>
+      <tr>
+        <td>Database</td>
+        <td><strong>MongoDB Atlas (free M0)</strong> + Mongoose</td>
+        <td>Flexible schema, native GeoJSON + 2dsphere, quick for prototypes</td>
+      </tr>
+      <tr>
+        <td>ML</td>
+        <td><strong>Python + FastAPI + scikit-learn + pandas + joblib</strong></td>
+        <td>Best ML ecosystem; FastAPI auto-docs &amp; async</td>
+      </tr>
+      <tr>
+        <td>Routing</td>
+        <td>Custom Node module (Dijkstra) over in-memory graph; <code>osmnx</code> for graph prep</td>
+        <td>Graph is small; avoids running OSRM/GraphHopper; full control of risk-aware weights</td>
+      </tr>
+      <tr>
+        <td>Weather</td>
+        <td><strong>Open-Meteo</strong></td>
+        <td>Free, no key, hourly forecast + archive</td>
+      </tr>
+      <tr>
+        <td>Images</td>
+        <td>Cloudinary free tier (or GridFS)</td>
+        <td>No S3 setup</td>
+      </tr>
+      <tr>
+        <td>Push</td>
+        <td><code>web-push</code></td>
+        <td>Free, no third-party</td>
+      </tr>
+      <tr>
+        <td>Scheduler</td>
+        <td><code>node-cron</code></td>
+        <td>No queue infra needed</td>
+      </tr>
+      <tr>
+        <td>Testing</td>
+        <td>Vitest, Jest+Supertest, pytest, Playwright</td>
+        <td>Cover each layer</td>
+      </tr>
+      <tr>
+        <td>Deployment</td>
+        <td><strong>Vercel</strong> (frontend), <strong>Render/Railway</strong> (Node + FastAPI), <strong>MongoDB
+            Atlas</strong></td>
+        <td>Free/low cost, Git-based deploys. <em>Note: free tiers sleep — keep-warm ping before demo.</em></td>
+      </tr>
+      <tr>
+        <td>CI</td>
+        <td>GitHub Actions</td>
+        <td>Free lint+test</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h2>19. Mock / Demo Data</h2>
+  <blockquote>
+    <p>Real place and highway names are used for realism; <strong>all statuses, incidents, vehicles, weather overrides
+        and predictions are simulated</strong>. UI shows a &quot;DEMO DATA&quot; badge.</p>
+  </blockquote>
+  <p><strong>Districts</strong></p>
+  <pre><code class="language-json">{ &#34;code&#34;:&#34;ML-EK&#34;,&#34;name&#34;:&#34;East Khasi Hills&#34;,&#34;state&#34;:&#34;Meghalaya&#34;,&#34;hqLocation&#34;:{&#34;type&#34;:&#34;Point&#34;,&#34;coordinates&#34;:[91.8825,25.5788]},&#34;connectivityScore&#34;:78 }
+{ &#34;code&#34;:&#34;ML-WJH&#34;,&#34;name&#34;:&#34;West Jaintia Hills&#34;,&#34;state&#34;:&#34;Meghalaya&#34;,&#34;hqLocation&#34;:{&#34;type&#34;:&#34;Point&#34;,&#34;coordinates&#34;:[92.2013,25.4470]},&#34;connectivityScore&#34;:64 }
+{ &#34;code&#34;:&#34;AS-KAM&#34;,&#34;name&#34;:&#34;Kamrup Metropolitan&#34;,&#34;state&#34;:&#34;Assam&#34;,&#34;hqLocation&#34;:{&#34;type&#34;:&#34;Point&#34;,&#34;coordinates&#34;:[91.7362,26.1445]},&#34;connectivityScore&#34;:92 }
+{ &#34;code&#34;:&#34;AS-DHM&#34;,&#34;name&#34;:&#34;Dima Hasao&#34;,&#34;state&#34;:&#34;Assam&#34;,&#34;hqLocation&#34;:{&#34;type&#34;:&#34;Point&#34;,&#34;coordinates&#34;:[93.0170,25.1660]},&#34;connectivityScore&#34;:41 }
+{ &#34;code&#34;:&#34;AS-CAC&#34;,&#34;name&#34;:&#34;Cachar&#34;,&#34;state&#34;:&#34;Assam&#34;,&#34;hqLocation&#34;:{&#34;type&#34;:&#34;Point&#34;,&#34;coordinates&#34;:[92.7789,24.8333]},&#34;connectivityScore&#34;:70 }
+{ &#34;code&#34;:&#34;MZ-AIZ&#34;,&#34;name&#34;:&#34;Aizawl&#34;,&#34;state&#34;:&#34;Mizoram&#34;,&#34;hqLocation&#34;:{&#34;type&#34;:&#34;Point&#34;,&#34;coordinates&#34;:[92.7176,23.7271]},&#34;connectivityScore&#34;:58 }
+</code></pre>
+  <p><strong>Road segments</strong></p>
+  <pre><code class="language-json">{ &#34;segmentId&#34;:&#34;KH-07&#34;,&#34;name&#34;:&#34;NH-6 (Jowai–Ummulong stretch)&#34;,&#34;highwayRef&#34;:&#34;NH-6&#34;,&#34;roadClass&#34;:&#34;NH&#34;,&#34;districtId&#34;:&#34;ML-WJH&#34;,
+  &#34;geometry&#34;:{&#34;type&#34;:&#34;LineString&#34;,&#34;coordinates&#34;:[[92.10,25.44],[92.06,25.47],[92.01,25.50]]},
+  &#34;lengthKm&#34;:9.8,&#34;roadCondition&#34;:&#34;FAIR&#34;,&#34;widthM&#34;:7,&#34;slopeDeg&#34;:24,&#34;riverDistM&#34;:380,&#34;floodProne&#34;:false,
+  &#34;isCriticalCorridor&#34;:true,&#34;status&#34;:&#34;RISKY&#34;,&#34;currentRisk&#34;:0.52,&#34;statusReason&#34;:&#34;Rain 24h 96mm + steep slope&#34; }
+{ &#34;segmentId&#34;:&#34;DH-03&#34;,&#34;name&#34;:&#34;NH-6 (Haflong–Jatinga section)&#34;,&#34;highwayRef&#34;:&#34;NH-6&#34;,&#34;roadClass&#34;:&#34;NH&#34;,&#34;districtId&#34;:&#34;AS-DHM&#34;,
+  &#34;geometry&#34;:{&#34;type&#34;:&#34;LineString&#34;,&#34;coordinates&#34;:[[93.02,25.17],[92.99,25.13]]},&#34;lengthKm&#34;:7.1,
+  &#34;roadCondition&#34;:&#34;POOR&#34;,&#34;slopeDeg&#34;:31,&#34;floodProne&#34;:false,&#34;isCriticalCorridor&#34;:true,&#34;status&#34;:&#34;ACCESSIBLE&#34;,&#34;currentRisk&#34;:0.22 }
+{ &#34;segmentId&#34;:&#34;CC-12&#34;,&#34;name&#34;:&#34;Silchar Bypass Bridge&#34;,&#34;isBridge&#34;:true,&#34;bridgeMaxTonnes&#34;:40,&#34;districtId&#34;:&#34;AS-CAC&#34;,&#34;riverDistM&#34;:30,&#34;floodProne&#34;:true,&#34;status&#34;:&#34;ACCESSIBLE&#34;,&#34;currentRisk&#34;:0.18 }
+</code></pre>
+  <p><strong>Vehicles</strong></p>
+  <pre><code class="language-json">{ &#34;registrationNo&#34;:&#34;AS-01-MED-4521&#34;,&#34;type&#34;:&#34;TRUCK&#34;,&#34;cargoType&#34;:&#34;MEDICINE&#34;,&#34;origin&#34;:{&#34;name&#34;:&#34;Guwahati&#34;},&#34;destination&#34;:{&#34;name&#34;:&#34;Aizawl District Hospital&#34;},
+  &#34;currentLocation&#34;:{&#34;type&#34;:&#34;Point&#34;,&#34;coordinates&#34;:[91.8830,25.5100]},&#34;speedKph&#34;:38,&#34;status&#34;:&#34;EN_ROUTE&#34;,&#34;etaAt&#34;:&#34;2026-09-28T17:30:00+05:30&#34;,&#34;isSimulated&#34;:true }
+{ &#34;registrationNo&#34;:&#34;ML-05-FD-2210&#34;,&#34;type&#34;:&#34;PICKUP&#34;,&#34;cargoType&#34;:&#34;FOOD&#34;,&#34;origin&#34;:{&#34;name&#34;:&#34;Shillong&#34;},&#34;destination&#34;:{&#34;name&#34;:&#34;Jowai&#34;},&#34;status&#34;:&#34;EN_ROUTE&#34;,&#34;isSimulated&#34;:true }
+{ &#34;registrationNo&#34;:&#34;MN-01-AG-7788&#34;,&#34;type&#34;:&#34;TRUCK&#34;,&#34;cargoType&#34;:&#34;AGRI&#34;,&#34;origin&#34;:{&#34;name&#34;:&#34;Imphal&#34;},&#34;destination&#34;:{&#34;name&#34;:&#34;Guwahati&#34;},&#34;status&#34;:&#34;DELAYED&#34;,&#34;isSimulated&#34;:true }
+</code></pre>
+  <p><strong>Incidents</strong></p>
+  <pre><code class="language-json">{ &#34;type&#34;:&#34;LANDSLIDE&#34;,&#34;severity&#34;:&#34;HIGH&#34;,&#34;blocking&#34;:&#34;FULL&#34;,&#34;location&#34;:{&#34;type&#34;:&#34;Point&#34;,&#34;coordinates&#34;:[92.04,25.48]},&#34;roadSegment&#34;:&#34;KH-07&#34;,
+  &#34;status&#34;:&#34;REPORTED&#34;,&#34;source&#34;:&#34;FIELD&#34;,&#34;description&#34;:&#34;Debris across both lanes near km 42. Excavator needed.&#34;,&#34;startedAt&#34;:&#34;2026-09-28T10:41:00+05:30&#34; }
+{ &#34;type&#34;:&#34;WATERLOGGING&#34;,&#34;severity&#34;:&#34;MEDIUM&#34;,&#34;blocking&#34;:&#34;PARTIAL&#34;,&#34;roadSegment&#34;:&#34;CC-12&#34;,&#34;status&#34;:&#34;VERIFIED&#34; }
+</code></pre>
+  <p><strong>Weather (per cell)</strong></p>
+  <pre><code class="language-json">{ &#34;cellId&#34;:&#34;C-2545-9200&#34;,&#34;precipMmH&#34;:14.2,&#34;rain24hMm&#34;:118,&#34;rain72hMm&#34;:210,&#34;forecast24hMm&#34;:85,&#34;windGustKph&#34;:38,&#34;severity&#34;:3,&#34;source&#34;:&#34;open-meteo&#34;,&#34;isSimulatedOverride&#34;:false }
+</code></pre>
+  <p><strong>Route</strong></p>
+  <pre><code class="language-json">{ &#34;id&#34;:&#34;r_bal_1&#34;,&#34;mode&#34;:&#34;BALANCED&#34;,&#34;distanceKm&#34;:352.4,&#34;etaMin&#34;:471,&#34;avgRisk&#34;:0.31,&#34;maxRisk&#34;:0.64,&#34;segmentIds&#34;:[&#34;KM-01&#34;,&#34;KH-04&#34;,&#34;KH-07&#34;,&#34;DH-03&#34;,&#34;CC-12&#34;] }
+{ &#34;id&#34;:&#34;r_safe_1&#34;,&#34;mode&#34;:&#34;SAFEST&#34;,&#34;distanceKm&#34;:401.9,&#34;etaMin&#34;:536,&#34;extraDelayMin&#34;:65,&#34;avgRisk&#34;:0.14,&#34;segmentIds&#34;:[&#34;KM-01&#34;,&#34;KH-04&#34;,&#34;KH-09&#34;,&#34;JN-02&#34;,&#34;DH-05&#34;,&#34;CC-12&#34;] }
+</code></pre>
+  <p><strong>Risk prediction</strong></p>
+  <pre><code class="language-json">{ &#34;segmentId&#34;:&#34;KH-07&#34;,&#34;riskScore&#34;:0.78,&#34;riskCategory&#34;:&#34;HIGH&#34;,&#34;disruptionType&#34;:&#34;LANDSLIDE_RISK&#34;,&#34;confidence&#34;:0.71,
+  &#34;topFactors&#34;:[&#34;rain_24h_mm&#34;,&#34;slope_deg&#34;,&#34;recent_reports_5km&#34;],&#34;modelVersion&#34;:&#34;rf-sim-0.1&#34;,&#34;dataMode&#34;:&#34;SIMULATED_TRAINING&#34; }
+</code></pre>
+  <p><strong>Delivery</strong></p>
+  <pre><code class="language-json">{ &#34;cargoType&#34;:&#34;MEDICINE&#34;,&#34;priority&#34;:&#34;EMERGENCY&#34;,&#34;vehicle&#34;:&#34;AS-01-MED-4521&#34;,&#34;destinationName&#34;:&#34;Aizawl District Hospital&#34;,&#34;plannedEtaAt&#34;:&#34;2026-09-28T17:30:00+05:30&#34;,&#34;currentEtaAt&#34;:&#34;2026-09-28T18:55:00+05:30&#34;,&#34;status&#34;:&#34;REROUTED&#34;,&#34;delayMin&#34;:85 }
+</code></pre>
+  <hr>
+  <h2>20. ML Demo Dataset</h2>
+  <p><strong>Schema (one row = one road segment at one hour)</strong> — 22 fields:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Field</th>
+        <th>Type</th>
+        <th>Range / values</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>segment_id</td>
+        <td>str</td>
+        <td>e.g., KH-07</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>timestamp</td>
+        <td>datetime</td>
+        <td>hourly</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>rain_1h_mm</td>
+        <td>float</td>
+        <td>0–60</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>rain_24h_mm</td>
+        <td>float</td>
+        <td>0–400</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>rain_72h_mm</td>
+        <td>float</td>
+        <td>0–700</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>forecast_rain_24h_mm</td>
+        <td>float</td>
+        <td>0–300</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>weather_severity</td>
+        <td>int</td>
+        <td>0–3</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>slope_deg</td>
+        <td>float</td>
+        <td>0–45</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>elevation_m</td>
+        <td>float</td>
+        <td>20–2000</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>river_distance_m</td>
+        <td>float</td>
+        <td>10–5000</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>flood_prone_zone</td>
+        <td>bool</td>
+        <td>0/1</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>road_condition</td>
+        <td>cat</td>
+        <td>GOOD / FAIR / POOR</td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td>road_width_m</td>
+        <td>float</td>
+        <td>3–14</td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td>is_bridge</td>
+        <td>bool</td>
+        <td>0/1</td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td>traffic_level</td>
+        <td>int</td>
+        <td>0 low – 3 jammed</td>
+      </tr>
+      <tr>
+        <td>16</td>
+        <td>historical_incidents_5y</td>
+        <td>int</td>
+        <td>0–25</td>
+      </tr>
+      <tr>
+        <td>17</td>
+        <td>days_since_last_incident</td>
+        <td>int</td>
+        <td>0–1500</td>
+      </tr>
+      <tr>
+        <td>18</td>
+        <td>previous_landslide_at_site</td>
+        <td>bool</td>
+        <td>0/1</td>
+      </tr>
+      <tr>
+        <td>19</td>
+        <td>recent_reports_6h_5km</td>
+        <td>int</td>
+        <td>0–10</td>
+      </tr>
+      <tr>
+        <td>20</td>
+        <td>soil_saturation_proxy</td>
+        <td>float</td>
+        <td>0–1 (derived from rain_72h)</td>
+      </tr>
+      <tr>
+        <td>21</td>
+        <td>risk_level (label)</td>
+        <td>cat</td>
+        <td>LOW / MEDIUM / HIGH</td>
+      </tr>
+      <tr>
+        <td>22</td>
+        <td>disruption_type (label)</td>
+        <td>cat</td>
+        <td>NONE / LANDSLIDE_RISK / FLOOD_RISK / ROAD_DAMAGE_RISK / CONGESTION_RISK</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Generation strategy (labelled SIMULATED):</strong></p>
+  <ol>
+    <li><strong>Real inputs where free:</strong> segment geometry/class from OSM; slope/elevation from SRTM; river
+      distance from OSM waterways; historical rainfall from Open-Meteo archive for the past 2–3 monsoon seasons.</li>
+    <li><strong>Synthetic hazard score</strong> with documented rules:
+      <code>z = 0.030·rain_24h + 0.010·rain_72h + 0.06·slope + 0.5·prev_landslide + 0.15·hist_incidents + 0.4·(road_condition==POOR) − 0.0008·river_dist·flood_flag_weight + 0.3·recent_reports + N(0, σ)</code>
+      Convert to <code>risk_level</code> via thresholds (approx. 70% LOW, 20% MEDIUM, 10% HIGH);
+      <code>disruption_type</code> chosen by dominant term (slope+rain → landslide; river proximity+rain → flood; poor
+      condition → road damage; traffic → congestion).
+    </li>
+    <li><strong>Noise &amp; realism:</strong> 10% label noise, missing values in 3% of cells, seasonal weighting
+      (monsoon heavier), class imbalance kept.</li>
+    <li><strong>Publish</strong> generator script + seed + data card stating: &quot;Labels are rule-generated; model
+      performance demonstrates pipeline correctness, not real-world predictive skill.&quot;</li>
+    <li><strong>Path to real data:</strong> replace label column with verified incident logs (state
+      disaster-management/PWD/BRO data, NASA Global Landslide Catalog) while keeping the same schema.</li>
+  </ol>
+  <hr>
+  <h2>21. Demo Scenario (5 minutes)</h2>
+  <p><strong>Setup (before demo):</strong> seeded DB; simulator loaded; 3 browser windows — Authority dashboard,
+    Driver/Operator view, Field officer phone (PWA, airplane-mode toggle); &quot;DEMO DATA&quot; badge visible.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Time</th>
+        <th>Step</th>
+        <th>What judges see</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>0:00–0:30</td>
+        <td><strong>Context</strong></td>
+        <td>Dashboard: green-dominant map, KPI cards (212 accessible / 41 risky / 6 blocked), 18 vehicles. Presenter:
+          &quot;Medicine truck AS-01-MED-4521 is heading Guwahati → Aizawl.&quot;</td>
+      </tr>
+      <tr>
+        <td>0:30–1:00</td>
+        <td><strong>1. Vehicle starts moving</strong></td>
+        <td>Click vehicle → route (blue line), ETA 17:30, status EN_ROUTE, marker moving every 5 s (labelled
+          <em>simulated GPS</em>). Delivery card &quot;In transit&quot;.</td>
+      </tr>
+      <tr>
+        <td>1:00–1:30</td>
+        <td><strong>2. Weather deteriorates</strong></td>
+        <td>Admin scenario panel: &quot;Inject heavy rainfall – West Jaintia Hills&quot; (banner: SIMULATED WEATHER).
+          Rain layer circles grow/darken over KH-07; real Open-Meteo data shown elsewhere.</td>
+      </tr>
+      <tr>
+        <td>1:30–2:00</td>
+        <td><strong>3–4. ML raises risk; status changes</strong></td>
+        <td>Risk run executes; KH-07 risk 0.52 → 0.78 (ML panel shows top factors: rain_24h, slope). Segment turns
+          amber→red-ish &quot;Risky/High&quot;. KPI: Risky 41→46. Risk-trend chart ticks up.</td>
+      </tr>
+      <tr>
+        <td>2:00–2:30</td>
+        <td><strong>5. Alert generated</strong></td>
+        <td>Toast + bell: <strong>CRITICAL – Delivery at risk (medicine)</strong>; persistent banner; vehicle marker
+          turns amber; delivery → &quot;At Risk&quot;. Push notification on phone.</td>
+      </tr>
+      <tr>
+        <td>2:30–3:15</td>
+        <td><strong>6–7. Alternative route + ETA</strong></td>
+        <td>Route Intelligence: three cards — Balanced (through KH-07, max risk 0.78), <strong>Safest (+52 km, +65 min,
+            max risk 0.29)</strong>. Map overlays both routes; risk profile chart. Operator accepts Safest; ETA updates
+          17:30 → 18:35, extra delay shown.</td>
+      </tr>
+      <tr>
+        <td>3:15–4:00</td>
+        <td><strong>8. Field officer reports blockage</strong></td>
+        <td>On phone (offline first): create &quot;Landslide – fully blocked&quot; on <strong>another</strong> segment
+          (KH-09) with photo, GPS; queue shows &quot;1 pending&quot;. Toggle network on → auto-sync; toast &quot;Report
+          sent&quot;.</td>
+      </tr>
+      <tr>
+        <td>4:00–4:30</td>
+        <td><strong>9. Dashboard updates</strong></td>
+        <td>Incident marker + photo appears live; KH-09 turns red (Blocked, unverified); Blocked KPI +1; Authority
+          clicks <strong>Verify</strong>.</td>
+      </tr>
+      <tr>
+        <td>4:30–4:50</td>
+        <td><strong>10. Vehicle rerouted</strong></td>
+        <td>KH-09 lies on the new route → system re-runs: recommends Emergency/Safe alternate via JN-02; one-tap accept;
+          vehicle marker follows new line; alert log entries show audit trail.</td>
+      </tr>
+      <tr>
+        <td>4:50–5:00</td>
+        <td><strong>11. Delivery completes</strong></td>
+        <td>Simulator fast-forward (×20): vehicle reaches hospital; delivery → <strong>Delivered</strong>, delay 85 min
+          vs. baseline of &quot;stuck (no route awareness)&quot;. Final slide: architecture + &quot;real vs
+          simulated&quot; table.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Fallback plan:</strong> pre-recorded 90-s video + local (offline) copy of app running on laptop; scenario
+    controller has a &quot;reset demo&quot; button.</p>
+  <hr>
+  <h2>22. Hackathon Demo Strategy</h2>
+  <p><strong>Build order:</strong> (1) Seed data + map with road status → (2) vehicle simulator + tracking → (3) routing
+    engine with weights → (4) field report (online) → (5) alerts/Socket.IO → (6) weather + ML → (7) offline PWA → (8)
+    i18n/polish.
+    <em>Rationale:</em> the map→route→alert loop is the story; ML and offline are differentiators added once the loop
+    works (initially use a rule-based scorer behind the same <code>/predict</code> contract).
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Items</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Real (🟢)</strong></td>
+        <td>Map, road graph &amp; routing algorithm, Open-Meteo weather ingestion, ML training/inference pipeline (on
+          simulated labels), JWT/RBAC, field report with real GPS + camera, IndexedDB offline queue + sync, alerts
+          engine, realtime updates, driver-mode GPS ingest</td>
+      </tr>
+      <tr>
+        <td><strong>Mocked (🟡)</strong></td>
+        <td>Vehicle GPS (simulator), historical incidents &amp; ML labels, government/BRO/NHAI data, some weather
+          overrides for the demo, users, deliveries</td>
+      </tr>
+      <tr>
+        <td><strong>Do NOT build</strong></td>
+        <td>Real government integrations, SMS gateway, satellite/drone/CV, IoT, full national road graph, complex ML
+          tuning/deep learning, native mobile apps, payment/billing, microservices/Kubernetes</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Look impressive without fake claims:</strong></p>
+  <ul>
+    <li>Clear <strong>&quot;Simulated&quot;/&quot;Live&quot;</strong> chips on every data source and a data-provenance
+      panel.</li>
+    <li>Polished map (status colours, clusters, smooth vehicle animation), one strong chart, real-time toasts.</li>
+    <li>Show <em>explainability</em>: top risk factors, route trade-off (+km, +min, −risk).</li>
+    <li>Show the offline moment live (airplane mode).</li>
+    <li>State limitations proactively; present a credible roadmap (sensors, real data, SMS) for judges.</li>
+  </ul>
+  <hr>
+  <h2>23. Development Roadmap (assume ~10–14 days; adjust to hackathon length)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Phase</th>
+        <th>Tasks</th>
+        <th>Depends on</th>
+        <th>Deliverables</th>
+        <th>Difficulty</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Setup</strong></td>
+        <td>Monorepo (<code>/web</code>,<code>/api</code>,<code>/ml</code>), lint, env, Atlas, CI, seed script skeleton
+        </td>
+        <td>—</td>
+        <td>Running &quot;hello&quot; for 3 services</td>
+        <td>★</td>
+      </tr>
+      <tr>
+        <td><strong>2. Auth</strong></td>
+        <td>Users, bcrypt, JWT, refresh, RBAC middleware, login page</td>
+        <td>1</td>
+        <td>Role-based login working</td>
+        <td>★★</td>
+      </tr>
+      <tr>
+        <td><strong>3. Database</strong></td>
+        <td>Mongoose models, indexes, seed districts/roads/vehicles</td>
+        <td>1</td>
+        <td>Seed data loaded, queries tested</td>
+        <td>★★</td>
+      </tr>
+      <tr>
+        <td><strong>4. GIS dashboard</strong></td>
+        <td>Leaflet map, layers, road colours, filters, detail drawer, KPI cards</td>
+        <td>3</td>
+        <td>Interactive monitoring map</td>
+        <td>★★★</td>
+      </tr>
+      <tr>
+        <td><strong>5. Vehicle tracking</strong></td>
+        <td>Simulator, <code>/gps</code>, socket updates, vehicle list/marker animation, ETA</td>
+        <td>3, 4</td>
+        <td>Live moving vehicles</td>
+        <td>★★★</td>
+      </tr>
+      <tr>
+        <td><strong>6. Incident reporting</strong></td>
+        <td>Field report API, upload, incident linking (nearest segment), incident UI</td>
+        <td>3, 4</td>
+        <td>Reports appear on map</td>
+        <td>★★★</td>
+      </tr>
+      <tr>
+        <td><strong>7. Weather</strong></td>
+        <td>Open-Meteo client, cells, cron, cache, rain layer, override</td>
+        <td>3</td>
+        <td>Weather in DB + map</td>
+        <td>★★</td>
+      </tr>
+      <tr>
+        <td><strong>8. ML prediction</strong></td>
+        <td>Dataset generator, train, FastAPI, feature builder, cron, fallback scorer</td>
+        <td>3, 7</td>
+        <td>Risk scores per segment</td>
+        <td>★★★★</td>
+      </tr>
+      <tr>
+        <td><strong>9. Route optimization</strong></td>
+        <td>Graph build, Dijkstra, weights, alternatives, ETA, reroute API/UI</td>
+        <td>3, 8</td>
+        <td>Route comparison + reroute</td>
+        <td>★★★★</td>
+      </tr>
+      <tr>
+        <td><strong>10. Alerts</strong></td>
+        <td>Alert engine, dedup, severity, sockets, push, ack UI</td>
+        <td>5, 6, 8, 9</td>
+        <td>Alerts working end-to-end</td>
+        <td>★★★</td>
+      </tr>
+      <tr>
+        <td><strong>11. Offline</strong></td>
+        <td>SW caching, Dexie queue, sync, idempotency, banners</td>
+        <td>6</td>
+        <td>Offline report → sync</td>
+        <td>★★★★</td>
+      </tr>
+      <tr>
+        <td><strong>12. Testing</strong></td>
+        <td>Unit/API/ML/route/UI/offline/security tests, bug bash</td>
+        <td>all</td>
+        <td>Test report, fixes</td>
+        <td>★★★</td>
+      </tr>
+      <tr>
+        <td><strong>13. Deployment</strong></td>
+        <td>Vercel/Render/Atlas, env, CORS, keep-warm, HTTPS</td>
+        <td>12</td>
+        <td>Public URL</td>
+        <td>★★</td>
+      </tr>
+      <tr>
+        <td><strong>14. Final demo</strong></td>
+        <td>Scenario controller, rehearsal ×3, backup video, slides</td>
+        <td>13</td>
+        <td>Demo-ready build</td>
+        <td>★★</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Parallelisation:</strong> Phases 4–7 run concurrently across members; 8 and 9 depend on stable schema
+    (freeze API contracts by day 2).</p>
+  <hr>
+  <h2>24. Team Distribution (4 members)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Member</th>
+        <th>Role</th>
+        <th>Exact responsibilities</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1 — Frontend/GIS</strong></td>
+        <td>React, Leaflet</td>
+        <td>Map layers, road/vehicle/incident rendering, filters, dashboard pages, route comparison UI, vehicle
+          animation, charts; consumes API contracts; owns pages 2,3,4,5,6,8,9,10</td>
+      </tr>
+      <tr>
+        <td><strong>2 — Backend/Database</strong></td>
+        <td>Node, Mongo</td>
+        <td>Schemas + indexes, auth/RBAC, REST APIs, Socket.IO, status engine, alert engine, GPS ingest, simulator, seed
+          data, audit logs, validation/rate-limits</td>
+      </tr>
+      <tr>
+        <td><strong>3 — AI/ML</strong></td>
+        <td>Python</td>
+        <td>Dataset generator, features, training/eval, FastAPI <code>/predict</code>, weather→feature pipeline,
+          fallback rule scorer, routing graph preparation (osmnx) and routing weight calibration with Member 2, data
+          card + limitations doc</td>
+      </tr>
+      <tr>
+        <td><strong>4 — Integration/DevOps/UI</strong></td>
+        <td>PWA, deploy</td>
+        <td>PWA field app, IndexedDB queue, service worker, i18n (en/hi), UI design system/branding, CI/CD, deployment,
+          env/secrets, testing orchestration, demo scenario controller, pitch deck &amp; demo script</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Sync rules:</strong> shared OpenAPI/Postman collection by day 2; daily 15-min standup; feature branches +
+    PR review; demo rehearsals from 24 h before deadline.</p>
+  <hr>
+  <h2>25. Testing</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>What to test</th>
+        <th>Tools</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Unit</strong></td>
+        <td>Status engine thresholds, risk-weight formula, alert dedupe, connectivity score, i18n key parity</td>
+        <td>Jest/Vitest</td>
+      </tr>
+      <tr>
+        <td><strong>API</strong></td>
+        <td>Every endpoint: success, validation, RBAC (403s), idempotent report, batch partial success</td>
+        <td>Supertest, Postman</td>
+      </tr>
+      <tr>
+        <td><strong>ML</strong></td>
+        <td>Schema validation, prediction shape, reproducibility (seeded), sanity monotonicity (more rain ⇒ ≥ risk),
+          metrics thresholds (macro-F1 ≥ baseline), missing-feature handling</td>
+        <td>pytest</td>
+      </tr>
+      <tr>
+        <td><strong>Route</strong></td>
+        <td>Known-graph fixtures: blocked edge removed, safer route chosen when risk high, no-route case, alternatives
+          overlap limit, ETA math</td>
+        <td>Jest</td>
+      </tr>
+      <tr>
+        <td><strong>UI</strong></td>
+        <td>Login flow, layer toggles, report form, alert ack, language switch, responsive layouts</td>
+        <td>Playwright, React Testing Library</td>
+      </tr>
+      <tr>
+        <td><strong>Offline sync</strong></td>
+        <td>Create report offline → reconnect → single server record; duplicate POST idempotent; app reload keeps queue;
+          partial failure retry; photo blob integrity</td>
+        <td>Playwright (network emulation), unit tests on Dexie layer</td>
+      </tr>
+      <tr>
+        <td><strong>GPS</strong></td>
+        <td>Simulator path accuracy, stale timestamp rejection, off-route detection (3-ping rule), coordinate
+          validation, real-device manual test</td>
+        <td>Jest + manual field test</td>
+      </tr>
+      <tr>
+        <td><strong>Security</strong></td>
+        <td>JWT expiry/tampering, RBAC bypass attempts, NoSQL injection, XSS in description, upload of
+          non-images/oversized files, rate-limit triggers, <code>npm audit</code>, OWASP ZAP baseline scan</td>
+        <td>Supertest, ZAP</td>
+      </tr>
+      <tr>
+        <td><strong>Load (light)</strong></td>
+        <td>30 vehicles × 5 s pings + 20 socket clients</td>
+        <td>k6/Artillery</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h2>26. Failure / Edge Cases</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Case</th>
+        <th>Handling</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>No internet (field)</strong></td>
+        <td>Offline queue (IndexedDB), banner, auto-sync, cached road snapshot</td>
+      </tr>
+      <tr>
+        <td><strong>No internet (dashboard)</strong></td>
+        <td>Banner &quot;Live updates paused&quot;; last state shown with timestamp; Socket.IO auto-reconnect w/
+          back-off</td>
+      </tr>
+      <tr>
+        <td><strong>GPS unavailable</strong></td>
+        <td>Manual pin-drop on cached map / choose nearest landmark; report flagged <code>location_manual=true</code>;
+          lower trust weight</td>
+      </tr>
+      <tr>
+        <td><strong>Incorrect GPS</strong></td>
+        <td>Reject <code>accuracy &gt; 200 m</code> for auto-linking (ask confirmation); snap-to-road within 100 m;
+          outlier speed filter (&gt;120 km/h jump ignored)</td>
+      </tr>
+      <tr>
+        <td><strong>Weather API unavailable</strong></td>
+        <td>Serve cached data (≤ 3 h) flagged stale; if older → segments become <em>Unknown</em> with conservative risk
+          0.4; system alert to admin</td>
+      </tr>
+      <tr>
+        <td><strong>Map tiles unavailable</strong></td>
+        <td>Fallback to alternate tile provider / blank background with vector overlays (roads/districts still draw from
+          GeoJSON)</td>
+      </tr>
+      <tr>
+        <td><strong>Duplicate reports</strong></td>
+        <td><code>clientUuid</code> idempotency + spatial-temporal clustering (100 m, ±30 min, same type) → linked to
+          one incident</td>
+      </tr>
+      <tr>
+        <td><strong>Conflicting reports</strong></td>
+        <td>Cluster shows conflict flag; Authority verification decides; trust-weighted; &quot;CLEARED&quot; report
+          requires authority or 2 independent confirmations to revert Blocked</td>
+      </tr>
+      <tr>
+        <td><strong>False ML prediction</strong></td>
+        <td>Confidence shown; humans can override status; false-alarm feedback button (&quot;no issue on ground&quot;)
+          logged for retraining; ML never <em>alone</em> sets Blocked</td>
+      </tr>
+      <tr>
+        <td><strong>Vehicle off-route</strong></td>
+        <td>Alert after 3 pings &gt; 150 m; offer &quot;recompute from current position&quot;</td>
+      </tr>
+      <tr>
+        <td><strong>Route blocked after recommendation</strong></td>
+        <td>Route validity re-checked every 60 s &amp; at accept time; push &quot;route no longer valid&quot;;
+          auto-suggest new route</td>
+      </tr>
+      <tr>
+        <td><strong>Database failure</strong></td>
+        <td>Health checks; API returns 503 with retry; Atlas replica set; in-memory cache serves last road/route
+          snapshot read-only; nightly export</td>
+      </tr>
+      <tr>
+        <td><strong>Extremely high traffic</strong></td>
+        <td>Rate limiting, gzip, response caching (dashboard summary 10 s), socket room scoping + throttled broadcasts
+          (max 1/s per event type), horizontal scale path (Redis adapter)</td>
+      </tr>
+      <tr>
+        <td><strong>ML service down</strong></td>
+        <td>Backend falls back to rule-based scorer (same features), badge &quot;Fallback scoring&quot;</td>
+      </tr>
+      <tr>
+        <td><strong>Simulator/real GPS conflict</strong></td>
+        <td><code>isSimulated</code> flag; UI chip; real pings override simulated for the same vehicle</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h2>27. Performance Requirements (MVP targets, measured on demo hardware/free tiers)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Area</th>
+        <th>Target</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Dashboard initial load</td>
+        <td>≤ 3 s on broadband, ≤ 6 s on 3G-throttled (excluding cold-start)</td>
+      </tr>
+      <tr>
+        <td>API response (p95)</td>
+        <td>≤ 400 ms typical; ≤ 1.5 s for route optimization</td>
+      </tr>
+      <tr>
+        <td>Map rendering</td>
+        <td>≥ 30 FPS panning with ≤ 400 road segments, ≤ 60 vehicles (clustering + simplified geometry)</td>
+      </tr>
+      <tr>
+        <td>GPS update interval</td>
+        <td>5 s simulator; 10 s driver mode; dashboard latency ≤ 2 s from ping</td>
+      </tr>
+      <tr>
+        <td>Alert generation</td>
+        <td>≤ 5 s from trigger event to dashboard toast</td>
+      </tr>
+      <tr>
+        <td>ML prediction latency</td>
+        <td>≤ 300 ms for 400 segments per batch; scheduled run &lt; 10 s</td>
+      </tr>
+      <tr>
+        <td>Route recalculation</td>
+        <td>≤ 1 s for demo graph</td>
+      </tr>
+      <tr>
+        <td>Offline sync</td>
+        <td>Queue of 10 reports (with photos) syncs ≤ 30 s on 3G; ≥ 95% success on first attempt after reconnect; 100%
+          eventually consistent</td>
+      </tr>
+      <tr>
+        <td>Availability</td>
+        <td>Best-effort during demo window (free tier); warm-up ping before demo</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h2>28. Success Metrics</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>KPI</th>
+        <th>Definition</th>
+        <th>MVP target / how measured</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Risk model quality</td>
+        <td>Macro-F1, HIGH-class recall on held-out <strong>simulated</strong> data</td>
+        <td>Report measured values; ≥ baseline logistic regression. <em>Explicitly not real-world accuracy.</em></td>
+      </tr>
+      <tr>
+        <td>Alert response time</td>
+        <td>Trigger → alert visible</td>
+        <td>≤ 5 s (system); ack time tracked per alert</td>
+      </tr>
+      <tr>
+        <td>Route recalculation time</td>
+        <td>Trigger → new options returned</td>
+        <td>≤ 2 s</td>
+      </tr>
+      <tr>
+        <td>GPS tracking reliability</td>
+        <td>% expected pings received (simulated + real device test)</td>
+        <td>≥ 98% in test runs</td>
+      </tr>
+      <tr>
+        <td>Field report sync success</td>
+        <td>Reports synced without manual action / total</td>
+        <td>≥ 95% first attempt; 100% within 3 retries</td>
+      </tr>
+      <tr>
+        <td>Duplicate suppression</td>
+        <td>Duplicates merged correctly in test set</td>
+        <td>≥ 90% on test fixtures</td>
+      </tr>
+      <tr>
+        <td>Dashboard availability</td>
+        <td>Uptime during demo/test week</td>
+        <td>≥ 95% (free-tier)</td>
+      </tr>
+      <tr>
+        <td>Delivery delay reduction (<strong>simulation only</strong>)</td>
+        <td>Simulated fleet with vs. without risk-aware rerouting on the same disruption scenarios</td>
+        <td>Report the <em>measured</em> simulation result; label &quot;simulation target&quot; — no real-world
+          improvement % claimed</td>
+      </tr>
+      <tr>
+        <td>Usability</td>
+        <td>Time for new officer to submit report</td>
+        <td>≤ 60 s in 5-user test</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h2>29. MVP vs Future Version</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>MVP</th>
+        <th>Future</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Satellite imagery</td>
+        <td>❌</td>
+        <td>Sentinel-1/2 for landslide/flood detection, change detection</td>
+      </tr>
+      <tr>
+        <td>IoT sensors</td>
+        <td>❌</td>
+        <td>Rain gauges, slope/tilt sensors, river-level sensors via LoRaWAN</td>
+      </tr>
+      <tr>
+        <td>Drone imagery</td>
+        <td>❌</td>
+        <td>Rapid post-event assessment</td>
+      </tr>
+      <tr>
+        <td>Computer vision</td>
+        <td>❌ (photos stored/viewed only)</td>
+        <td>Auto-classify blockage type/severity, blur faces/plates</td>
+      </tr>
+      <tr>
+        <td>Advanced weather prediction</td>
+        <td>Basic (Open-Meteo forecast)</td>
+        <td>IMD integration, nowcasting, ensemble models</td>
+      </tr>
+      <tr>
+        <td>Government system integration</td>
+        <td>❌ (no claim)</td>
+        <td>PWD/BRO/NHAI/SDMA feeds via MoUs &amp; official APIs</td>
+      </tr>
+      <tr>
+        <td>SMS gateway</td>
+        <td>❌</td>
+        <td>SMS/IVR alerts for no-data areas</td>
+      </tr>
+      <tr>
+        <td>Real fleet GPS</td>
+        <td>Partial (driver PWA + ingest API; simulator for demo)</td>
+        <td>Vendor GPS/VLTD/FASTag integrations</td>
+      </tr>
+      <tr>
+        <td>Predictive supply demand</td>
+        <td>❌</td>
+        <td>Demand forecasting, pre-positioning stock</td>
+      </tr>
+      <tr>
+        <td>Digital twin</td>
+        <td>❌</td>
+        <td>Live network twin with what-if analysis</td>
+      </tr>
+      <tr>
+        <td>Advanced disaster simulation</td>
+        <td>Basic scenario controller</td>
+        <td>Multi-hazard cascading simulation</td>
+      </tr>
+      <tr>
+        <td>Additional languages</td>
+        <td>en, hi</td>
+        <td>Assamese, Bengali, Manipuri, Khasi, Mizo, Nagamese…</td>
+      </tr>
+      <tr>
+        <td>Data store</td>
+        <td>MongoDB</td>
+        <td>PostGIS + time-series DB</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h2>30. Risks &amp; Mitigation</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Risk</th>
+        <th>Impact</th>
+        <th>Probability</th>
+        <th>Mitigation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Lack of real data</td>
+        <td>High (model credibility)</td>
+        <td>High</td>
+        <td>Synthetic dataset + clear labels; design schema for drop-in real data; seek open datasets (NASA GLC,
+          Bhukosh)</td>
+      </tr>
+      <tr>
+        <td>Poor connectivity</td>
+        <td>High</td>
+        <td>High</td>
+        <td>Offline-first PWA, small payloads, cached snapshots, SMS in future</td>
+      </tr>
+      <tr>
+        <td>GPS inaccuracies</td>
+        <td>Medium</td>
+        <td>Medium</td>
+        <td>Accuracy metadata, snap-to-road, outlier filter, manual pin</td>
+      </tr>
+      <tr>
+        <td>ML accuracy</td>
+        <td>High</td>
+        <td>Medium–High</td>
+        <td>Show confidence, human override, position as decision support, feedback loop, fallback rules</td>
+      </tr>
+      <tr>
+        <td>API dependency (Open-Meteo, tiles)</td>
+        <td>Medium</td>
+        <td>Medium</td>
+        <td>Caching, stale flag, fallback provider, graceful degradation</td>
+      </tr>
+      <tr>
+        <td>Scaling</td>
+        <td>Medium</td>
+        <td>Low (MVP)</td>
+        <td>Stateless API, indexes, Redis adapter path, modular code</td>
+      </tr>
+      <tr>
+        <td>Security</td>
+        <td>High</td>
+        <td>Medium</td>
+        <td>JWT/RBAC, validation, rate-limits, audit logs, upload hardening, dependency scans</td>
+      </tr>
+      <tr>
+        <td>False alerts / alert fatigue</td>
+        <td>Medium</td>
+        <td>Medium</td>
+        <td>Severity tiers, dedupe, thresholds tuned, ack workflow, false-alarm feedback</td>
+      </tr>
+      <tr>
+        <td>Free-tier cold starts during demo</td>
+        <td>Medium</td>
+        <td>High</td>
+        <td>Keep-warm pings, local backup, recorded video</td>
+      </tr>
+      <tr>
+        <td>Scope creep / time</td>
+        <td>High</td>
+        <td>High</td>
+        <td>Strict Must/Should list, daily scope review, demo-driven build order</td>
+      </tr>
+      <tr>
+        <td>Over-claiming</td>
+        <td>High (credibility)</td>
+        <td>Medium</td>
+        <td>Provenance chips, data-mode banners, limitations slide</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h2>31. Final Product Definition</h2>
+  <p><strong>Product vision.</strong> A trusted, shared, real-time picture of road accessibility across North East India
+    — so essential supplies reach remote communities, especially when disaster strikes.</p>
+  <p><strong>MVP definition.</strong> A web dashboard + field PWA that: shows road status on a GIS map; ingests real
+    weather; scores segment risk with a prototype ML model; recommends risk-aware alternative routes with ETA impact;
+    tracks (simulated + real-capable) vehicles; raises tiered alerts; and accepts offline-capable geo-tagged field
+    reports that update the dashboard.</p>
+  <p><strong>Core differentiator.</strong> It connects <em>forecast risk → route decision → ground truth</em> in one
+    loop, with an offline-first field channel built for NER's connectivity reality — unlike generic navigation apps.</p>
+  <p><strong>Key technical innovation.</strong> Risk-aware graph routing where ML risk and verified field reports
+    directly modify edge costs, plus a conflict-tolerant offline sync pipeline (idempotent, trust-weighted clustering).
+  </p>
+  <p><strong>Key AI innovation.</strong> Explainable, calibrated segment-level risk scoring (score + type + confidence +
+    top factors) that combines weather, terrain, history and live human reports, with safe fallbacks and a clear
+    retraining path to real labels — <em>without</em> claiming scientific landslide prediction.</p>
+  <p><strong>Key social impact.</strong> Fewer stranded medicine and food shipments, faster emergency response, better
+    planning for remote districts, and a channel for local voices (field officers) to inform decisions.</p>
+  <h3>30-second pitch</h3>
+  <p>&quot;In North East India, one landslide can cut off a district — and the truck carrying medicines finds out only
+    when it's stuck. NER Setu combines live weather, terrain and field reports to score road risk, alerts authorities,
+    and reroutes vehicles <em>before</em> they're blocked. Field officers can report from areas with no network, and it
+    syncs when they're back online. One dashboard, from prediction to delivery.&quot;</p>
+  <h3>2-minute pitch</h3>
+  <ol>
+    <li><strong>Problem (25 s):</strong> Hill terrain, extreme rain, landslides and floods make NER logistics fragile.
+      Blockage news travels by phone; navigation apps don't understand landslide risk; officers in dead zones can't
+      report.</li>
+    <li><strong>Solution (40 s):</strong> NER Setu monitors every road segment as Accessible, Risky, Blocked or Unknown
+      using real weather data, a prototype ML risk model and verified field reports. Risk-aware routing computes safer
+      alternatives and shows the exact trade-off in km, minutes and risk. Vehicles are tracked live, and tiered alerts
+      reach the right people in English or Hindi.</li>
+    <li><strong>Field-first design (25 s):</strong> A simple PWA with big buttons captures GPS and photos, works
+      offline, and syncs automatically without duplicates.</li>
+    <li><strong>Honesty &amp; path (20 s):</strong> Today's model is trained on simulated data and is a decision-support
+      indicator, not a landslide forecast; GPS and government data are simulated. The architecture is ready for real
+      data, sensors, satellite inputs and official integrations.</li>
+    <li><strong>Impact (10 s):</strong> Faster response, fewer stuck shipments, better planning for the districts that
+      need it most.</li>
+  </ol>
+  <h3>5-minute demo story</h3>
+  <p>&quot;A truck of essential medicines leaves Guwahati for Aizawl. As monsoon rain intensifies over the Jaintia
+    Hills, our model raises the risk on its route; the dashboard turns the segment amber-to-red and fires a critical
+    alert. The routing engine offers a safer path — 52 km longer, 65 minutes slower, but with far lower risk — and the
+    operator accepts. Then a field officer, offline on a hill road, reports a real landslide on another segment; when
+    the phone reconnects the report syncs, the map updates, an authority verifies it, and the truck is re-routed again.
+    The medicines arrive. One loop — predict, alert, reroute, report, update — connecting the ground to the control
+    room.&quot; <em>(Step-by-step screen guide: Section 21.)</em></p>
+  <hr>
+  <h3>Appendix A — Suggested repository layout</h3>
+  <pre><code>ner-setu/
+├─ web/            # React+Vite+Tailwind (dashboard + PWA)
+│  └─ src/{pages,components,map,i18n,offline,api}
+├─ api/            # Node+Express
+│  └─ src/{models,routes,services/{status,alerts,routing,weather,gps},sockets,jobs,middleware}
+├─ ml/             # FastAPI + sklearn
+│  └─ {data_gen.py,features.py,train.py,serve.py,models/}
+├─ data/           # osm graph json, geojson, seed scripts
+├─ docs/           # OpenAPI, data card, limitations
+└─ .github/workflows/
+</code></pre>
+  <h3>Appendix B — Environment variables (<code>.env.example</code>)</h3>
+  <p><code>MONGODB_URI</code>, <code>JWT_SECRET</code>, <code>JWT_REFRESH_SECRET</code>, <code>ML_SERVICE_URL</code>,
+    <code>ML_SERVICE_KEY</code>, <code>CLOUDINARY_URL</code>, <code>VAPID_PUBLIC_KEY</code>,
+    <code>VAPID_PRIVATE_KEY</code>, <code>CLIENT_ORIGIN</code>, <code>SIMULATOR_ENABLED</code>,
+    <code>DATA_MODE=DEMO_SIMULATED</code></p>
+  <h3>Appendix C — Build-agent instructions (for an AI coding assistant)</h3>
+  <ol>
+    <li>Implement in the phase order of Section 23; freeze API contracts (Section 11) and schemas (Section 10) first.
+    </li>
+    <li>Every data source must carry a <code>dataMode</code>/<code>isSimulated</code> flag surfaced in the UI.</li>
+    <li>Keep the ML <code>/predict</code> contract stable; ship a rule-based scorer first, swap in the RF model later.
+    </li>
+    <li>Never present simulated data as live; never claim government integration or scientific landslide prediction.
+    </li>
+    <li>Write tests alongside features per Section 25.</li>
+  </ol>
+
+</body>
+
+</html>

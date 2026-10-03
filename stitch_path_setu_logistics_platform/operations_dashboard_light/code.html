@@ -1,0 +1,441 @@
+<!DOCTYPE html><html class="light" lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "surface-dim": "#cbdbf5",
+          "surface-container-low": "#eff4ff",
+          "secondary-container": "#5bb8fe",
+          "inverse-on-surface": "#eaf1ff",
+          "inverse-surface": "#213145",
+          "secondary-fixed-dim": "#93ccff",
+          "secondary": "#006398",
+          "tertiary-container": "#656d84",
+          "on-secondary-fixed-variant": "#004b73",
+          "on-primary-fixed": "#00174b",
+          "surface-container-lowest": "#ffffff",
+          "tertiary-fixed": "#dae2fd",
+          "background": "#f8f9ff",
+          "surface-tint": "#0053db",
+          "error": "#ba1a1a",
+          "on-primary-fixed-variant": "#003ea8",
+          "on-tertiary-container": "#eef0ff",
+          "tertiary-fixed-dim": "#bec6e0",
+          "primary-fixed-dim": "#b4c5ff",
+          "on-secondary-container": "#00476e",
+          "secondary-fixed": "#cce5ff",
+          "on-tertiary": "#ffffff",
+          "inverse-primary": "#b4c5ff",
+          "surface-container": "#e5eeff",
+          "on-tertiary-fixed": "#131b2e",
+          "outline": "#737686",
+          "tertiary": "#16a34a",
+          "on-primary-container": "#eeefff",
+          "on-background": "#0b1c30",
+          "on-surface-variant": "#434655",
+          "surface-container-high": "#dce9ff",
+          "outline-variant": "#c3c6d7",
+          "surface-container-highest": "#d3e4fe",
+          "on-secondary-fixed": "#001d31",
+          "surface": "#f8f9ff",
+          "on-secondary": "#ffffff",
+          "error-container": "#ffdad6",
+          "on-tertiary-fixed-variant": "#3f465c",
+          "on-primary": "#ffffff",
+          "primary-container": "#2563eb",
+          "surface-variant": "#d3e4fe",
+          "on-error": "#ffffff",
+          "surface-bright": "#f8f9ff",
+          "primary": "#004ac6",
+          "primary-fixed": "#dbe1ff",
+          "on-surface": "#0b1c30",
+          "on-error-container": "#93000a"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.125rem",
+          "lg": "0.25rem",
+          "xl": "0.5rem",
+          "full": "0.75rem"
+        },
+        "spacing": {
+          "space-sm": "0.375rem",
+          "space-xl": "1.5rem",
+          "space-md": "0.75rem",
+          "space-lg": "1rem",
+          "gutter": "0.75rem",
+          "margin": "1rem",
+          "space-xs": "0.25rem"
+        },
+        "fontFamily": {
+          "label-sm": [
+            "JetBrains Mono"
+          ],
+          "body-md": [
+            "Geist"
+          ],
+          "code-sm": [
+            "JetBrains Mono"
+          ],
+          "label-md": [
+            "JetBrains Mono"
+          ],
+          "headline-md": [
+            "Geist"
+          ],
+          "display-lg": [
+            "Geist"
+          ],
+          "headline-sm": [
+            "Geist"
+          ],
+          "body-lg": [
+            "Geist"
+          ],
+          "headline-lg": [
+            "Geist"
+          ],
+          "code-md": [
+            "JetBrains Mono"
+          ],
+          "body-sm": [
+            "Geist"
+          ]
+        },
+        "fontSize": {
+          "label-sm": [
+            "10px",
+            {
+              "lineHeight": "12px",
+              "letterSpacing": "0.05em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-md": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "fontWeight": "400"
+            }
+          ],
+          "code-sm": [
+            "11px",
+            {
+              "lineHeight": "14px",
+              "fontWeight": "500"
+            }
+          ],
+          "label-md": [
+            "11px",
+            {
+              "lineHeight": "14px",
+              "letterSpacing": "0.04em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-md": [
+            "18px",
+            {
+              "lineHeight": "24px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "display-lg": [
+            "30px",
+            {
+              "lineHeight": "36px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "700"
+            }
+          ],
+          "headline-sm": [
+            "15px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "14px",
+            {
+              "lineHeight": "20px",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-lg": [
+            "22px",
+            {
+              "lineHeight": "28px",
+              "letterSpacing": "-0.015em",
+              "fontWeight": "600"
+            }
+          ],
+          "code-md": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "500"
+            }
+          ],
+          "body-sm": [
+            "12px",
+            {
+              "lineHeight": "16px",
+              "fontWeight": "400"
+            }
+          ]
+        }
+      },
+    },
+  }
+</script></head><body class="bg-[#F8FAFC] font-body-md text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-900 min-h-screen"><aside class="fixed left-0 top-0 h-full w-64 bg-white border-r border-slate-200 z-50 flex flex-col justify-between select-none shadow-sm"><div class="flex flex-col flex-1 min-h-0"><div class="h-14 px-margin border-b border-slate-200 flex items-center justify-between gap-space-sm bg-white"><div class="flex items-center gap-space-sm min-w-0"><img alt="Path Setu Operational Route Logo" class="h-8 w-auto object-contain flex-shrink-0" src="https://lh3.googleusercontent.com/aida/AEtjO1WSvxUuvZ7tmvynlN-ova5K5oK7uoBaW3uTiCyPL6aCaCFRVvBYzTHmDdWpz_52yHitPVPcolvKhxiTr_FIHDiR3nKNzC7UZQp97Dg4ioEDXK6Sd9ULXktlVNKe-iUPdfFbQg7p1dZOrNP8CCerDv4w9oN5QKHUs_ixM9WxSUYVMwDAVLHinmvC1vO1l5LY6fRvLa8QfUGNvWP0_d1nZBiFwEqvbRcERemmO4Z445svNMlg4bCBGRjbThE"><div class="flex flex-col min-w-0"><span class="font-headline-sm text-headline-sm text-slate-900 tracking-tight truncate leading-none">Path Setu</span><span class="font-label-sm text-label-sm text-blue-600 truncate mt-0.5 tracking-wider uppercase font-semibold">Mission Control</span></div></div><span class="px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200 font-label-sm text-label-sm text-slate-600 font-medium">OPS v2.4</span></div><div class="px-margin py-space-xs border-b border-slate-100 bg-slate-50 flex items-center justify-between"><span class="font-label-sm text-label-sm uppercase text-slate-400 tracking-wider">Operational Units</span><span class="font-label-sm text-label-sm text-emerald-600 font-semibold flex items-center gap-1"><span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>SYNCED</span></div><nav class="flex-1 overflow-y-auto px-space-xs py-space-sm flex flex-col gap-0.5" data-active-classes="bg-blue-50 text-blue-700 border-l-2 border-blue-600 font-semibold"><a aria-current="page" class="flex items-center gap-space-md px-space-md py-space-sm rounded-none transition-colors bg-blue-50 text-blue-700 border-l-2 border-blue-600 font-semibold text-body-md" data-path="operations-dashboard" href="#"><span class="material-symbols-outlined text-[18px] flex-shrink-0 text-blue-600">monitoring</span><span class="truncate">Operations Dashboard</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-none border-l-2 border-transparent transition-colors font-body-md text-body-md" data-path="live-gis-map" href="#"><span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-400">public</span><span class="truncate">Live GIS Map</span><span class="ml-auto font-label-sm text-label-sm text-emerald-700 px-1.5 py-0.2 bg-emerald-50 rounded border border-emerald-200">LIVE</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-none border-l-2 border-transparent transition-colors font-body-md text-body-md" data-path="route-intelligence" href="#"><span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-400">alt_route</span><span class="truncate">Route Intelligence</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-none border-l-2 border-transparent transition-colors font-body-md text-body-md" data-path="logistics-fleet" href="#"><span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-400">local_shipping</span><span class="truncate">Logistics &amp; Fleet</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-none border-l-2 border-transparent transition-colors font-body-md text-body-md" data-path="incidents" href="#"><span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-400">emergency_heat</span><span class="truncate">Incidents</span><span class="ml-auto font-label-sm text-label-sm text-rose-700 px-1.5 py-0.2 bg-rose-50 rounded border border-rose-200 font-semibold">4</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-none border-l-2 border-transparent transition-colors font-body-md text-body-md" data-path="weather-risk" href="#"><span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-400">thunderstorm</span><span class="truncate">Weather Risk</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-none border-l-2 border-transparent transition-colors font-body-md text-body-md" data-path="alert-center" href="#"><span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-400">notifications_active</span><span class="truncate">Alert Center</span><span class="ml-auto font-label-sm text-label-sm text-blue-700 px-1.5 py-0.2 bg-blue-50 rounded border border-blue-200">12</span></a><a class="flex items-center gap-space-md px-space-md py-space-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900 rounded-none border-l-2 border-transparent transition-colors font-body-md text-body-md" data-path="analytics" href="#"><span class="material-symbols-outlined text-[18px] flex-shrink-0 text-slate-400">bar_chart_4_bars</span><span class="truncate">Analytics</span></a></nav></div><div class="border-t border-slate-200 bg-white p-space-md flex flex-col gap-space-sm"><div class="flex items-center justify-between text-slate-500 font-label-sm text-label-sm px-1"><div class="flex items-center gap-1.5"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span></span><span class="font-label-sm text-label-sm text-slate-700 font-semibold">TELEMETRY</span></div><span class="text-emerald-700 font-semibold font-label-sm text-label-sm">NOMINAL 99.8%</span></div><div class="flex items-center justify-between px-1"><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200 text-slate-500 uppercase tracking-wider font-medium">Demo Stream Active</span><a class="text-slate-400 hover:text-slate-700 transition-colors flex items-center" data-path="settings" href="#"><span class="material-symbols-outlined text-[16px]">settings</span></a></div><div class="pt-space-xs border-t border-slate-100 flex items-center gap-space-md px-1"><div class="w-8 h-8 rounded bg-blue-50 border border-blue-200 flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-blue-600 text-[18px]">badge</span></div><div class="flex flex-col min-w-0"><span class="font-body-sm text-body-sm text-slate-900 font-semibold truncate leading-tight">S. Rao</span><span class="font-label-sm text-label-sm text-slate-400 truncate leading-tight mt-0.5">Dispatch Lead • Sec-04</span></div></div></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-14 bg-white/95 backdrop-blur-sm border-b border-slate-200 z-40 px-margin flex items-center justify-between gap-space-lg select-none shadow-sm"><div class="flex items-center gap-space-md min-w-0 flex-1"><div class="flex items-center gap-1.5 font-label-md text-label-md text-slate-400 whitespace-nowrap"><span class="text-slate-800 font-bold tracking-tight">PATH SETU</span><span class="text-slate-300">/</span><span class="text-blue-600 font-semibold">TACTICAL DISPATCH</span><span class="text-slate-300">/</span><span class="text-slate-900 font-bold">GRID-NORTH</span></div><div class="hidden xl:flex items-center gap-2 px-2.5 py-1 rounded bg-slate-50 border border-slate-200/90 font-label-sm text-label-sm shadow-xs flex-shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span><span class="text-slate-700 font-semibold">Simulated Live Feed</span><span class="text-slate-300">|</span><span class="font-mono text-blue-700 font-semibold tracking-tight">UTC+05:30 14:32:08</span></div><div class="relative flex items-center flex-1 max-w-md ml-space-xs"><span class="material-symbols-outlined absolute left-2.5 text-slate-400 text-[16px] pointer-events-none">search</span><input class="w-full h-8 pl-8 pr-10 bg-slate-50 border border-slate-200 rounded text-slate-800 placeholder:text-slate-400 font-body-sm text-body-sm focus:outline-none focus:border-blue-500 focus:bg-white transition-colors shadow-xs" placeholder="Search corridor, marker, convoy, incident ID..." type="text"><div class="absolute right-2 px-1.5 py-0.5 rounded bg-slate-200/60 border border-slate-300/60 text-slate-500 font-label-sm text-[10px] pointer-events-none font-mono font-medium">/</div></div></div><div class="flex items-center gap-space-md flex-shrink-0"><div class="hidden md:flex items-center gap-1.5 border-x border-slate-200 px-space-sm"><button class="h-8 px-2.5 bg-slate-50 border border-slate-200 hover:border-blue-300 hover:bg-blue-50 rounded text-slate-700 hover:text-blue-700 flex items-center gap-1.5 font-label-sm text-label-sm transition-colors shadow-xs" title="GIS Tactical Layers" type="button"><span class="material-symbols-outlined text-[16px] text-blue-600">layers</span><span class="hidden lg:inline font-semibold">Layers</span></button><button class="h-8 px-2.5 bg-rose-50 border border-rose-200 hover:bg-rose-100 text-rose-700 rounded font-label-sm text-label-sm flex items-center gap-1.5 font-bold transition-colors shadow-xs" type="button"><span class="w-1.5 h-1.5 rounded-full bg-rose-600 animate-pulse"></span><span class="">CRIT: 1</span></button><button class="h-8 px-2.5 bg-amber-50 border border-amber-200 hover:bg-amber-100 text-amber-700 rounded font-label-sm text-label-sm flex items-center gap-1.5 font-bold transition-colors shadow-xs" type="button"><span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span><span class="">WARN: 3</span></button></div><div class="flex items-center gap-space-sm"><div class="hidden sm:flex items-center gap-1 px-2.5 py-1 rounded bg-slate-50 border border-slate-200 font-label-sm text-label-sm text-slate-600 shadow-xs"><span class="material-symbols-outlined text-[14px] text-emerald-600 font-bold">check_circle</span><span class="text-emerald-700 font-bold">SYS OK</span></div><button class="relative p-1.5 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded transition-colors" title="Operational Notifications" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-rose-500 ring-2 ring-white"></span></button><div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center flex-shrink-0 text-white shadow-sm ring-1 ring-blue-700/20"><span class="material-symbols-outlined text-[18px]">person</span></div></div></div></header><main class="relative pt-14 bg-[#F8FAFC] min-h-screen"><div class="flex flex-col w-full">
+<!-- Top Operational Banner & KPIs -->
+<div class="px-margin pt-space-lg pb-space-md flex flex-col gap-space-md bg-white border-b border-slate-200">
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-lg text-headline-lg text-slate-900 tracking-tight font-bold">Operations Dashboard</h1>
+<span class="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 text-slate-500 font-label-sm text-label-sm tracking-wider uppercase font-semibold">[SIMULATED DEMO DATA]</span>
+<span class="px-2 py-0.5 rounded bg-emerald-50 border border-emerald-200 text-emerald-700 font-label-sm text-label-sm flex items-center gap-1 font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>LIVE TELEMETRY
+          </span>
+</div>
+<p class="font-body-md text-body-md text-slate-500 mt-0.5 truncate">
+          Regional logistics connectivity &amp; route intelligence monitoring • Sector: North-Eastern Himalayan Corridors (Simulated)
+        </p>
+</div>
+<div class="flex items-center gap-space-xs">
+<div class="px-space-md py-1.5 rounded bg-slate-50 border border-slate-200 text-slate-600 font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined text-[15px] text-blue-600">update</span>
+<span class="font-medium text-slate-700">CYCLE: 10s REFRESH</span>
+</div>
+<button class="h-8 px-space-md bg-blue-600 hover:bg-blue-700 text-white font-headline-sm text-headline-sm rounded flex items-center gap-1.5 transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">chevron_forward</span>
+<span class="">Sync Operations</span>
+</button>
+</div>
+</div>
+<!-- 5 KPI Blocks -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-sm">
+<!-- KPI 1 -->
+<div class="p-space-md bg-slate-50/80 border border-slate-200/80 rounded flex flex-col justify-between hover:border-slate-300 transition-colors">
+<div class="flex items-center justify-between text-slate-500 font-label-sm text-label-sm uppercase font-semibold">
+<span class="">Regional Connectivity</span>
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+</div>
+<div class="mt-space-sm flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-slate-900 font-bold">91.8%</span>
+<span class="font-label-sm text-label-sm text-emerald-700 font-semibold">▲ 1.4% vs 24h</span>
+</div>
+<span class="mt-1 font-body-sm text-body-sm text-emerald-700 font-medium truncate">Normal • Corridors operational</span>
+</div>
+<!-- KPI 2 -->
+<div class="p-space-md bg-slate-50/80 border border-slate-200/80 rounded flex flex-col justify-between hover:border-slate-300 transition-colors">
+<div class="flex items-center justify-between text-slate-500 font-label-sm text-label-sm uppercase font-semibold">
+<span class="">Active Road Disruption</span>
+<span class="w-2 h-2 rounded-full bg-blue-500"></span>
+</div>
+<div class="mt-space-sm flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-slate-900 font-bold">12 Incidents</span>
+<span class="font-label-sm text-label-sm text-blue-700 font-semibold">4 High Priority</span>
+</div>
+<span class="mt-1 font-body-sm text-body-sm text-slate-500 truncate">8 Monitored sectors</span>
+</div>
+<!-- KPI 3 -->
+<div class="p-space-md bg-slate-50/80 border border-slate-200/80 rounded flex flex-col justify-between hover:border-slate-300 transition-colors">
+<div class="flex items-center justify-between text-slate-500 font-label-sm text-label-sm uppercase font-semibold">
+<span class="">Corridors At Risk</span>
+<span class="w-2 h-2 rounded-full bg-rose-500"></span>
+</div>
+<div class="mt-space-sm flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-slate-900 font-bold">8 Routes</span>
+<span class="font-label-sm text-label-sm text-rose-700 font-semibold">2 Critical</span>
+</div>
+<span class="mt-1 font-body-sm text-body-sm text-rose-600 font-medium truncate">Mountain pass vulnerability</span>
+</div>
+<!-- KPI 4 -->
+<div class="p-space-md bg-slate-50/80 border border-slate-200/80 rounded flex flex-col justify-between hover:border-slate-300 transition-colors">
+<div class="flex items-center justify-between text-slate-500 font-label-sm text-label-sm uppercase font-semibold">
+<span class="">Shipments in Transit</span>
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+</div>
+<div class="mt-space-sm flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-slate-900 font-bold">37 Units</span>
+<span class="font-label-sm text-label-sm text-emerald-700 font-semibold">31 Nominal</span>
+</div>
+<span class="mt-1 font-body-sm text-body-sm text-emerald-700 font-medium truncate">On schedule &amp; geo-locked</span>
+</div>
+<!-- KPI 5 -->
+<div class="p-space-md bg-slate-50/80 border border-slate-200/80 rounded flex flex-col justify-between hover:border-slate-300 transition-colors">
+<div class="flex items-center justify-between text-slate-500 font-label-sm text-label-sm uppercase font-semibold">
+<span class="">Delayed / Diverted</span>
+<span class="w-2 h-2 rounded-full bg-amber-500"></span>
+</div>
+<div class="mt-space-sm flex items-baseline justify-between">
+<span class="font-headline-lg text-headline-lg text-slate-900 font-bold">6 Units</span>
+<span class="font-label-sm text-label-sm text-amber-700 font-semibold">+3.4 hrs avg</span>
+</div>
+<span class="mt-1 font-body-sm text-body-sm text-slate-500 truncate">Alternate routing engaged</span>
+</div>
+</div>
+</div>
+<!-- Main Body: 70% GIS Canvas + 30% Right Panel -->
+<div class="p-margin grid grid-cols-1 xl:grid-cols-12 gap-space-md">
+<!-- 70% Interactive GIS Section (xl:col-span-8 or 9; 8.5/12 approx 70%) -->
+<div class="xl:col-span-8 flex flex-col rounded bg-white border border-slate-200 overflow-hidden shadow-sm">
+<!-- GIS Map Toolbar -->
+<div class="px-space-md py-space-sm bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-space-md"><div class="flex items-center flex-wrap gap-space-md text-slate-600 font-label-sm text-label-sm"><span class="text-slate-700 uppercase flex items-center gap-1 font-bold"><span class="material-symbols-outlined text-[15px] text-blue-600">layers</span>LAYERS:</span><label class="flex items-center gap-1.5 cursor-pointer text-slate-700 hover:text-blue-700 font-medium"><input checked="" class="accent-blue-600 h-3.5 w-3.5 rounded cursor-pointer" type="checkbox"><span class="">Roads (Primary/Sec)</span></label><label class="flex items-center gap-1.5 cursor-pointer text-slate-700 hover:text-blue-700 font-medium"><input checked="" class="accent-blue-600 h-3.5 w-3.5 rounded cursor-pointer" type="checkbox"><span class="">Incidents</span></label><label class="flex items-center gap-1.5 cursor-pointer text-slate-700 hover:text-blue-700 font-medium"><input checked="" class="accent-blue-600 h-3.5 w-3.5 rounded cursor-pointer" type="checkbox"><span class="">Active Convoys</span></label><label class="flex items-center gap-1.5 cursor-pointer text-slate-700 hover:text-blue-700 font-medium"><input checked="" class="accent-blue-600 h-3.5 w-3.5 rounded cursor-pointer" type="checkbox"><span class="">Weather Radar</span></label><label class="flex items-center gap-1.5 cursor-pointer text-slate-400 hover:text-slate-600"><input class="accent-blue-600 h-3.5 w-3.5 rounded cursor-pointer" type="checkbox"><span class="">District Limits</span></label></div><div class="flex items-center gap-space-xs"><div class="flex items-center bg-slate-100 border border-slate-300/80 rounded p-0.5 shadow-xs"><button class="h-6 px-2.5 bg-white text-blue-700 border border-slate-200/90 font-label-sm text-label-sm rounded-sm font-bold shadow-xs" type="button">Vector Day</button><button class="h-6 px-2.5 text-slate-600 hover:text-slate-900 font-label-sm text-label-sm rounded-sm font-medium transition-colors" type="button">Satellite</button></div><div class="h-4 w-[1px] bg-slate-200 mx-0.5"></div><button class="w-7 h-7 flex items-center justify-center bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 rounded text-slate-700 font-label-md text-label-md shadow-xs transition-colors" title="Zoom In" type="button">+</button><button class="w-7 h-7 flex items-center justify-center bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 rounded text-slate-700 font-label-md text-label-md shadow-xs transition-colors" title="Zoom Out" type="button">−</button><button class="w-7 h-7 flex items-center justify-center bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 rounded text-slate-700 shadow-xs transition-colors" title="Center View" type="button"><span class="material-symbols-outlined text-[15px]">my_location</span></button><button class="w-7 h-7 flex items-center justify-center bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 rounded text-slate-700 shadow-xs transition-colors" title="Fullscreen Map" type="button"><span class="material-symbols-outlined text-[15px]">fullscreen</span></button></div></div>
+<!-- Legend bar -->
+<div class="px-space-md py-1 bg-white border-b border-slate-200 flex items-center justify-between text-slate-500 font-label-sm text-label-sm">
+<div class="flex items-center gap-space-lg">
+<span class="flex items-center gap-1.5"><span class="w-3 h-1 bg-[#16A34A] rounded-xs inline-block"></span> <strong class="text-slate-700 font-medium">Normal / Open</strong></span>
+<span class="flex items-center gap-1.5"><span class="w-3 h-1 bg-[#D97706] rounded-xs inline-block"></span> <strong class="text-slate-700 font-medium">Caution / Slowdown</strong></span>
+<span class="flex items-center gap-1.5"><span class="w-3 h-1 bg-[#EA580C] rounded-xs inline-block"></span> <strong class="text-slate-700 font-medium">At Risk / Deteriorating</strong></span>
+<span class="flex items-center gap-1.5"><span class="w-3 h-1 bg-[#DC2626] rounded-xs inline-block"></span> <strong class="text-slate-700 font-medium">Blocked / Disrupted</strong></span>
+</div>
+<span class="hidden sm:inline text-blue-700 font-label-sm text-label-sm font-semibold">TACTICAL GRID: EPSG 3857 [SECTOR 4]</span>
+</div>
+<!-- Map Vector Canvas (High-Visibility Light GIS Cartographic Aesthetic) -->
+<div class="relative w-full h-[580px] bg-[#F1F5F9] overflow-hidden select-none">
+<!-- SVG Vector Map Surface -->
+<svg class="w-full h-full" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1000 620" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<!-- Elevation Contour pattern for Light Map -->
+<pattern height="40" id="contourGridLight" patternUnits="userSpaceOnUse" width="40">
+<path d="M 40 0 L 0 0 0 40" fill="none" stroke="#CBD5E1" stroke-dasharray="2 4" stroke-width="0.75"></path>
+</pattern>
+<!-- Weather Radar Rain Wave gradient (Light Blue tint) -->
+<radialGradient cx="42%" cy="46%" id="weatherOverlayLight" r="35%">
+<stop offset="0%" stop-color="#38BDF8" stop-opacity="0.32"></stop>
+<stop offset="60%" stop-color="#60A5FA" stop-opacity="0.16"></stop>
+<stop offset="100%" stop-color="#F1F5F9" stop-opacity="0"></stop>
+</radialGradient>
+</defs>
+<!-- Topographic Grid Background -->
+<rect fill="#F8FAFC" height="100%" width="100%"></rect>
+<rect fill="url(#contourGridLight)" height="100%" opacity="0.8" width="100%"></rect>
+<!-- Weather radar patch over Kalimpong/Teesta ridge -->
+<circle cx="480" cy="300" fill="url(#weatherOverlayLight)" r="210"></circle>
+<circle cx="480" cy="300" fill="none" opacity="0.45" r="140" stroke="#0284C7" stroke-dasharray="4 6" stroke-width="0.75"></circle>
+<circle cx="480" cy="300" fill="none" opacity="0.35" r="80" stroke="#0284C7" stroke-dasharray="3 3" stroke-width="0.75"></circle>
+<!-- Mountain Ridge Terrain Contour Lines (Subtle cool slate shading) -->
+<path d="M 50 120 Q 200 80 340 140 T 620 110 T 890 190 T 980 160" fill="none" opacity="0.5" stroke="#94A3B8" stroke-width="1.2"></path>
+<path d="M 30 240 Q 220 200 410 270 T 730 220 T 960 280" fill="none" opacity="0.45" stroke="#94A3B8" stroke-width="1"></path>
+<path d="M 80 410 Q 280 340 490 420 T 820 370 T 990 440" fill="none" opacity="0.5" stroke="#94A3B8" stroke-width="1"></path>
+<path d="M 120 540 Q 360 480 570 560 T 880 510" fill="none" opacity="0.4" stroke="#94A3B8" stroke-width="0.8"></path>
+<!-- River Teesta Vector (Cyan/Blue Ribbon with Soft Border) -->
+<path d="M 620 20 Q 560 140 500 230 T 430 380 T 360 520 T 320 620" fill="none" opacity="0.25" stroke="#0284C7" stroke-width="6"></path>
+<path d="M 620 20 Q 560 140 500 230 T 430 380 T 360 520 T 320 620" fill="none" opacity="0.8" stroke="#0369A1" stroke-width="2"></path>
+<text fill="#0284C7" font-family="JetBrains Mono" font-size="10" font-weight="600" opacity="0.8" transform="rotate(72 445 390)" x="445" y="390">RIVER TEESTA DRAINAGE</text>
+<!-- ROUTE NETWORKS -->
+<!-- 1. Open Green Route: Rohtang Bypass / South Link -->
+<path d="M 80 560 L 220 480 L 330 500 L 450 490 L 680 550 L 920 530" fill="none" stroke="#16A34A" stroke-linecap="round" stroke-width="3.5"></path>
+<rect fill="#FFFFFF" height="15" opacity="0.9" rx="2" stroke="#16A34A" stroke-width="0.8" width="165" x="205" y="458"></rect>
+<text fill="#15803D" font-family="JetBrains Mono" font-size="10" font-weight="600" x="210" y="470">NH-10 SOUTH HIGHWAY (OPEN)</text>
+<!-- 2. Gangtok North Arterial (Normal / Green) -->
+<path d="M 520 70 L 610 130 L 670 190 L 760 210 L 890 190" fill="none" stroke="#16A34A" stroke-linecap="round" stroke-width="3"></path>
+<rect fill="#FFFFFF" height="15" opacity="0.9" rx="2" stroke="#16A34A" stroke-width="0.8" width="135" x="725" y="168"></rect>
+<text fill="#15803D" font-family="JetBrains Mono" font-size="10" font-weight="600" x="730" y="180">NH-31A GANGTOK LINK</text>
+<!-- 3. Cautionary / Bypass Route: dashed orange corridor via Peshok -->
+<path d="M 330 500 Q 340 400 390 340 T 490 260 L 610 130" fill="none" stroke="#D97706" stroke-dasharray="6 4" stroke-linecap="round" stroke-width="3"></path>
+<text fill="#B45309" font-family="JetBrains Mono" font-size="9" font-weight="600" transform="rotate(-65 340 430)" x="340" y="430">ALT-ROUTE: PESHOK-ALGARAH BYPASS</text>
+<!-- 4. Disrupted Segment: NH-10 Teesta Valley Main Corridor (Red Pulsating Segment) -->
+<path d="M 450 490 Q 430 380 480 320" fill="none" stroke="#16A34A" stroke-width="3.5"></path>
+<!-- The Disrupted Blocked Gap -->
+<path class="animate-pulse" d="M 480 320 Q 490 300 510 270" fill="none" stroke="#DC2626" stroke-linecap="round" stroke-width="5"></path>
+<path d="M 510 270 Q 560 210 610 130" fill="none" stroke="#EA580C" stroke-dasharray="4 4" stroke-width="3"></path>
+<!-- Zojila Ridge High Mountain Corridor -->
+<path d="M 670 190 L 780 280 L 840 360 L 940 420" fill="none" stroke="#EA580C" stroke-dasharray="5 3" stroke-width="2.5"></path>
+<rect fill="#FFFFFF" height="15" opacity="0.9" rx="2" stroke="#EA580C" stroke-width="0.8" width="145" x="805" y="308"></rect>
+<text fill="#C2410C" font-family="JetBrains Mono" font-size="9" font-weight="600" x="810" y="320">ZOJILA PASS CONNECTOR</text>
+<!-- WAYPOINTS & TOWNS -->
+<g>
+<circle cx="80" cy="560" fill="#2563EB" r="4.5" stroke="#FFFFFF" stroke-width="1.5"></circle>
+<text fill="#0F172A" font-family="Geist" font-size="10" font-weight="600" x="90" y="565">SILIGURI DISPATCH</text>
+<circle cx="610" cy="130" fill="#2563EB" r="4.5" stroke="#FFFFFF" stroke-width="1.5"></circle>
+<text fill="#0F172A" font-family="Geist" font-size="10" font-weight="600" x="620" y="125">GANGTOK HUB</text>
+<circle cx="450" cy="490" fill="#64748B" r="3.5" stroke="#FFFFFF" stroke-width="1"></circle>
+<text fill="#475569" font-family="JetBrains Mono" font-size="9" font-weight="500" x="460" y="505">CORONATION BRG</text>
+<circle cx="670" cy="190" fill="#64748B" r="3.5" stroke="#FFFFFF" stroke-width="1"></circle>
+<text fill="#475569" font-family="JetBrains Mono" font-size="9" font-weight="500" x="680" y="195">SINGTHAM</text>
+</g>
+<!-- TACTICAL MAP MARKERS -->
+<!-- MARKER 1: SELECTED DISRUPTION (Landslide NH-10 Km 28) -->
+<g class="cursor-pointer" transform="translate(495, 295)">
+<circle class="animate-ping" cx="0" cy="0" fill="#DC2626" fill-opacity="0.25" r="22"></circle>
+<circle cx="0" cy="0" fill="#FFFFFF" r="14" stroke="#DC2626" stroke-width="2.5"></circle>
+<circle cx="0" cy="0" fill="#DC2626" r="5"></circle>
+<!-- Map callout box -->
+<rect fill="#FFFFFF" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.12))" height="42" rx="3" stroke="#DC2626" stroke-width="1.5" width="168" x="18" y="-36"></rect>
+<text fill="#DC2626" font-family="JetBrains Mono" font-size="10" font-weight="bold" x="26" y="-22">KM 28.4 LANDSLIDE</text>
+<text fill="#334155" font-family="Inter" font-size="9" font-weight="500" x="26" y="-8">Single Lane Restricted • BLOCKED</text>
+<line stroke="#DC2626" stroke-width="1.5" x1="0" x2="18" y1="0" y2="-15"></line>
+</g>
+<!-- MARKER 2: Teesta Bridge Scour Warning -->
+<g class="cursor-pointer" transform="translate(460, 440)">
+<circle cx="0" cy="0" fill="#FFFFFF" r="11" stroke="#D97706" stroke-width="1.8"></circle>
+<polygon fill="#D97706" points="0,-6 6,5 -6,5"></polygon>
+<rect fill="#FFFFFF" height="15" opacity="0.95" rx="2" stroke="#D97706" stroke-width="0.8" width="155" x="14" y="-8"></rect>
+<text fill="#B45309" font-family="JetBrains Mono" font-size="9" font-weight="600" x="18" y="3">B-14 PIER SCOUR (CAUTION)</text>
+</g>
+<!-- MARKER 3: Active Convoy PS-882 -->
+<g class="cursor-pointer" transform="translate(420, 360)">
+<circle cx="0" cy="0" fill="#FFFFFF" r="13" stroke="#2563EB" stroke-width="1.8"></circle>
+<!-- Small truck glyph -->
+<rect fill="#2563EB" height="8" rx="1" width="8" x="-6" y="-4"></rect>
+<rect fill="#2563EB" height="5" rx="0.5" width="4" x="2" y="-1"></rect>
+<circle cx="-3" cy="5" fill="#1E40AF" r="1.5"></circle>
+<circle cx="3" cy="5" fill="#1E40AF" r="1.5"></circle>
+<!-- Badge -->
+<rect fill="#FFFFFF" height="16" rx="2" stroke="#2563EB" stroke-width="1" width="76" x="-38" y="-26"></rect>
+<text fill="#2563EB" font-family="JetBrains Mono" font-size="8" font-weight="bold" text-anchor="middle" x="0" y="-14">CONVOY PS-882</text>
+</g>
+<!-- MARKER 4: Flash flood warning Km 42 -->
+<g class="cursor-pointer" transform="translate(540, 230)">
+<circle cx="0" cy="0" fill="#FFFFFF" r="11" stroke="#EA580C" stroke-width="1.8"></circle>
+<path d="M -5 1 Q -2 -3 0 1 T 5 1" fill="none" stroke="#EA580C" stroke-width="1.5"></path>
+<path d="M -5 4 Q -2 0 0 4 T 5 4" fill="none" stroke="#EA580C" stroke-width="1.5"></path>
+<rect fill="#FFFFFF" height="15" opacity="0.95" rx="2" stroke="#EA580C" stroke-width="0.8" width="140" x="14" y="-7"></rect>
+<text fill="#C2410C" font-family="JetBrains Mono" font-size="9" font-weight="600" x="18" y="4">KM 42 WATER SURCHARGE</text>
+</g>
+<!-- MARKER 5: Heavy Rockfall Hazard Pass-4 -->
+<g class="cursor-pointer" transform="translate(780, 280)">
+<circle cx="0" cy="0" fill="#FFFFFF" r="11" stroke="#DC2626" stroke-width="1.8"></circle>
+<line stroke="#DC2626" stroke-width="2" x1="-4" x2="4" y1="-4" y2="4"></line>
+<line stroke="#DC2626" stroke-width="2" x1="4" x2="-4" y1="-4" y2="4"></line>
+<rect fill="#FFFFFF" height="15" opacity="0.95" rx="2" stroke="#DC2626" stroke-width="0.8" width="105" x="14" y="-8"></rect>
+<text fill="#DC2626" font-family="JetBrains Mono" font-size="9" font-weight="bold" x="18" y="3">PASS-4 ROCKFALL</text>
+</g>
+</svg>
+<!-- Floating HUD Compass / North Indicator -->
+<div class="absolute top-space-md right-space-md p-space-xs bg-white/95 backdrop-blur-sm rounded border border-slate-200 shadow-sm flex flex-col items-center">
+<span class="font-label-sm text-label-sm text-blue-600 font-bold">N</span>
+<span class="material-symbols-outlined text-[18px] text-blue-600">navigation</span>
+<span class="font-label-sm text-label-sm text-slate-500 mt-0.5">348°</span>
+</div>
+<!-- Floating Quick Filter Pill on Map -->
+<div class="absolute top-space-md left-space-md flex items-center gap-space-xs bg-white/95 backdrop-blur-sm px-space-md py-1.5 rounded border border-slate-200 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+<span class="font-label-sm text-label-sm text-slate-900 font-bold">SELECTED: NH-10 MILE 28.4</span>
+<span class="text-slate-300">|</span>
+<span class="font-label-sm text-label-sm text-blue-600 font-semibold">FREQ: CH-09</span>
+</div>
+</div>
+<!-- Bottom Map Telemetry Bar -->
+<div class="px-space-md py-2 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-space-sm font-label-sm text-label-sm"><div class="flex items-center gap-space-md flex-wrap text-slate-600"><div class="flex items-center gap-1.5"><span class="text-slate-400 font-semibold">CURSOR:</span><span class="text-slate-800 font-mono font-medium">27°03'28.8"N 88°28'15.6"E</span></div><span class="text-slate-300">|</span><div class="flex items-center gap-1.5"><span class="text-slate-400 font-semibold">ALTITUDE:</span><span class="text-slate-800 font-mono font-medium">1,840m ASL</span></div><span class="text-slate-300">|</span><div class="flex items-center gap-1.5"><span class="text-slate-400 font-semibold">WEATHER:</span><span class="text-blue-700 font-mono font-medium flex items-center gap-1"><span class="material-symbols-outlined text-[13px]">rainy</span>Rain 18mm/h (Active)</span></div><span class="text-slate-300">|</span><div class="flex items-center gap-1.5"><span class="text-slate-400 font-semibold">WIND:</span><span class="text-slate-800 font-mono font-medium">32 km/h NW</span></div></div><div class="flex items-center gap-space-md text-slate-500"><span class="font-mono font-medium text-slate-600">SCALE 1:25,000</span><span class="text-slate-300">|</span><span class="text-emerald-700 font-semibold flex items-center gap-1.5 font-mono"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>GPS MESH 100% LOCK</span></div></div>
+</div>
+<!-- 30% Tactical Right Panel -->
+<div class="xl:col-span-4 flex flex-col gap-space-md">
+<!-- Active Incident Details Card -->
+<div class="p-space-md bg-white border border-slate-200 rounded flex flex-col gap-space-md shadow-sm"><div class="flex items-center justify-between pb-space-sm border-b border-slate-100"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[18px] text-rose-600">emergency</span><h2 class="font-headline-sm text-headline-sm text-slate-900 font-bold">NH-10 Sector Disruption — Km 28.4</h2></div><span class="px-2 py-0.5 rounded bg-rose-50 border border-rose-200 text-rose-700 font-label-sm text-label-sm font-bold tracking-wider flex items-center gap-1 shadow-xs"><span class="w-1.5 h-1.5 rounded-full bg-rose-600 animate-ping"></span>AT RISK</span></div><div class="grid grid-cols-2 gap-space-sm text-body-sm"><div class="p-space-xs bg-slate-50 border border-slate-100 rounded"><span class="font-label-sm text-label-sm text-slate-400 block uppercase font-medium">Location</span><span class="text-slate-900 font-semibold block truncate">Teesta Gorge Sec</span><span class="text-blue-600 font-mono text-label-sm block truncate font-medium mt-0.5">27.058°N, 88.471°E</span></div><div class="p-space-xs bg-slate-50 border border-slate-100 rounded"><span class="font-label-sm text-label-sm text-slate-400 block uppercase font-medium">Reported</span><span class="text-slate-900 font-semibold block">2 hrs 14 mins ago</span><span class="text-slate-500 font-label-sm text-label-sm block mt-0.5">By Field Unit 04</span></div><div class="p-space-xs bg-rose-50/70 border border-rose-200/80 rounded col-span-2"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-rose-700 block uppercase font-bold">Disruption Severity</span><span class="font-label-sm text-label-sm text-rose-600 font-semibold uppercase">Level 4 Alert</span></div><span class="text-rose-900 font-medium block mt-0.5 leading-snug">Critical — Major rock debris block, single-lane restricted</span></div><div class="p-space-xs bg-slate-50 border border-slate-100 rounded col-span-2"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-slate-400 block uppercase font-medium">Affected Freight (3 Convoys)</span><span class="font-label-sm text-label-sm text-blue-600 font-semibold">En route</span></div><div class="flex items-center gap-1.5 mt-1.5 flex-wrap"><span class="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 border border-blue-200 rounded text-blue-700 font-mono text-label-sm font-semibold"><span class="material-symbols-outlined text-[12px]">local_shipping</span>PS-882</span><span class="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 border border-blue-200 rounded text-blue-700 font-mono text-label-sm font-semibold"><span class="material-symbols-outlined text-[12px]">local_shipping</span>PS-890</span><span class="inline-flex items-center gap-1 px-2 py-0.5 bg-blue-50 border border-blue-200 rounded text-blue-700 font-mono text-label-sm font-semibold"><span class="material-symbols-outlined text-[12px]">local_shipping</span>PS-914</span></div></div><div class="p-space-xs bg-slate-50 border border-slate-100 rounded col-span-2"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-slate-400 block uppercase font-medium">Clearance ETA</span><span class="text-emerald-700 font-label-sm text-label-sm block font-semibold">BRO Dozers Deployed</span></div><span class="text-slate-900 font-headline-sm text-headline-sm font-bold block mt-0.5">Est. 5 hrs 30 mins</span></div></div><div class="flex flex-col sm:flex-row gap-space-xs pt-space-xs border-t border-slate-100"><button class="flex-1 h-9 bg-blue-600 hover:bg-blue-700 text-white font-headline-sm text-headline-sm rounded flex items-center justify-center gap-1.5 transition-colors shadow-sm active:scale-[0.99]" type="button"><span class="material-symbols-outlined text-[18px]">alt_route</span><span class="font-semibold">Generate Bypass Route</span></button><button class="h-9 px-space-md bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 font-headline-sm text-headline-sm rounded flex items-center justify-center gap-1.5 transition-colors shadow-xs active:scale-[0.99]" type="button"><span class="material-symbols-outlined text-[18px] text-slate-600">broadcast_on_home</span><span class="font-semibold">Notify Units</span></button></div></div>
+<!-- Tactical AI Route Analysis Box (Clean & Rigorous) -->
+<div class="p-space-md bg-white border border-slate-200 rounded flex flex-col gap-space-xs shadow-sm"><div class="flex items-center justify-between pb-space-xs border-b border-slate-100"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[17px] text-blue-600">analytics</span><span class="font-headline-sm text-headline-sm text-blue-700 font-bold">Analytical Route Summary</span></div><span class="font-label-sm text-label-sm text-slate-400 font-semibold px-1.5 py-0.2 bg-slate-100 rounded border border-slate-200 font-mono">AUTO-CALC v4</span></div><p class="font-body-sm text-body-sm text-slate-600 leading-relaxed pt-1">Due to debris buildup on NH-10 Km 28, heavy vehicles (&gt;16T) face <strong class="text-rose-600 font-bold">94% risk</strong> of total transit blockage. Recommended diversion via <strong class="text-slate-900 font-semibold">Peshok-Algarah corridor</strong> adds 28km (+52 mins) but mitigates high-slope landslide exposure.</p><div class="grid grid-cols-3 gap-space-xs pt-space-xs"><div class="p-space-xs bg-slate-50 border border-emerald-200/80 rounded text-center shadow-xs"><span class="text-slate-400 font-label-sm text-label-sm block uppercase font-medium">RISK DELTA</span><span class="text-emerald-700 font-mono text-[16px] leading-tight font-bold block mt-0.5">-42%</span><span class="text-emerald-600 font-label-sm text-[9px] block uppercase font-medium">High safety</span></div><div class="p-space-xs bg-slate-50 border border-amber-200/80 rounded text-center shadow-xs"><span class="text-slate-400 font-label-sm text-label-sm block uppercase font-medium">GRADIENT</span><span class="text-amber-700 font-mono text-[16px] leading-tight font-bold block mt-0.5">+3.2%</span><span class="text-amber-600 font-label-sm text-[9px] block uppercase font-medium">Steep incline</span></div><div class="p-space-xs bg-slate-50 border border-blue-200/80 rounded text-center shadow-xs"><span class="text-slate-400 font-label-sm text-label-sm block uppercase font-medium">STABILITY</span><span class="text-blue-700 font-mono text-[16px] leading-tight font-bold block mt-0.5">88%</span><span class="text-blue-600 font-label-sm text-[9px] block uppercase font-medium">Corridor rating</span></div></div></div>
+<!-- Incident Quick-List Feed -->
+<div class="p-space-md bg-white border border-slate-200 rounded flex flex-col gap-space-sm flex-1 shadow-sm"><div class="flex items-center justify-between pb-space-xs border-b border-slate-100"><span class="font-label-sm text-label-sm text-slate-700 uppercase font-bold">Active Sector Incidents (4)</span><span class="font-label-sm text-label-sm text-blue-600 font-semibold cursor-pointer hover:underline">View All Alerts</span></div><div class="flex flex-col gap-space-xs"><div class="p-space-sm bg-slate-50/70 hover:bg-slate-100/80 border border-slate-200/70 rounded cursor-pointer transition-colors flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><span class="w-2 h-2 rounded-full bg-amber-500 flex-shrink-0"></span><div class="flex flex-col min-w-0"><span class="font-body-sm text-body-sm text-slate-900 font-semibold truncate">B-14 Bridge Pier Scour</span><span class="font-label-sm text-label-sm text-slate-500 truncate">Kalimpong link • Structural survey active</span></div></div><div class="flex flex-col items-end flex-shrink-0 gap-0.5"><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-amber-50 border border-amber-200 text-amber-700 font-bold">CAUTION</span><span class="font-label-sm text-[10px] text-slate-400 font-mono">14 km • 18m ago</span></div></div><div class="p-space-sm bg-slate-50/70 hover:bg-slate-100/80 border border-slate-200/70 rounded cursor-pointer transition-colors flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><span class="w-2 h-2 rounded-full bg-rose-500 flex-shrink-0"></span><div class="flex flex-col min-w-0"><span class="font-body-sm text-body-sm text-slate-900 font-semibold truncate">Pass-4 Severe Icing &amp; Sleet</span><span class="font-label-sm text-label-sm text-slate-500 truncate">Elevation 3,200m • Surface ice 60mm</span></div></div><div class="flex flex-col items-end flex-shrink-0 gap-0.5"><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-rose-50 border border-rose-200 text-rose-700 font-bold">BLOCKED</span><span class="font-label-sm text-[10px] text-slate-400 font-mono">32 km • 35m ago</span></div></div><div class="p-space-sm bg-slate-50/70 hover:bg-slate-100/80 border border-slate-200/70 rounded cursor-pointer transition-colors flex items-center justify-between gap-space-sm"><div class="flex items-center gap-space-sm min-w-0"><span class="w-2 h-2 rounded-full bg-orange-500 flex-shrink-0"></span><div class="flex flex-col min-w-0"><span class="font-body-sm text-body-sm text-slate-900 font-semibold truncate">NH-31A Washout Diversion</span><span class="font-label-sm text-label-sm text-slate-500 truncate">Active bypass operational • +15m delay</span></div></div><div class="flex flex-col items-end flex-shrink-0 gap-0.5"><span class="font-label-sm text-label-sm px-1.5 py-0.5 rounded bg-orange-50 border border-orange-200 text-orange-700 font-bold">AT RISK</span><span class="font-label-sm text-[10px] text-slate-400 font-mono">9 km • 1h ago</span></div></div></div></div>
+</div>
+</div>
+</div></main></div>
+
+</body></html>

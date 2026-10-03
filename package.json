@@ -1,0 +1,30 @@
+{
+  "name": "path-setu-logistics-platform",
+  "private": true,
+  "version": "2.4.0",
+  "description": "Path Setu - Tactical Freight & Route Intelligence Mission Control Platform",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host --port 3000",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@vitejs/plugin-react": "^4.7.0",
+    "autoprefixer": "^10.6.1",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^4.3.3",
+    "vite": "^5.4.0"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "lucide-react": "^1.50.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-is": "^19.3.0",
+    "react-leaflet": "^5.0.0",
+    "react-router-dom": "^7.18.4",
+    "recharts": "^3.10.1"
+  }
+}
